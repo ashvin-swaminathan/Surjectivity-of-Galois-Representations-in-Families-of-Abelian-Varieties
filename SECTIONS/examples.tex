@@ -28,7 +28,7 @@ For the second statement,
 we only need verify that a connected finite \'etale cover $U \rightarrow Y$ pulls back to a connected cover of $X$.
 Note that because $X$ and $Y$ are normal and integral, \'etale covers of $X$ and $Y$ are connected if and only if they are irreducible. (Here, we are using that
 normal and connected implies irreducible and that
-normality is local in the \'etale topology over Noetherian stacks by Serre's R1 + S2 criterion for normality.)
+normality is local in the \'etale topology over Noetherian stacks by Serre's R1 + S2 criterion for normality~\cite[\href{http://stacks.math.columbia.edu/tag/031S}{Tag 031S}]{stacks-project}.)
 Thus, we only need show that if $U \rightarrow Y$ is any irreducible finite \'etale cover, then so is $X \times_Y U \rightarrow X$.
 But this follows from the assumptions that $f$ is flat and $U$ is integral,
 which implies all generic points of $X \times_Y U$ map to the generic point of $U$.
@@ -92,7 +92,7 @@ by ``the locus of plane curves.''
 	and we now make more precise what we mean
 	by this locus.
 	When $d=3$, all abelian varieties can be realized as the Jacobian of a plane curve,
-	since all elliptic $1$ curves are plane curves, so in this case we take the locus to be all of $\mathscr M_{1,1}$.
+	since all elliptic curves are plane curves, so in this case we take the locus to be all of $\mathscr M_{1,1}$.
 	For $d \geq 4$, we will define a locally closed substack of $\mg$, where $g = \binom{d-1}{2}$,
 	and the locus of Jacobians of plane curves of degree $d$ will denote the image of this under the Torelli map.
 	For $d \geq 4$, let $\pi_d\colon \scv_d \ra \bp^{\binom{d+2}{2}-1}$ denote the universal family over 
@@ -115,7 +115,7 @@ by ``the locus of plane curves.''
 	Let us now briefly sketch the proof of the two facts claimed above.
 	First, one can first see that $[U_d/\PGL_3]$ represents the claimed
 	functor by defining natural maps both ways and verifying they are mutually inverse.
-	To show $[U_d/\PGL_3] \ra \mg$ is a closed immersion,
+	To show $[U_d/\PGL_3] \ra \mg$ is a locally closed immersion,
 	one can factor $[U_d/\PGL_3] \ra \mg$ through the stack $G^2_d$ parameterizing $g^2_d$'s on 
 	the universal curve over $\mg$,
 	via a natural generalization of the definition given in \cite[Chapter XXI, Definition 3.12]{ACMG:geometryOfCurves}.
@@ -132,8 +132,8 @@ Suppose $A \rightarrow U$ is a rational family of principally polarized abelian 
 and define $V$ to be the smallest locally closed substack of $\ag$ through which $U$ factors.
 The conclusion of Theorem~\ref{theorem:main} holds whenever $V$ is normal and contains a dense open substack of one of the following loci:
 \begin{enumerate}
-	       \item[\customlabel{big-hyperelliptic}{(a)}] The locus $\tau_g(\hyperelliptic g)$ for any $g \geq 0$.
-		      For every $g \geq 0$ there exists a $U$ dominating $\tau_g(\hyperelliptic g)$ because $\hyperelliptic g$ is unirational.
+	       \item[\customlabel{big-hyperelliptic}{(a)}] The locus $\tau_g(\hyperelliptic g)$ for any $g \geq 1$.
+		      For every $g \geq 1$, there exists a $U$ dominating $\tau_g(\hyperelliptic g)$ because $\hyperelliptic g$ is unirational.
                \item[\customlabel{big-maroni}{(b)}] The locus $\tau_g(\trigonal g(M))$ of Jacobians of trigonal curves with Maroni invariant $M < \frac{g}{3}-1$ for any $g \geq 5$. In this case, there exists $U$ dominating $\tau_g(\trigonal g(M))$ because \mbox{$\trigonal g(M)$ is unirational.}
 		\item[\customlabel{big-trigonal}{(c)}] The locus of trigonal curves $\trigonal g$ in any $g \geq 3$.
 We can take $U$ to be any open subscheme of $\trigonal g$, as $\trigonal g$ is rational.

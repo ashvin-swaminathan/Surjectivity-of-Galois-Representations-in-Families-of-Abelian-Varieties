@@ -63,7 +63,7 @@ for every $k \geq 1$, so we will use $\mf{sp}_{2g}(\mathbb Z/\ell\ZZ)$ to denote
 
 \subsection{Generalized Goursat's Lemma}
 
-In Sections~\ref{subsection:closed-subgroups} and~\ref{subsection:open-subgroups}, it will be crucial for us to have a theorem that allows us to express a subgroup of $\Sp_{2g}(\wh{\ZZ})$ as (roughly) the product of its $\ell$-adic reductions. A natural tool for doing this is Goursat's lemma, but in much of the literature (e.g.,~\cite[Lemma 5.2.2]{ribbit} and~\cite[Lemma A.4]{zywina2010elliptic}), this result is only stated for \emph{finite} products of \emph{finite} groups. This section is devoted to proving Theorem~\ref{theorem:goursat}, which generalizes Goursat's lemma to apply in the setting that we need, namely for \emph{countable} products of \emph{profinite} groups.
+In Sections~\ref{subsection:closed-subgroups} and~\ref{subsection:open-subgroups}, it will be crucial for us to have a theorem that allows us to express a subgroup of $\Sp_{2g}(\wh{\ZZ})$ as (roughly) the product of its $\ell$-adic reductions. A natural tool for doing this is Goursat's lemma, but in much of the literature (e.g.,~\cite[Lemma 5.2.1]{ribbit} and~\cite[Lemma A.4]{zywina2010elliptic}), this result is stated for \emph{finite} products or for \emph{finite} groups. This section is devoted to proving Lemma~\ref{theorem:goursat}, which generalizes Goursat's lemma to apply in the setting that we need, namely for \emph{countable} products of \emph{profinite} groups.
 	
 	\begin{lemma} \label{lemma:product-quotient}
 		Let $G = \prod_{i=1}^n G_i$ be a product of profinite groups. Then every finite simple quotient of $G$ is a finite simple quotient of $G_i$ for some $i$, and vice versa.
@@ -76,9 +76,9 @@ In Sections~\ref{subsection:closed-subgroups} and~\ref{subsection:open-subgroups
 		expresses $H$ as a quotient of $G_i$. If no such $i$ exists, then $\ker \phi = G$, contradiction. The ``vice versa'' statement is obvious.
 	\end{proof}
 	
-	\begin{theorem} \label{theorem:goursat}
+	\begin{lemma} \label{theorem:goursat}
 		Let $A$ be a countable set, and suppose $\{G_\alpha\}_{\alpha \in A}$ is a collection of profinite groups such that, for all pairs $\alpha, \beta \in A$ with $\alpha \neq \beta$, the groups $G_\alpha$ and $G_\beta$ have no finite simple quotients in common. Let $G := \prod_{\alpha \in A} G_\alpha$, and let $\pi_\alpha : G \to G_\alpha$ be the natural projections. If $H \subset G$ is a closed subgroup with $\pi_\alpha(H) = G_\alpha$ for all $\alpha \in A$, then $H = G$.
-	\end{theorem}
+	\end{lemma}
 	\begin{proof}
 		First take $A = \{1, 2\}$, so that $G = G_1 \times G_2$. The subgroup
 		\(
@@ -178,7 +178,7 @@ have smaller order than $\PSp_{2g}(\mathbb Z_\ell)$ for $\ell > p$.
 	\begin{proof}
 		The case where $g = 1$ is handled by~\cite[Lemma 7.6]{zywina2010hilbert}, so take $g \geq 2$. By~\cite[Theorem 1]{landesman-swaminathan-tao-xu:lifting-symplectic-group}, the fact that $H(\ell) = \Sp_{2g}(\ZZ/ \ell \ZZ)$ implies that $H_\ell = \Sp_{2g}(\ZZ_\ell)$ for all $\ell > p$.
 
-  The proposition follows upon applying Theorem~\ref{theorem:goursat} to the product $H_{\{\ell \le p\}} \times \prod_{\ell > p} \Sp_{2g}(\ZZ_\ell)$. However, to apply it, we must check that the sets $\quo(H_{\{\ell \le p\}})$ and $\quo(\Sp_{2g}(\ZZ_\ell))$ for $\ell > p$ are all pairwise disjoint. By Lemma~\ref{lemma:simple-quotients-of-symplectic-group}, it suffices to show that $\quo(H_{\{\ell \le p\}}) \cap \quo(\Sp_{2g}(\ZZ_\ell)) = \varnothing$ for any fixed $\ell > p$. Our strategy for checking this condition is to bound the sizes of the groups appearing in $\quo(H_{\{\ell \le p\}})$. First, observe that
+  The proposition follows upon applying Lemma~\ref{theorem:goursat} to the product $H_{\{\ell \le p\}} \times \prod_{\ell > p} \Sp_{2g}(\ZZ_\ell)$. However, to apply it, we must check that the sets $\quo(H_{\{\ell \le p\}})$ and $\quo(\Sp_{2g}(\ZZ_\ell))$ for $\ell > p$ are all pairwise disjoint. By Lemma~\ref{lemma:simple-quotients-of-symplectic-group}, it suffices to show that $\quo(H_{\{\ell \le p\}}) \cap \quo(\Sp_{2g}(\ZZ_\ell)) = \varnothing$ for any fixed $\ell > p$. Our strategy for checking this condition is to bound the sizes of the groups appearing in $\quo(H_{\{\ell \le p\}})$. First, observe that
 		\[
 			\quo(H_{\{\ell \le p\}}) \subset \occ\left( \prod_{\ell \le p} \Sp_{2g}(\bz_\ell)\right) = \bigcup_{\ell \le p} \occ(\Sp_{2g}(\bz_\ell)),
 		\]
@@ -219,7 +219,7 @@ The next two lemmas give us a criterion for openness in $\Sp_{2g}(\zh)$:
 		Let $S$ be a finite set of prime numbers, and let $H \subset \prod_{\ell \in S} \Sp_{2g}(\bz_\ell)$ be a closed subgroup. If each $H_\ell \subset \Sp_{2g}(\bz_\ell)$ is open, then $H \subset \prod_{\ell \in S} \Sp_{2g}(\bz_\ell)$ is open.
 	\end{lemma}
 	\begin{proof}
-		There exists a finite-index subgroup $H' \subset H$ such that $H'(\ell)$ is trivial for every $\ell \in S$, namely the intersection of the kernels of the mod-$\ell$ reductions maps $H \to H(\ell)$. Since each $H'_\ell$ is a pro-$\ell$ group, Theorem~\ref{theorem:goursat} implies that $H' = \prod_{\ell \in S} H'_\ell$.
+		There exists a finite-index subgroup $H' \subset H$ such that $H'(\ell)$ is trivial for every $\ell \in S$, namely the intersection of the kernels of the mod-$\ell$ reductions maps $H \to H(\ell)$. Since each $H'_\ell$ is a pro-$\ell$ group, Lemma~\ref{theorem:goursat} implies that $H' = \prod_{\ell \in S} H'_\ell$.
 		Thus, $H$ contains an open subgroup and is therefore itself open.
 	\end{proof}
 
