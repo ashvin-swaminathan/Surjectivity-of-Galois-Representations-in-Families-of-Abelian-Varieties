@@ -1,0 +1,329 @@
+\section{Definitions and Properties of Symplectic Groups} \label{gorilla}
+
+In this section, we first detail the basic definitions and properties of symplectic groups, and we then proceed to prove a few group-theoretic lemmas that are used in our proof of the main result of this paper, Theorem~\ref{theorem:main}. The reader should feel free to proceed to Section~\ref{section:background} upon reading the statements of Propositions~\ref{theorem:adelic-surjective-subset} and~\ref{theorem:commutator-open}.
+
+\subsection{Symplectic Groups}\label{subsection:stimpy}
+
+Fix a commutative ring $R$, a free $R$-module $M$ of rank $2g$ for some positive integer $g$, and a non-degenerate alternating bilinear form $\langle -, - \rangle \colon M \times M \to R$. Define the {\it general symplectic group} (alternatively, the \emph{group of symplectic similitudes}) $\GSp(M)$ to be the subgroup of $\on{GL}(M)$ consisting of all $R$-automorphisms $S$ such that there exists some $m_S \in R^\times$, called the {\it multiplier} of $S$, satisfying $\langle S v, Sw \rangle = m_S \cdot \langle v, w \rangle$ for all $v, w \in M$. One readily observes that the {\it mult} map
+\begin{align*}
+	\mult \colon \GSp(M) & \rightarrow R^\times \\
+	S & \mapsto m_S
+\end{align*}
+is a group homomorphism, and its kernel is the {\it symplectic group}, denoted by $\Sp(M)$.
+
+By choosing a suitable $R$-basis for $M$, we can arrange for the corresponding matrix of the inner product $\langle -, - \rangle$ to be given by
+$$\Omega_{2g} = \left[\begin{array}{c|c} 0 & \id_g \\ \hline -\id_g & 0\end{array}\right],$$
+where $\id_g$ denotes the $g \times g$ identity matrix. From this choice of basis we obtain an identification $\GL(M) \simeq \GL_{2g}(R)$. We then define $\GSp_{2g}(R)$ to be the image of $\GSp(M)$ and $\Sp_{2g}(R)$ to be the image of $\Sp(M)$ under this identification. Let $\det \colon \GL_{2g}(R) \to R^\times$ be the determinant map. Since the diagram
+\begin{center}
+\begin{tikzcd}
+\GSp(M) \arrow{r}{\sim} \arrow[swap]{rd}{\on{mult}^g} &  \GSp_{2g}(R) \arrow{d}{\on{det}} \\
+& R^\times
+\end{tikzcd}
+\end{center}
+
+\noindent commutes, where the diagonal map is the multiplier map raised to the $g^{\mathrm{th}}$ power, one deduces that $\GSp_{2g}(R)$ is in fact the subgroup of $\GL_{2g}(R)$ consisting of all invertible matrices $S$ satisfying $S^T \Omega_{2g} S = (\on{mult} S) \, \Omega_{2g}$ and that $\Sp_{2g}(R) = \ker(\on{mult} \colon \GSp_{2g}(R) \to R^\times)$.
+
+Let $\on{Mat}_{2g \times 2g}(R)$ denote the space of $2g \times 2g$ matrices with entries in $R$. In subsequent subsections, we will make heavy use of the ``Lie algebra'' $\mf{sp}_{2g}(R)$, which is defined by
+		\begin{align*}
+			\mf{sp}_{2g}(R) &\defeq \{M \in \on{Mat}_{2g \times 2g}(R) : M^T \Omega_{2g} + \Omega_{2g} M = 0 \}.
+		\end{align*}
+		It is easy to see that $M^T \Omega_{2g} + \Omega_{2g}M = 0$ is equivalent to $M$ being a block matrix with $g \times g$ blocks of the form
+		\[
+			M = \left[\begin{array}{c|c} A & B \\ \hline C & -A^T \end{array}\right],
+		\]
+		where $B$ and $C$ are symmetric.
+
+For the purpose of studying Galois representations associated to PPAVs, we will be primarily interested in the cases where the ring $R$ is the profinite completion $\wh{\ZZ}$ of $\ZZ$, the ring of $\ell$-adic integers $\ZZ_{\ell}$ for a prime number $\ell$, or the finite cyclic ring $\ZZ / m \ZZ$ for a positive integer $m$.
+Note in particular that we have the identifications
+\begin{equation}\label{orientation1}
+\GSp_{2g}(\ZZ_\ell)   \simeq  \varprojlim_k \GSp_{2g}(\ZZ/ \ell^k \ZZ) \quad \text{and}
+\end{equation}
+\begin{equation}\label{orientation2}
+\prod_{\text{prime } \ell} \GSp_{2g}(\ZZ_\ell) \simeq  \GSp_{2g}(\wh{\ZZ}) \simeq  \varprojlim_m \GSp_{2g}(\ZZ / m \ZZ).
+\end{equation}
+From~\eqref{orientation1} and~\eqref{orientation2}, we obtain the $\ell$-adic projection map $\pi_\ell \colon \GSp_{2g}(\wh{\ZZ}) \twoheadrightarrow \GSp_{2g}(\ZZ_\ell)$ and the mod-$m$ reduction map $r_m \colon \GSp_{2g}(\wh{\ZZ}) \twoheadrightarrow \GSp_{2g}(\ZZ / m \ZZ)$. Observe that~\eqref{orientation1} and~\eqref{orientation2} both hold with $\GSp_{2g}$ replaced by $\Sp_{2g}$.
+
+
+
+\subsection{Notation}
+\label{subsection:notation}
+
+In what follows, we study subquotients of $\Sp_{2g}(\wh{\ZZ})$, $\Sp_{2g}(\ZZ_\ell)$, and $\Sp_{2g}(\ZZ/ \ell^k \ZZ)$ for $\ell$ a prime number and $k$ a positive integer. We use the following notational conventions:
+\begin{itemize}
+\item Let $H\subset \Sp_{2g}(\wh{\ZZ})$ be a closed subgroup.
+\item Let $H_{\ell} \defeq \pi_\ell(H) \subset \Sp_{2g}(\ZZ_\ell)$ be the $\ell$-adic reduction of $H$. More generally, for any set $S$ of prime numbers, let $H_S$ denote the projection of $H$ onto $\prod_{\ell \in S} \Sp_{2g}(\wh{\ZZ})$.
+\item Let $H(m) = r_{m}(H) \subset \Sp_{2g}(\ZZ/m \ZZ)$ be the mod-$m$ reduction of $H$. We often take $m = \ell^k$.
+\item Let $\Gamma_{\ell^k} = \ker(\Sp_{2g}(\ZZ_\ell) \to \Sp_{2g}(\ZZ/ \ell^k \ZZ))$. Notice that the map $M \mapsto \id_{2g} + \ell^k M$ gives an isomorphism of groups
+$$\mf{sp}_{2g}(\ZZ/ \ell \ZZ) \simeq \ker(\Sp_{2g}(\ZZ/\ell^{k+1} \ZZ) \to \Sp_{2g}(\ZZ/ \ell^k \ZZ))$$
+for every $k \geq 1$, so we will use $\mf{sp}_{2g}(\mathbb Z/\ell\ZZ)$ to denote the above kernel.
+\item For any group $G$, let $[G,G]$ be its commutator subgroup, and let $G^{\ab} \defeq G/{ {[G,G]}}$ be its abelianization.
+\item For any group $G$, let $\quo(G)$ the set of isomorphism classes of finite non-abelian simple quotients of $G$, and let $\occ(G)$ be the set of isomorphism classes of finite non-abelian simple \emph{sub}quotients of $G$.
+\item For any positive integer $m$, let $S_m$ denote the symmetric group on $m$ letters.
+\end{itemize}
+
+\subsection{Generalized Goursat's Lemma}
+
+In Sections~\ref{subsection:closed-subgroups} and~\ref{subsection:open-subgroups}, it will be crucial for us to have a theorem that allows us to express a subgroup of $\Sp_{2g}(\wh{\ZZ})$ as (roughly) the product of its $\ell$-adic reductions. A natural tool for doing this is Goursat's lemma, but in much of the literature (e.g.,~\cite[Lemma 5.2.2]{ribbit} and~\cite[Lemma A.4]{zywina2010elliptic}), this result is only stated for \emph{finite} products of \emph{finite} groups. This section is devoted to proving Theorem~\ref{theorem:goursat}, which generalizes Goursat's lemma to apply in the setting that we need, namely for \emph{countable} products of \emph{profinite} groups.
+	
+	\begin{lemma} \label{lemma:product-quotient}
+		Let $G = \prod_{i=1}^n G_i$ be a product of profinite groups. Then every finite simple quotient of $G$ is a finite simple quotient of $G_i$ for some $i$, and vice versa.
+	\end{lemma}
+	\begin{proof}
+		Consider a finite simple quotient $\phi: G \twoheadrightarrow H$. Since each $G_i \subset G$ is normal, the image $\phi(G_i) \subset H$ is also normal. For any $i$, if $\phi(G_i)$ is larger than $\{1\}$, then it equals $H$ since $H$ is simple, and the composition
+		\(
+			G_i \hookrightarrow G \twoheadrightarrow H
+		\)
+		expresses $H$ as a quotient of $G_i$. If no such $i$ exists, then $\ker \phi = G$, contradiction. The ``vice versa'' statement is obvious.
+	\end{proof}
+	
+	\begin{theorem} \label{theorem:goursat}
+		Let $A$ be a countable set, and suppose $\{G_\alpha\}_{\alpha \in A}$ is a collection of profinite groups such that, for all pairs $\alpha, \beta \in A$ with $\alpha \neq \beta$, the groups $G_\alpha$ and $G_\beta$ have no finite simple quotients in common. Let $G := \prod_{\alpha \in A} G_\alpha$, and let $\pi_\alpha : G \to G_\alpha$ be the natural projections. If $H \subset G$ is a closed subgroup with $\pi_\alpha(H) = G_\alpha$ for all $\alpha \in A$, then $H = G$.
+	\end{theorem}
+	\begin{proof}
+		First take $A = \{1, 2\}$, so that $G = G_1 \times G_2$. The subgroup
+		\(
+			N_1 \times \{1\} \defeq (G_1 \times \{1\}) \cap H \subset G
+		\)
+		is normal because $\pi_1(H) = G_1$. This means $N_1$ is a normal subgroup of $G_1$. Similarly for the subgroup $\{1\} \times N_2$. With these definitions, the closed subgroup
+		\(
+			H / (N_1 \times N_2) \subset (G_1 / N_1) \times (G_2 / N_2)
+		\)
+		surjects onto each factor via the natural projections. We have thereby reduced to the case $N_1 = N_2 = 0$. By \cite[Lemma 5.2.1]{ribbit}, we know that $G_1 \simeq G_2$ as profinite groups. The result follows because two isomorphic profinite groups have a nontrivial finite simple quotient in common (and any quotient of $G_i / N_i$ is \emph{a priori} a quotient of $G_i$).
+		
+		Now take $A = \{1, 2, \ldots, n\}$ for $n \ge 3$, and suppose (by induction) that the result has been proven for $n-1$. For any $H \subset G = \prod_{i=1}^n G_i$ satisfying the hypotheses of the theorem, let $H'$ be the image of $H$ under the projection $G \twoheadrightarrow \prod_{i=1}^{n-1} G_i$. Then $H'$ satisfies the hypotheses for $n-1$, so we conclude that $H' = \prod_{i=1}^{n-1} G_i$. By Lemma~\ref{lemma:product-quotient}, the groups $\prod_{i=1}^{n-1} G_i$ and $G_n$ have no finite simple quotients in common, so the $n = 2$ case tells us that $H = G$.
+		
+		The only remaining case is $A = \{1, 2, \ldots\}$. Consider $H \subset G$ satisfying the hypotheses of the theorem. For each $n$, let $H(n)$ be the image of $H$ under the projection $G \twoheadrightarrow \prod_{i=1}^{n} G_i$. By the finite case prove above, we know that $H(n) = \prod_{i=1}^n G_i$ for each $n \ge 1$. Fix an element $g \defeq (g_i)_{i \ge 1} \subset G$, and define a sequence $\{h_1, h_2, \ldots\}$ of elements of $H$ as follows: let $h_n$ be any element of $H$ whose image in $\prod_{i=1}^n G_i$ equals $(g_1, \ldots, g_n)$. In the product topology, $\lim_{n \rightarrow \infty} h_n = g$, so $g \in H$ since $H$ is closed. Since $g \in G$ was arbitrary, \mbox{we conclude that $H = G$.}
+	\end{proof}
+
+\subsection{Closed Subgroups of $\Sp_{2g}(\wh{\ZZ})$}
+\label{subsection:closed-subgroups}
+	
+	As before, let $H \subset \Sp_{2g}(\zh)$ be a closed subgroup. Our main result of this section is Proposition~\ref{theorem:adelic-surjective-subset}, which shows that properties of $H$ can be deduced from corresponding properties of the $\ell$-adic reductions $H_\ell \subset \Sp_{2g}(\bz_\ell)$ as $\ell$ ranges over the prime numbers.
+	We use Proposition~\ref{theorem:adelic-surjective-subset} crucially in our proof of the main theorem, Theorem~\ref{theorem:main},
+	and more specifically in the proof of Proposition~\ref{lemma:ab-cyc}.
+
+	Our strategy is to combine Goursat's lemma with the observation that the groups $\Sp_{2g}(\bz_\ell)$ have distinct sets of possible simple quotients as $\ell$ varies. We shall make use of the following version of Goursat's Lemma, which we apply in the proof of Proposition~\ref{theorem:adelic-surjective-subset} to determine a subgroup of $\Sp_{2g}(\widehat{\mathbb Z})$ from its $\ell$-adic images.
+
+	The next lemma enables us to verify the conditions required for applying Goursat's
+	Lemma:\vspace*{-0.2in}
+	\begin{lemma}
+		\label{lemma:simple-quotients-of-symplectic-group}
+       If $g > 2$ or $\ell > 2$, we have $\quo(\Sp_{2g}(\ZZ_\ell)) = \{\on{PSp}_{2g}(\ZZ/ \ell \ZZ)\}$. Moreover, for all $g \geq 2$, we have $\quo(\Sp_{2g}(\mathbb Z_\ell)) \cap \quo(\Sp_{2g}(\mathbb Z_{\ell'})) = \varnothing$ if $\ell \neq \ell'$.
+	\end{lemma}
+	\begin{proof}
+		Since $\Gamma_\ell$ is a pro-$\ell$ group, we have that
+		$\quo (\Sp_{2g}(\mathbb Z_\ell)) = \quo(\Sp_{2g}(\mathbb Z/ \ell \ZZ))$.
+		Furthermore, quotienting by $\{\pm \id_{2g}\}$, we have that
+		$\quo(\Sp_{2g}(\mathbb Z/ \ell \ZZ)) = \quo(\Sp_{2g}(\mathbb Z/ \ell \ZZ)/\left\{ \pm \id_{2g} \right\})$. By~\cite[Theorem 3.4.1]{omeara1978symplectic}, we have $\Sp_{2g}(\mathbb Z/\ell \ZZ)/\left\{ \pm \id_{2g} \right\} = \PSp_{2g}(\ZZ/ \ell \ZZ)$ is simple for $g > 2$ or $\ell > 2$. It follows that $\quo(\Sp_{2g}(\ZZ_\ell)) = \{\on{PSp}_{2g}(\ZZ/ \ell \ZZ)\}$ in this case.
+
+To finish the proof, note that $\quo(\Sp_{2g}(\mathbb Z_\ell)) \cap \quo(\Sp_{2g}(\mathbb Z_{\ell'})) = \varnothing$ for $g > 2$ or $\ell, \ell' > 2$ because $\PSp_{2g}(\bz / \ell \bz) \neq \PSp_{2g}(\bz / \ell' \bz)$ for $\ell \neq \ell'$ because their orders are different. The only remaining case is where $g = 2$, $\ell = 2$, and $\ell' > 2$. In this case, observe that $\PSp_{2g}(\bz / \ell' \ZZ) \notin \quo( \Sp_{2g}(\bz / 2 \ZZ))$ for $\ell' > 2$, since the order of $\PSp_{2g}(\bz / \ell \ZZ)$ exceeds that of $\Sp_{2g}(\bz / 2 \ZZ)$.
+	\end{proof}
+	
+We are now ready to prove Proposition~\ref{theorem:adelic-surjective-subset},
+assuming Proposition~\ref{theorem:truncate}.
+\begin{proposition}
+		\label{theorem:adelic-surjective-subset}
+		Let $G \subset \Sp_{2g}(\zh)$ be an open subgroup. There exists a positive integer $M$ such that, for every closed subgroup $H \subset G$, we have $H = G$ if and only if $H(M) = G(M)$ and $H(\ell) = \Sp_{2g}(\bz / \ell \ZZ)$ for every prime $\ell \nmid M$.
+	\end{proposition}
+\subsubsection*{Idea of Proof}
+The idea of the proof is to find a sufficiently large $M$
+so that if $H(M) = G(M)$ then $H_{\{\ell \hspace{.05cm}\nmid \hspace{.05cm}M\}} = G_{\{\ell \hspace{.05cm} \nmid\hspace{.05cm} M\}}$,
+which will reduce the problem to proving
+Proposition~\ref{theorem:truncate}.
+
+	\begin{proof}[Proof assuming Proposition~\ref{theorem:truncate}]
+		Again, the case where $g = 1$ is handled in~\cite[Lemma 7.6]{zywina2010hilbert}, so take $g \geq 2$. Let $p$ be the largest prime such that $G(p) \neq \Sp_{2g}(\bz / p \ZZ)$.
+		Observe that the groups $\Gamma_{\ell^k}$ are open in $\Sp_{2g}(\ZZ_\ell)$ because they have finite index in $\Sp_{2g}(\ZZ_\ell)$. Since $G \subset \Sp_{2g}(\zh)$ is open, the group $G_{\{\ell \le p\}} \subset \prod_{\ell \le p} \Sp_{2g}(\ZZ_\ell)$ is open too, so there exist exponents $e(\ell) \ge 1$ with the property that
+		\[
+			\prod_{\ell \le p} \Gamma_{\ell^{e(\ell)}} \subset G_{\{\ell \le p \}}.
+		\]
+		Since the groups $\Gamma_{\ell^k}$ are finitely generated pro-$\ell$ open normal subgroups of $\GSp_{2g}(\ZZ_\ell)$, condition (ii) from~\cite[Proposition 10.6]{serre1989lectures} is satisfied. Hence,
+		the equivalence of conditions (ii) and (iv) from~\cite[Proposition 10.6]{serre1989lectures} implies
+		that the Frattini subgroup defined by
+		\begin{align*}
+		\Phi(G_{\{\ell \le p\}}) \defeq \bigcap_{\substack{S \subset G_{\{\ell \le p\}} \\ S \text{ maximal closed in  }G_{\{\ell \le p\}}}} S
+		\end{align*}
+		is open and normal in $G_{\{\ell \le p\}}$. This means we can find exponents $e'(\ell) \ge 1$ such that
+		\[
+			\prod_{\ell \le p} \Gamma_{\ell^{e'(\ell)}} \subset \Phi(G_{\{\ell \le p\}}).
+		\]
+		Define $M \defeq \prod_{\ell \le p} \ell^{e'(\ell)}$. Then $H(M) = G(M)$ implies that $H_{\{\ell \leq p\}} = G_{\{\ell \leq p\}}$.
+		
+		Now take $H$ satisfying $H(M) = G(M)$ and $H(\ell) = \Sp_{2g}(\bz / \ell \ZZ)$ for every prime $\ell \nmid M$. We have that
+		\[
+			H \subset G \subset H_{\{\ell \le p\}} \times \prod_{\ell > p} \Sp_{2g}(\bz_\ell).
+		\]
+		To show that $H = G$, we need only verify
+		\[
+			H = H_{\{\ell \le p\}} \times \prod_{\ell > p} \Sp_{2g}(\bz_\ell),
+		\]
+		but this follows immediately from Proposition~\ref{theorem:truncate}.
+	\end{proof}
+We now complete the proof of Proposition~\ref{theorem:adelic-surjective-subset} by proving
+Proposition~\ref{theorem:truncate}.
+
+		\begin{proposition}
+		\label{theorem:truncate}
+		Let $g \geq 2$ and let $H \subset \Sp_{2g}(\widehat {\mathbb Z})$ be a closed subgroup. Suppose there is a prime number $p \ge 2$ so that $H(\ell) = \Sp_{2g}(\ZZ/ \ell \ZZ)$ for all $\ell > p$. Then we have that
+		\begin{equation}\label{meanttofly}
+		H = H_{\{\ell \le p\}} \times \prod_{\ell > p} \Sp_{2g}(\ZZ_\ell).
+		\end{equation}
+	\end{proposition}
+\subsubsection*{Idea of Proof}
+The idea of the proof is to apply Goursat's Lemma to conclude that if the group surjects onto each factor,
+then it surjects onto the product.
+We verify the hypotheses of Goursat's Lemma,
+using Lemma~\ref{lemma:simple-quotients-of-symplectic-group}, and the fact that all simple quotients of $H_{\{\ell \leq p\}}$
+have smaller order than $\PSp_{2g}(\mathbb Z_\ell)$ for $\ell > p$.
+	\begin{proof}
+		The case where $g = 1$ is handled by~\cite[Lemma 7.6]{zywina2010hilbert}, so take $g \geq 2$. By~\cite[Theorem 1]{landesman-swaminathan-tao-xu:lifting-symplectic-group}, the fact that $H(\ell) = \Sp_{2g}(\ZZ/ \ell \ZZ)$ implies that $H_\ell = \Sp_{2g}(\ZZ_\ell)$ for all $\ell > p$.
+
+  The proposition follows upon applying Theorem~\ref{theorem:goursat} to the product $H_{\{\ell \le p\}} \times \prod_{\ell > p} \Sp_{2g}(\ZZ_\ell)$. However, to apply it, we must check that the sets $\quo(H_{\{\ell \le p\}})$ and $\quo(\Sp_{2g}(\ZZ_\ell))$ for $\ell > p$ are all pairwise disjoint. By Lemma~\ref{lemma:simple-quotients-of-symplectic-group}, it suffices to show that $\quo(H_{\{\ell \le p\}}) \cap \quo(\Sp_{2g}(\ZZ_\ell)) = \varnothing$ for any fixed $\ell > p$. Our strategy for checking this condition is to bound the sizes of the groups appearing in $\quo(H_{\{\ell \le p\}})$. First, observe that
+		\[
+			\quo(H_{\{\ell \le p\}}) \subset \occ\left( \prod_{\ell \le p} \Sp_{2g}(\bz_\ell)\right) = \bigcup_{\ell \le p} \occ(\Sp_{2g}(\bz_\ell)),
+		\]
+		where the last step follows from the first displayed equation of~\cite[p.\ IV-25]{serre1989abelian}.
+But
+\(
+			\occ(\Sp_{2g}(\bz_\ell)) = \occ(\Gamma_\ell) \cup \occ(\Sp_{2g}(\bz / \ell \ZZ))
+		\),
+and $\occ(\Gamma_\ell) = \varnothing$ because $\Gamma_\ell$ is a pro-$\ell$ group, so
+		\(
+			\occ(\Sp_{2g}(\bz_\ell)) = \occ(\Sp_{2g}(\bz / \ell \ZZ))
+		\).
+		Because $\Sp_{2g}(\bz / \ell \ZZ)$ is not simple, every element of $\occ(\Sp_{2g}(\bz / \ell \ZZ))$ is bounded in size by $|\Sp_{2g}(\bz / \ell \ZZ)| / 2$, so every element of $\quo(H_{\{\ell \le p\}})$ is bounded in size by $|\Sp_{2g}(\bz / p \ZZ)| / 2$. Observing that
+		\[
+			\frac{1}{2} \cdot |\Sp_{2g}(\bz / p \bz)| < |\PSp_{2g}(\bz / \ell \bz)|
+		\]
+		for every $\ell > p$, the desired condition follows by applying Lemma~\ref{lemma:simple-quotients-of-symplectic-group}.
+	\end{proof}
+
+	
+	\subsection{Open Subgroups of $\GSp_{2g}(\wh{\ZZ})$}
+	\label{subsection:open-subgroups}
+We now return to studying the general symplectic group $\GSp_{2g}(\wh{\ZZ})$. The main result of this subsection tells us that the closure of the commutator subgroup of an open subgroup of $\GSp_{2g}(\wh{\ZZ})$ is open:
+
+
+\begin{proposition} \label{theorem:commutator-open}
+Let $g \geq 2$, and let $H \subset \GSp_{2g}(\zh)$ be an open subgroup. Then the closure of $[H, H]$ is an open subgroup of $\Sp_{2g}(\zh)$.
+\end{proposition}
+
+In order to prove Proposition~\ref{theorem:commutator-open}, we shall require a number of preliminary lemmas, which are stated and proven in Sections~\ref{sec1} and~\ref{sec2}.
+
+\subsubsection{Openness Condition}\label{sec1}
+
+The next two lemmas give us a criterion for openness in $\Sp_{2g}(\zh)$:
+
+\begin{lemma}
+		\label{lemma:open-image-in-finite-set}
+		Let $S$ be a finite set of prime numbers, and let $H \subset \prod_{\ell \in S} \Sp_{2g}(\bz_\ell)$ be a closed subgroup. If each $H_\ell \subset \Sp_{2g}(\bz_\ell)$ is open, then $H \subset \prod_{\ell \in S} \Sp_{2g}(\bz_\ell)$ is open.
+	\end{lemma}
+	\begin{proof}
+		There exists a finite-index subgroup $H' \subset H$ such that $H'(\ell)$ is trivial for every $\ell \in S$, namely the intersection of the kernels of the mod-$\ell$ reductions maps $H \to H(\ell)$. Since each $H'_\ell$ is a pro-$\ell$ group, Theorem~\ref{theorem:goursat} implies that $H' = \prod_{\ell \in S} H'_\ell$.
+		Thus, $H$ contains an open subgroup and is therefore itself open.
+	\end{proof}
+
+       \begin{lemma}
+		\label{theorem:adelic-open}
+		Let $g \geq 2$ and let $H \subset \Sp_{2g}(\zh)$ be a closed subgroup. If $H_{\ell'}$ is open in $\Sp_{2g}(\bz_{\ell'})$ for all $\ell'$ and $H_\ell = \Sp_{2g}(\bz_\ell)$ for all but finitely many $\ell$, then $H$ is open in $\Sp_{2g}(\zh)$.
+	\end{lemma}
+	\begin{proof}
+		Let $p$ be the largest prime with $H_{p} \neq \Sp_{2g}(\mathbb Z_{p})$. By Lemma~\ref{lemma:open-image-in-finite-set}, we have that  $H_{\{\ell \le p\}} \subset \prod_{\ell \le p} \Sp_{2g}(\mathbb Z_\ell)$ is an open subgroup.
+		The result then follows from Proposition~\ref{theorem:truncate}.
+	\end{proof}
+
+\subsubsection{Two Computational Lemmas}\label{sec2}
+
+The next two results are used in the proof of Proposition~\ref{theorem:commutator-open}. The following lemma describes the commutator of an element of $\Gamma_{\ell^m}$ with an element of $\Gamma_{\ell^n}$.
+
+	\begin{lemma} \label{lemma:commutator-formula}
+		Let $n\le m$ be positive integers, and let $\id_{2g} + \ell^n U$ and $\id_{2g} + \ell^m V$ be elements of $\GL_{2g}(\bz_\ell)$. Then we have
+		\begin{align*}
+		& (\id_{2g} + \ell^nU)^{-1}(\id_{2g} + \ell^mV)(\id_{2g} + \ell^n U)(\id_{2g} + \ell^m V)^{-1} \equiv \id_{2g} + \ell^{n+m} (VU - UV)\,\,\, (\on{mod}{\ell^{2n+m}}).
+		\end{align*}
+	\end{lemma}
+	\begin{proof}
+		We have
+		\begin{align*}
+		(\id_{2g} + \ell^mV)(\id_{2g} + \ell^n U)(\id_{2g} + \ell^mV)^{-1} &= \id_{2g} + \ell^n (\id_{2g} + \ell^mV)U(\id_{2g} + \ell^mV)^{-1} \\			
+		&= \id_{2g} + \ell^n (\id_{2g} + \ell^m V)U \left(\sum_{i=0}^\infty (-1)^i \ell^{im} V^i\right) \\
+		&= \id_{2g} + \ell^n \sum_{i=0}^\infty \Big[ (-1)^i \ell^{im} U V^i + (-1)^i \ell^{(i+1)m} VUV^i \Big]\\
+		&= \id_{2g} + \ell^n U + \ell^{n+m} (VU - UV) (\id_{2g} + \ell^m V)^{-1}.
+		\end{align*}
+		Multiplying on the left by $(\id_{2g} + \ell^nU)^{-1}$ gives the desired result.
+	\end{proof}
+
+In the next proposition, we show the commutator subalgebra of $\mf{sp}_{2g}(\ZZ/\ell \ZZ)$ is sufficiently large for all primes $\ell$.
+
+    \begin{proposition}\label{stopdrop}
+We have the following results:
+\begin{enumerate}
+\item For all $g \geq 1$ and $\ell \geq 3$ we have $[\mf{sp}_{2g}(\ZZ/ \ell \ZZ), \mf{sp}_{2g}(\ZZ/ \ell \ZZ)] = \mf{sp}_{2g}(\ZZ/ \ell \ZZ)$.
+\item For all $g \geq 1$ we have $[\mf{sp}_{2g}(\ZZ/ 4 \ZZ), \mf{sp}_{2g}(\ZZ/ 4 \ZZ)] \supset 2 \cdot \mf{sp}_{2g}(\ZZ / 2 \ZZ)$.
+\end{enumerate}
+\end{proposition}
+\begin{proof}
+	Statement (a) follows immediately from~\cite[Theorem 2.6]{eliotsteinclub}, which states that $\mf{sp}_{2g}(\ZZ/ \ell \ZZ)$ is simple for $\ell \geq 3$. It remains to prove Statement (b). For this, we compute several commutators and make deductions based on each one. For convenience, let $\mf{g} = [\mf{sp}_{2g}(\ZZ/ 4 \ZZ), \mf{sp}_{2g}(\ZZ/ 4 \ZZ)]$, let $A, D$ denote arbitrary $g \times g$ matrices, and let $B,C,E,F$ denote symmetric $g \times g$ matrices. \mbox{Since}
+\begin{align}
+	\label{equation:block-diagonal-commutator}
+ \left[ \left[\begin{array}{c|c} A & 0 \\ \hline 0 & -A^T \end{array}\right], \left[\begin{array}{c|c} D & 0 \\ \hline 0 & -D^T \end{array}\right] \right] & = \left[\begin{array}{c|c} AD - DA & 0 \\ \hline 0 & A^TD^T - D^TA^T \end{array}\right],
+ \intertext{all block-diagonal matrices in $\mf{sp}_{2g}(\ZZ/4\ZZ)$ with every diagonal entry equal to $0$ are contained in $\mf{g}$. This can be seen
+by taking $A$ and $D$ to be various elementary matrices.
+Furthermore,}
+\label{equation:block-off-diagonal-commutator}
+ \left[ \left[\begin{array}{c|c} 0 & B \\ \hline C & 0 \end{array}\right], \left[\begin{array}{c|c} 0 & E \\ \hline F & 0 \end{array}\right] \right] & = \left[\begin{array}{c|c} BF - EC & 0 \\ \hline 0 & CE - FB \end{array}\right],
+ \intertext{so we can arrange that $BF-EC$ is an elementary matrix with a single nonzero entry on the diagonal.
+	 Summing matrices from~\eqref{equation:block-diagonal-commutator} and~\eqref{equation:block-off-diagonal-commutator} tells us that all block-diagonal matrices are contained in $\mf{g}$. Additionally,}
+\label{equation:identity-commutator}
+  \left[ \left[\begin{array}{c|c} \id_g & 0 \\ \hline 0 & -\id_g \end{array}\right], \left[\begin{array}{c|c} 0 & B \\ \hline 0 & 0 \end{array}\right] \right] & = \left[\begin{array}{c|c} 0 & 2B \\ \hline 0 & 0 \end{array}\right].
+  \intertext{Repeating the computation from~\eqref{equation:identity-commutator} with the other off-diagonal block nonzero implies that $2$ times any matrix in $\mf{sp}_{2g}(\ZZ / 2 \ZZ)$ whose diagonal blocks are $0$ is an element of $\mf{g}$. The desired result follows because $2 \cdot \mf{sp}_{2g}(\mathbb Z/2\ZZ)$ is contained in the subspace generated by the matrices from~\eqref{equation:block-diagonal-commutator},~\eqref{equation:block-off-diagonal-commutator}, and~\eqref{equation:identity-commutator}. \nonumber \qedhere}
+\end{align}
+\end{proof}
+
+\subsubsection{Completing the Proof}
+
+In order to prove Proposition~\ref{theorem:commutator-open}, we require the following lemma, which states that the closure of the commutator $[\Gamma_{\ell^k}, \Gamma_{\ell^k}]$ is large.
+
+\begin{lemma} \label{proposition:commutator-effective}
+	Fix $k \geq 1$. Then if $\ell \neq 2$, the closure of $[\Gamma_{\ell^k}, \Gamma_{\ell^k}]$ contains $\Gamma_{\ell^{2k}}$ and if $\ell = 2$, the closure of $[\Gamma_{\ell^k}, \Gamma_{\ell^k}]$ contains $\Gamma_{\ell^{2k+1}}$.
+\end{lemma}
+\begin{proof}
+First suppose $\ell \geq 3$. Statement (1) of Proposition~\ref{stopdrop} implies that
+for any $W' \in \mf{sp}_{2g}(\ZZ/ \ell \ZZ)$, there exist $U', V' \in \mf{sp}_{2g}(\ZZ/ \ell \ZZ)$ so that
+$V'U' - U'V' = W'$.
+Choosing lifts $W, U, V$ of $W', U', V'$, it follows from Lemma~\ref{lemma:commutator-formula} that for every $i$ and for every such
+\begin{align*}
+\id_{2g} + \ell^{2k+i} W \in \Gamma_{\ell^{2k+i}}, \quad
+\id_{2g} + \ell^k U \in \Gamma_{\ell^k}, \quad \text{ and} \quad
+\id_{2g} + \ell^{k+i} V \in \Gamma_{\ell^{k+i}},
+\end{align*}
+we have that
+	\begin{align*}
+		& (\id_{2g} + \ell^k U)^{-1}(\id_{2g} + \ell^{k+i} V)(\id_{2g} + \ell^k U)(\id_{2g} + \ell^{k+i} V)^{-1} \equiv \id_{2g} + \ell^{2k+i} W\,\,\, (\on{mod}{\ell^{2k+i+1}}).
+		\end{align*}
+Take $M_0 \in \Gamma_{\ell^{2k}}$. There exists $X_1 \in [\Gamma_{\ell^{2k}}, \Gamma_{\ell^{2k}}]$ and $M_1 \in \Gamma_{\ell^{2k+1}}$ with the property that $M_0 = X_1M_1$. Proceeding inductively in this manner, we obtain sequences $\{X_i : i = 1, 2, \dots\} \subset [\Gamma_{\ell^k}, \Gamma_{\ell^k}]$ and $\{M_i : i = 0, 1, 2, \dots\}$ with $M_i \in \Gamma_{\ell^{2k+i}}$ such that $M_i = X_{i+1}M_{i+1}$ for each $i$. Then we have that
+$$M_0 = \lim_{i \to \infty} \left(\prod_{j = 1}^{i} X_j \right)M_i = \prod_{j = 1}^\infty X_j.$$
+It follows that $\Gamma_{\ell^{2k}}$ is contained in the closure of $[\Gamma_{\ell^k}, \Gamma_{\ell^k}]$.
+
+Now suppose $\ell = 2$. Observe that for each $k \geq 2$ we have
+$$\id_{2g} + 2^k \cdot \mf{sp}_{2g}(\ZZ/ 4 \ZZ) = \ker(\Sp_{2g}(\ZZ/ 2^{k+2} \ZZ) \to \Sp_{2g}(\ZZ/ 2^k \ZZ)).$$
+It follows from Statement (2) of Proposition~\ref{stopdrop} and Lemma~\ref{lemma:commutator-formula} that for every choice of $\id_{2g} + 2^{2k+i+1} W \in \Gamma_{2^{2k+i+1}}$ and for each nonnegative integer $i$, there exist $\id_{2g} + 2^k U \in \Gamma_{2^k}$ and $\id_{2g} + 2^{k+i} V \in \Gamma_{2^{k+i}}$ with the property that
+	\begin{align*}
+		& (\id_{2g} + 2^k U)^{-1}(\id_{2g} + 2^{k+i} V)(\id_{2g} + 2^k U)(\id_{2g} + 2^{k+i} V)^{-1} \equiv \id_{2g} + 2^{2k+i+1} W\,\,\, (\on{mod}{\ell^{2k+i+2}}).
+		\end{align*}
+One may now finish the proof by applying a similar inductive argument to the one used in the case $\ell \geq 3$.
+\end{proof}
+
+We are finally in position to prove the main result of this section.
+\begin{proof}[Proof of Proposition~\ref{theorem:commutator-open}]
+By Lemma~\ref{theorem:adelic-open}, it suffices to prove the following two statements:
+\begin{enumerate}
+\item The closure of $[H,H]$ surjects onto $\Sp_{2g}(\bz_\ell)$ for all but finitely many $\ell$.
+\item The closure of $[H,H]$ maps onto an open subgroup of $\Sp_{2g}(\bz_\ell)$ for each $\ell$.
+\end{enumerate}
+For Statement (a), notice that $H$ surjects onto $\GSp_{2g}(\bz_\ell)$ for all but finitely many $\ell$.  Note that for $\ell \geq 3$, we have $[\GSp_{2g}(\bz_\ell), \GSp_{2g}(\bz_\ell)] = \Sp_{2g}(\bz_\ell)$ because, by~\cite[Proposition 3]{landesman-swaminathan-tao-xu:lifting-symplectic-group}, we have that
+$$\Sp_{2g}(\ZZ_\ell) = [\Sp_{2g}(\ZZ_\ell), \Sp_{2g}(\ZZ_\ell)] \subset [\GSp_{2g}(\bz_\ell), \GSp_{2g}(\bz_\ell)] \subset \Sp_{2g}(\bz_\ell).$$
+Thus, $[H,H]$ itself surjects onto $[\GSp_{2g}(\bz_\ell), \GSp_{2g}(\bz_\ell)] = \Sp_{2g}(\bz_\ell)$ for all $\ell \geq 3$.
+		
+To show statement (b), we prove that the closure of $[H', H']$ is open in $\Sp_{2g}(\bz_\ell)$ for any open subgroup $H' \subset \GSp_{2g}(\bz_\ell)$. Since $H'$ is open, there exists some $k \geq 1$ such that $\Gamma_{\ell^k} \subset H'$, so by Lemma~\ref{proposition:commutator-effective}, there exists $m \geq 2k$ such that $\Gamma_{\ell^m} \subset [\Gamma_{\ell^k}, \Gamma_{\ell^k}] \subset [H', H']$. Thus, $[H', H']$ contains an open subgroup and must therefore itself be open, as desired.
+\end{proof}

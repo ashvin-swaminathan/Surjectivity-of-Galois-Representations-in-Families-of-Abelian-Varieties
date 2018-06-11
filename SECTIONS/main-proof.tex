@@ -1,0 +1,777 @@
+\section{Proof of the Theorem~\ref{theorem:main}} \label{section:new-proof-of-main-theorem}
+
+\def\arraystretch{0.7}
+\subsection{Outline of the Proof}
+\label{subsection:outline}
+
+With the view of making the proof of Theorem~\ref{theorem:main} more readily comprehensible, we now briefly describe the key aspects of the argument. We encourage the reader to refer to Figure~\ref{figure:proof-schematic} for a schematic diagram illustrating the argument.
+
+We begin in Section~\ref{subsection:big-geometric-monodromy-equivalence}
+by 
+proving Proposition~\ref{proposition:big-geometric-monodromy-reduction},
+showing 
+that a non-isotrivial family with big 
+monodromy also has big geometric monodromy.
+Then, in Section~\ref{toomanynotes}, we
+introduce some of the notation and standing assumptions employed in the proof.
+In particular, since our family has big geometric monodromy, by
+Proposition~\ref{proposition:big-geometric-monodromy-reduction},
+we are able to define the constant $C$ in point (b) of Section~\ref{toomanynotes}, which will later be needed to apply
+the results of \cite{scoopdedoo} (see Section~\ref{subsubsection:setup-and-statement-of-wallace}).
+
+Then, in Section~\ref{attheskyfall}, we reduce the problem to
+checking that most members of the family have the same
+the mod-$M'$ image and, for all sufficiently large primes $\ell$, the same mod-$\ell$ image as that of the family,
+where $M'$ is an appropriately chosen integer depending on the family.
+
+The mod-$M'$ image is dealt with in Section~\ref{subsection:cohen-serre}
+using Proposition~\ref{proposition:applying-cohen-serre}, which is the Cohen-Serre version of the Hilbert Irreducibility Theorem.
+For dealing with the mod-$\ell$ images,
+there are two regimes of primes to consider, a medium
+regime and a high regime, when $\ell$ is bigger than a suitable power of $\log B$.
+We handle with both of these regimes in Section~\ref{subsection:applying-wallace} by applying a result of Wallace, \cite[Theorem 3.9]{scoopdedoo}, for which we must verify the following four conditions:~\ref{assumption-4},~\ref{property-a1},~\ref{property-a2}, and~\ref{property-a3}. The rest of the section is devoted to verifying that these conditions hold in our setting.
+
+Conditions~\ref{assumption-4} and~\ref{property-a1}, which are fairly easy to check, are treated in Sections~\ref{subsection:applying-wallace} and~\ref{ver1}. Next, condition~\ref{property-a2}
+is dealt with in Section~\ref{ver2} by applying the Grothendieck Specialization Theorem in
+Proposition~\ref{proposition:check-B}.
+These first three conditions together essentially yield an effective
+version of the Hilbert Irreducibility Theorem, which allows us to
+check primes $\ell$ in the medium regime. Finally, in Section~\ref{ver3}, we verify condition~\ref{property-a3},
+which allows us to dispense with primes in the high regime.
+The key input to checking this condition is a recent result of Lombardo,
+stated in Theorem~\ref{theorem:lombardo}.
+In order to apply Lombardo's result to our setting,
+as is done in Proposition~\ref{proposition:check-C}, we must verify two hypotheses and relate the na\"{i}ve height we are using to the Faltings height used in Theorem~\ref{theorem:lombardo}.
+The first hypothesis is verified in Lemma~\ref{lemma:davide-1}
+using \cite[Proposition 5]{ellenbergEHK:non-simple-abelian-varieties-in-a-family}.
+The second hypothesis is a somewhat trickier condition, and we verify it in Lemma~\ref{lemma:davide-2} using the large sieve,
+Theorem~\ref{theorem:large-sieve}.
+In order to apply the large sieve, we must bound contributions at
+each prime, which is done in
+Proposition~\ref{proposition:good-v} using a general scheme-theoretic
+result of Ekedahl~\cite[Lemma 1.2]{ekedahl1988effective}
+together with Proposition~\ref{proposition:good-cover}.
+We conclude the section with a brief appendix concerning the relationship between the na\"{i}ve height and the Faltings height (see Lemma~\ref{lemma:height}).
+
+\begin{figure}
+	\centering
+\begin{equation}
+  \nonumber
+\begin{tikzpicture}[baseline= (a).base]
+\node[scale=.8] (a) at (0,0){
+  \begin{tikzcd}[column sep=tiny]
+	  \qquad && & \text{Prop.}\nolink{~\ref{proposition:applying-cohen-serre}} \ar{ddl}[swap]{\begin{array}{c}\text{Cohen-Serre,}\\ \text{\nolink{\cite[Thm. 1.2]{zywina2010hilbert}}}\end{array}} & &  \text{Lem.}\nolink{~\ref{lemma:height}} \ar{ldd} & \text{Lem.\nolink{~\ref{lemma: height-0}}} \ar{l} && \text{Prop.\nolink{~\ref{proposition:good-cover}}} \ar{ldd}\ar{dddd}{\text{\nolink{\cite[Lem. 1.2]{ekedahl1988effective}}}}  \\
+	  \\
+	  \qquad \text{Thm.\nolink{~\ref{theorem:main}}} && \text{Prop.\nolink{~\ref{lemma:ab-cyc}}} \ar{ll} & & \text{Prop.\nolink{~\ref{proposition:check-C}}}  \ar{ddl}{\text{Cond.\nolink{~\ref{property-a3}}}} & & \text{Lem.\nolink{~\ref{lemma:davide-2}}} \ar{ll}[swap]{\text{Thm.\nolink{~\ref{theorem:lombardo}}\hspace{.1cm}(2)}}  & \text{Lem.\nolink{~\ref{lemma:bounding-Y-reduction}}} \ar{l} & \\
+\qquad && & & & & &	  \\
+\qquad && & \text{Prop.\nolink{~\ref{corollary:applying-wallace}}}\ar{uul}{\text{\nolink{\cite[Thm. 4.3]{scoopdedoo}}}} && \text{Prop.\nolink{~\ref{proposition:check-B}}}  \ar{ll}{\text{Cond.\nolink{~\ref{property-a2}}}}   & \text{Lem.\nolink{~\ref{lemma:davide-1}}}  \ar{uull}[swap]{\text{Thm.\nolink{~\ref{theorem:lombardo}}\hspace{.1cm}(1)}}  & & \text{Prop.\nolink{~\ref{proposition:good-v}}} \ar{uul} \\
+&&& & &&
+\\
+\qquad && & & \text{Prop.\nolink{~\ref{proposition:verifying-assumptions}}}  \ar{uul}{\text{Cond.\nolink{~\ref{assumption-4}}}} & & &
+ \end{tikzcd}
+};
+\end{tikzpicture}
+\end{equation}
+\caption{
+A schematic diagram for the proof of the main theorem, Theorem~\ref{theorem:main}.}
+\label{figure:proof-schematic}
+\end{figure}
+\def\arraystretch{1.3}
+
+\subsection{Equivalence of Big Geometric Monodromy and Big Monodromy}
+\label{subsection:big-geometric-monodromy-equivalence}
+In the course of the proof, it will be useful to know that our given family
+$A \rightarrow U$ not only has big monodromy, but also has big
+geometric monodromy.
+In particular, this is crucially needed to define the constant $C$ in point
+$(b)$ of Section~\ref{toomanynotes}, which is used in 
+applying the results of~\cite{scoopdedoo} (see Section~\ref{subsubsection:setup-and-statement-of-wallace}).
+We now prove the following result, implying that our given family
+has big geometric monodromy.
+
+\begin{proposition}
+	\label{proposition:big-geometric-monodromy-reduction}
+	Suppose $A \rightarrow U$ is a non-isotrivial family of abelian varieties of relative dimension $g \geq 2$, with $U$ a smooth geometrically connected
+	scheme over
+	a number field $K$.
+	Then, $A$ has big geometric monodromy if and only if it has big 
+	monodromy.
+\end{proposition}
+\begin{proof}
+We first show the easier direction: if the family $A \to U$ has big geometric 	monodromy then $A \to U$ also has big monodromy, in the sense that $\mono_A$ is open in $\GSp_{2g}(\wh{\ZZ})$. To see this, consider the exact sequence
+    \[
+    	\begin{tikzcd}
+        	0 \ar{r} & \Sp_{2g}(\zh) \ar{r} & \GSp_{2g}(\zh) \ar{r}{\on{mult}} & \zh^\times \ar{r} & 0.
+        \end{tikzcd}
+    \]
+    Since $\mono_A^{\on{geom}} \subset \mono_A$, the big geometric monodromy assumption tells us that $\mono_A \cap \Sp_{2g}(\zh)$ is open in $\Sp_{2g}(\zh)$. It therefore suffices to show that $\on{mult}(\mono_A)$ is open in $\zh^\times$. But $\on{mult}(\mono_A) = \chi(G_K)$, as mentioned in Remark~\ref{remark:det-rho-is-chi}, and $\chi(G_K)$ has finite index because $K/\mathbb Q$ \mbox{has finite degree.}
+
+It only remains to prove that if the family has big monodromy
+	and is non-isotrivial, it has big geometric monodromy.
+	To show this, from the exact sequence
+\begin{equation}
+		\nonumber
+		\begin{tikzcd}
+			1 \ar {r} & \pi_1(U_{\overline K})  \ar {r} & \pi_1(U) \ar {r} & \pi_1(K) \ar {r} & 1
+		\end{tikzcd}\end{equation}
+	$\pi_1(U_{\overline K}) \subset \pi_1(U)$ is normal.
+	Therefore, $\mono_A^{\on{geom}}$ is a normal subgroup of $\mono_A$, and hence also a normal subgroup of $\mono_A \cap \Sp_{2g}(\zh)$.
+	Let $\psi: \Sp_{2g}(\bz) \ra \Sp_{2g}(\zh)$ denote the natural profinite completion map.	
+	Since $\mono_A^{\on{geom}} \subset \mono_A \cap \Sp_{2g}(\zh)$ is normal, 
+	it follows that $\psi^{-1}(\mono_A^{\on{geom}}) \subset \psi^{-1}(\mono_A \cap \Sp_{2g}(\zh))$ is normal.
+	Since $\mono_A$ has finite index in $\GSp_{2g}(\zh)$, $\psi^{-1}(\mono_A \cap \Sp_{2g}(\zh))$
+	has finite index in $\Sp_{2g}(\bz)$. Since $g \geq 2$ (so that $\Sp_{2g}(\bz)$ has rank at least $2$),
+	by the Margulis normal subgroup theorem, 
+	(see, for example \cite[Theorem 17.1.1]{morris:introduction-to-arithmetic-groups},)
+	$\psi^{-1}(\mono_A^{\on{geom}})$ either has finite index in $\psi^{-1}(\mono_A \cap \Sp_{2g}(\zh))$
+	or is finite.
+	We will show that in the first case $A$ has big geometric monodromy and in the second case $A$ is isotrivial.
+
+	In the case that $\psi^{-1}(\mono_A^{\on{geom}})$ has finite index in $\psi^{-1}(\mono_A \cap \Sp_{2g}(\zh))$, 
+$\psi^{-1}(\mono_A^{\on{geom}})$ also has finite index in $\Sp_{2g}(\bz)$. 
+Then, since $\mono_A^{\on{geom}}$ is closed,
+the finite set
+$\Sp_{2g}(\bz)/\psi^{-1}(\mono_A^{\on{geom}})$ is dense in the profinite
+space $\Sp_{2g}(\zh)/H_A^{\on{geom}}$.
+It follows that $\mono_A^{\on{geom}}$ also has finite index
+in $\Sp_{2g}(\zh)$, meaning $A$ has big geometric monodromy.
+
+	To conclude the proof, it only remains to show that if $\psi^{-1}(H_A^{\on{geom}})$ is finite, then $A$ is isotrivial.
+	In this case, let $M_A^{\on{geom}}$ denote the image of the topological monodromy
+	representation $\pi_1^{\on{top}}(U_{\bc}) \rightarrow \Sp_{2g}(\bz)$.
+	By \cite[Expos\'e XIII, Proposition 4.6]{SGA1Grothendieck1971}, we have 
+	$\pi_1(U_{\bc}) \simeq \pi_1(U_{\overline K})$, and therefore the comparison theorem tells us that $\mono_A^{\on{geom}}$
+	is the profinite completion of $M_A^{\on{geom}}$.
+	This implies $M_A^{\on{geom}} \subset \psi^{-1}(\mono_A^{\on{geom}})$
+	and so $M_A^{\on{geom}}$ is finite. It follows that $H_A^{\on{geom}}$ is finite, being the profinite completion
+	of $M_A^{\on{geom}}$.
+	After a making a finite base change, we may assume
+	$H_A^{\on{geom}}$ is trivial.
+	Then, it is a standard fact that $A$ is isotrivial when its monodromy
+	representation is trivial. For example, this follows from
+	\cite{grothendieck:un-theoreme-sur-les-homomorphismes}.
+\end{proof}
+
+
+
+\subsection{Notation and Standing Assumptions}\label{toomanynotes}
+
+Before proceeding with the proof, we set some notation and assumptions, which will remain in place for the remainder of this section.
+\begin{enumerate}
+\item As mentioned in Remark~\ref{remkydoo}, the case where $g=1$ is handled in~\cite[Theorem 7.1]{zywina2010hilbert}, so we will restrict our consideration to the case where $g \geq 2$.
+\item 	
+    Since we are assuming that $A \to U$ has big monodromy, it follows that $A \to U$ has big geometric monodromy, by Proposition~\ref{proposition:big-geometric-monodromy-reduction}. Define $C$ to be the smallest
+integer bigger than $2$, depending only on $U$, with the property that for all primes $\ell > C$ we have $\mono_A^{\on{geom}}(\ell) = \Sp_{2g}(\mathbb Z/\ell \ZZ)$ and $\mono_A(\ell) = \GSp_{2g}(\mathbb Z/\ell \ZZ)$.
+\item Using \cite[Proposition 6.1]{zywina2010hilbert} and the explanation
+	given after the statement of
+	\cite[Theorem 7.1]{zywina2010hilbert}, one readily checks that in Theorem~\ref{theorem:main}, the asymptotic statement for $K$-valued points (i.e., points in $U(K)$) can be deduced immediately from the statement for \emph{lattice points} (i.e., points in $U(K) \cap \OO_K^r$). In what follows, we will work with $K$-valued points or lattice points depending on what is most convenient.
+\item Let $K^{\on{cyc}} \subset \ol{K}$ denote the maximal cyclotomic extension of $K$, and let $K^{\ab} \subset \ol{K}$ denote the maximal abelian extension of $K$.
+\item In what follows, for a subgroup $H$ of a topological group $G$, let $[H,H]$ denote the \emph{closure} of the usual commutator subgroup.
+\end{enumerate}
+
+\subsection{Main Body of the Proof} \label{attheskyfall}
+
+We begin by reducing the proof of Theorem~\ref{theorem:main} to proving Proposition~\ref{lemma:ab-cyc}.
+\begin{proof}[Proof of Theorem~\ref{theorem:main} assuming Proposition~\ref{lemma:ab-cyc}]
+As argued in~\cite[Proof of Theorem 7.1]{zywina2010hilbert}, for any $u \in U(K)$ we have
+\begin{align*}
+[\mono_A :\mono_{A_u}] & = [\mono_A \cap \Sp_{2g}(\wh{\ZZ}) : \rho_{A_u}(\Gal(\ol{K}/K^{\on{cyc}}))].
+\intertext{In the case that $K = \QQ$, the Kronecker-Weber Theorem tells us that $\bq^{\cyc} = \bq^{\ab}$, so we have}
+[\mono_A : \mono_{A_u}] & = \delta_{\QQ} \cdot [[\mono_A, \mono_A] : \rho_{A_u}(\Gal(\ol{\bq}/\bq^{\ab}))],
+\end{align*}
+where $\delta_{\QQ}$ is the index of $[\mono_A, \mono_A]$ in $\mono_A \cap \Sp_{2g}(\wh{\ZZ})$. Then Theorem~\ref{theorem:main} follows immediately from point (c) of Section~\ref{toomanynotes} and the following proposition.
+\end{proof}
+	\begin{proposition}\label{lemma:ab-cyc}
+		Let $B, n > 0$. We have the following asymptotic statements, where the implied constants depend only on $U$ and $n$:
+		\begin{enumerate}
+			\item[\customlabel{asymptotic-commutator}{(1)}] For every number field $K$,
+			\[
+				\frac{ |\{ u\in U(K) \cap \mc{O}^r_K: \lVert u \rVert \le B,\, \rho_{A_u}(\on{Gal}(\ol{K} / K^{\on{ab}})) = [\mono_A, \mono_A] \}| }{ |\{ u\in U(K) \cap \mc{O}^r_K: \lVert u \rVert \le B \}| } = 1 + O(( \log B )^{-n}).
+			\]
+		\item[\customlabel{asymptotic-symplectic}{(2)}] Furthermore, if $K \neq \bq$,
+			\[
+				\frac{ |\{ u\in U(K) \cap \mc{O}^r_K: \lVert u \rVert \le B,\, \rho_{A_u}(\on{Gal}(\ol{K} / K^{\on{cyc}})) = \mono_A \cap \Sp_{2g}(\zh) \}| }{ |\{ u\in U(K) \cap \mc{O}^r_K: \lVert u \rVert \le B \}| } = 1 + O(( \log B )^{-n}).
+			\]
+		\end{enumerate}
+	\end{proposition}
+    \begin{remark}
+ 	Proposition~\ref{lemma:ab-cyc} is a generalization of~\cite[Proposition 7.9]{zywina2010hilbert} from the case $g = 1$ to all dimensions. We shall prove it assuming Proposition~\ref{proposition:applying-cohen-serre} and Proposition~\ref{corollary:applying-wallace}. The basic idea behind the argument is to reduce the problem of studying the (global) monodromy groups to one of studying the mod-$M'$ and mod-$\ell$ monodromy groups.
+    \end{remark}
+	\begin{proof}[Proof assuming Proposition~\ref{proposition:applying-cohen-serre} and Proposition~\ref{corollary:applying-wallace}]
+		Assuming point (1), the proof of point (2) is completely analogous to the proof of~\cite[Proposition 7.9(ii)]{zywina2010hilbert}, which consists of two key steps. The first is the fact that $[\mono_A, \mono_A]$ is an open normal subgroup of $\mono_A \cap \Sp_{2g}(\wh{\ZZ})$, which follows from Proposition~\ref{theorem:commutator-open}. The second is~\cite[Proposition 7.7]{zywina2010hilbert}, which is a variant of Hilbert's Irreducibility Theorem and does not depend in any way on the context of elliptic curves (with which~\cite[Section 7]{zywina2010hilbert} is concerned). It therefore suffices to prove point (1).
+
+Since $\Gal(\ol{K}/K^{\ab}) = [G_K, G_K]$, it follows by the continuity of $\rho_{A_u}$ and the compactness of profinite groups that $\rho_{A_u}(\Gal(\overline K/K^{\ab})) = [\mono_{A_u}, \mono_{A_u}]$.
+Thus $\rho_{A_u}(\Gal(\overline K/K^{\ab}))$ is a closed subgroup of $\left[\mono_A, \mono_A \right]$. Moreover, by Proposition~\ref{theorem:commutator-open}, $[ \mono_A, \mono_A ]$ is an open subgroup of $\Sp_{2g}(\zh)$, so we may apply Proposition~\ref{theorem:adelic-surjective-subset} with $G = [ \mono_A, \mono_A ]$ and $H = \rho_{A_u}(\Gal(\overline K/K^{\ab}))$. In so doing, we obtain a positive integer $M$ so that the only closed subgroup of $[\mono_A, \mono_A]$ whose mod-$M$ reduction equals $[\mono_A, \mono_A](M) = [\mono_A(M), \mono_A(M)]$ and whose mod-$\ell$ reduction equals $\Sp_{2g}(\bz/\ell \ZZ)$ for every prime number $\ell \nmid M$ is $[\mono_A, \mono_A]$ itself. The same property is true when $M$ is replaced by any multiple $M'$ of $M$, and we choose a multiple $M'$ which is divisible by all primes less than $C$, where $C$ is defined as in point (b) of Section~\ref{toomanynotes}. The defining property of $M'$ then implies that
+\begin{align}
+			& \frac{|\{ u \in U(K) \cap \mathcal O_K^r : \|u \| \leq B,\, \rho_{A_u}(\Gal(\overline K/K^{\ab})) \neq [ \mono_A, \mono_A ] \}|}{|\{ u \in U(K) \cap \mathcal O_K^r : \|u \| \leq B \} |} \leq \nonumber \\
+			& \qquad  \frac{|\{ u \in U(K) \cap \mathcal O_K^r : \|u \| \leq B,\, \rho_{A_u, M'}(\Gal(\overline K/K^{\ab})) \neq [ \mono_A(M'), \mono_A(M') ] \}|}{|\{ u \in U(K) \cap \mathcal O_K^r : \|u \| \leq B \} |}\,\,+ \raisetag{-0.6cm}{\label{equation:goursat-m-bound}}\\
+			& \qquad \frac{|\{ u \in U(K) \cap \mathcal O_K^r : \|u \| \leq B,\, \rho_{A_u, \ell}(\Gal(\overline K/K^{\ab})) \neq \Sp_{2g}(\mathbb Z/\ell \mathbb Z) \text{ for some } \ell \nmid M' \}|}{|\{ u \in U(K) \cap \mathcal O_K^r : \|u \| \leq B \} |} \raisetag{-0.6cm}{\label{equation:goursat-l-bound}}.
+\end{align}
+The rest of this section is devoted to finding upper bounds for~\eqref{equation:goursat-m-bound} and~\eqref{equation:goursat-l-bound}. To bound~\eqref{equation:goursat-m-bound}, notice that we have
+$$\rho_{A_u, M'}(\Gal(\overline K/K^{\ab})) \neq [\mono_A(M'), \mono_A(M')] \Longrightarrow \mono_{A_u}(M') \neq \mono_A(M').$$ It then follows from Proposition~\ref{proposition:applying-cohen-serre} that~\eqref{equation:goursat-m-bound} is bounded by $O( (\log B)/B^{\left[ K:\mathbb Q \right]/2} )$. To bound~\eqref{equation:goursat-l-bound}, notice that for $\ell \geq 3$ we have
+$$\rho_{A_u, \ell}(\Gal(\ol{K}/K^{\ab})) \neq \Sp_{2g}(\bz / \ell \ZZ) \Longrightarrow \mono_{A_u}(\ell) \not\supset \Sp_{2g}(\bz / \ell \ZZ) ,$$ because~\cite[Proposition 3(a)]{landesman-swaminathan-tao-xu:lifting-symplectic-group} tells us that $\Sp_{2g}(\bz /\ell \ZZ)$ has trivial abelianization for $\ell \ge 3$. Since $C \geq 3$ by definition, it follows from Proposition~\ref{corollary:applying-wallace} that~\eqref{equation:goursat-l-bound} is $O(( \log B )^{-n} )$, since $\ell \nmid M'$ implies that $\ell > C$.
+Combining the above estimates completes the proof of point (1).
+\end{proof}
+It now remains to bound the terms~\eqref{equation:goursat-m-bound} and~\eqref{equation:goursat-l-bound}.
+
+\subsection{Bounding the Contribution of~\eqref{equation:goursat-m-bound}} \label{subsection:cohen-serre}
+
+The next result is the means by which we bound~\eqref{equation:goursat-m-bound}; it is an immediate corollary of the Cohen-Serre version of Hilbert's Irreducibility Theorem (see~\cite[Theorem 1.2]{zywina2010hilbert}) since
+the set in the numerator of~\eqref{equation:cohen-serre}
+is a ``thin set.''
+
+
+\begin{proposition} \label{proposition:applying-cohen-serre}
+		For every integer $M' \ge 2$, we have
+		\begin{align}
+			\label{equation:cohen-serre}
+			\frac{|\{u \in U(K) \cap \mc{O}^r_K : \lVert u \rVert \le B,\, \mono_{A_u}(M') \neq \mono_A(M') \} |}{ |\{ u\in U(K) \cap \mc{O}^r_K: \lVert u \rVert \le B \}| } \ll \frac{ \log B}{B^{[K:\bq]/2}},
+		\end{align}
+where the implied constant depends only in $U$ and $M'$.\footnote{For functions $f,g$ in the variable $B$, we say that $f(B) \ll g(B)$ if there exists a constant $c > 0$ such that $|f(B)| \leq c \cdot |g(B)|$ for all sufficiently large $B$.}
+\end{proposition}
+	
+\subsection{Bounding the Contribution of~\eqref{equation:goursat-l-bound}} \label{subsection:applying-wallace}
+	
+To complete the proof of Theorem~\ref{theorem:main}, it remains to bound~\eqref{equation:goursat-l-bound}. We do this in Proposition~\ref{corollary:applying-wallace}, which relies on a strong version of Hilbert's Irreducibility Theorem due to Wallace, namely~\cite[Theorem 3.9]{scoopdedoo}. Before we can state and apply Wallace's result, we must introduce the various conditions upon which it depends. The setup detailed in~\cite[Section 3.2]{scoopdedoo} applies in a more general context than the one described below, but we specialize our discussion for the sake of brevity.
+
+\subsubsection{Setup and Statement of~\cite[Theorem 3.9]{scoopdedoo}}
+\label{subsubsection:setup-and-statement-of-wallace}
+
+We start by introducing some notation to help us count points $u \in U(K)$ whose associated monodromy groups $\mono_{A_u}$ are not maximal. Let $B > 0$, and make the following two definitions:
+		\begin{align*}
+		E_\ell(B) & \defeq \{u \in U(K) : \on{Ht}(u) \le B,\, \mono_A^{\on{geom}}(\ell) \not\subset \mono_u(\ell) \}, \text{ and}\\
+		E(B) &\defeq \bigcup_{\text{ prime }\ell > C} E_{\ell}(B),
+	\end{align*}
+where $C$ is defined as in point (b) of Section~\ref{toomanynotes}.
+Note in particular that for any $\ell > C$ we have $\mono_A(\ell) / \mono_A^{\on{geom}}(\ell) \simeq (\ZZ/\ell \ZZ)^\times$; this condition is important for the proof of~\cite[Theorem 3.9]{scoopdedoo} to go through, so we impose the following restriction:
+\vspace*{0.1cm}
+\begin{align}\label{thatswhatpeoplesay}
+\text{\emph{For the rest of this section, we will maintain $\ell > C$ as a standing assumption.}}
+\end{align}
+For ease of notation, we redefine the set $S \subset \Sigma_K$ of ``bad'' primes, defined in Section~\ref{subsection:notation-for-families}, by adjoining to it all primes $\ell < C$.
+
+\begin{remark}\label{thanksdavide}
+Note that our definition of $E(B)$ differs slightly from that given in~\cite[Theorem 1.1]{scoopdedoo}, where it is defined to be the union over \emph{all} primes $\ell$ of $E_{\ell}(B)$. This difference is inconsequential, as we can always deal with a finite collection of primes using Proposition~\ref{proposition:applying-cohen-serre}. Indeed, this is exactly why we replace $M$ by a multiple $M'$ divisible by all primes $\ell < C$ in the proof of Proposition~\ref{lemma:ab-cyc}.
+\end{remark}
+
+Now that we have introduced the setup needed for stating~\cite[Theorem 3.9]{scoopdedoo}, we declare the four criteria required for the theorem to be applied. For this, it will now be crucial to recall notation from the geometric setup detailed in Section~\ref{subsection:notation-for-families}.
+\begin{condition} \label{definition:assumptions}
+In order to apply~\cite[Theorem 3.9]{scoopdedoo}, we need to verify the following geometric condition on the connected Galois \'{e}tale covers $V_\ell \to U$:
+\begin{enumerate}
+	\item[\customlabel{assumption-4}{(G)}] Let $\zeta_\ell$ denote a primitive $\ell^{\mathrm{th}}$ root of unity. Each connected component of the base-change $(V_{\ell})_{K(\zeta_\ell)}$ is geometrically irreducible.
+\end{enumerate}
+We also need the following three asymptotic conditions concerning the monodromy groups $\mono_A(\ell)$, $\mono_A^{\on{geom}}(\ell)$, and $\mono_{A, \pp}(\ell)$ for~\cite[Theorem 3.9]{scoopdedoo} to be applied:
+	\begin{enumerate}
+		\item[\customlabel{property-a1}{(A1)}] There exist constants $\beta_1, \beta_2 > 0$ such that
+		\[
+			| \mono_A(\ell) | \ll \ell^{\beta_1} \quad \text{and} \quad | \{\text{conjugacy classes of } \mono_A(\ell) \} | \ll \ell^{\beta_2},
+		\]
+        where the implied constants depend only on $U$.
+		\item[\customlabel{property-a2}{(A2)}] There exists a constant $\beta_3 > 0$ such that
+		\[
+			\geometricprimes \ell \defeq |\{ \text{prime } \mf{p} \subset \OO_K : \mf{p} \in S \cup P_\ell \text{ or } \mono_{A, \pp}^{\on{geom}}(\ell) \not\simeq \mono_A^{\on{geom}}(\ell) \} | \ll \ell^{\beta_3},
+		\]
+        where the implied constant depends only on $A \rightarrow U$.
+		\item[\customlabel{property-a3}{(A3)}] For each $B > 0$, there exists a subset
+		\[
+			F(B) \subset \{u \in U(K) : \on{Ht}(u) \le B\}
+		\]
+		and constants $c, \gamma > 0$ depending only on $A \rightarrow U$ such that
+		\begin{align*}
+		\lim_{B \to \infty} \frac{|F(B)|}{|\{u \in U(K) : \on{Ht}(u) \le B\}|} = 1	\quad \text{and} \quad F(B) \cap E(B) \subset \bigcup_{\ell \le c (\log B)^\gamma} E_{ \ell}(B).
+		\end{align*}
+	\end{enumerate}
+\end{condition}
+
+We are now in a position to state Wallace's main result:
+\begin{theorem}[\protect{\cite[Theorem 3.9]{scoopdedoo}}] \label{theorem:wallace-hit}
+	Suppose that condition \ref{assumption-4} holds and that conditions \ref{property-a1}--\ref{property-a3} hold with the values $\beta_1, \beta_2, \beta_3, \gamma$.\footnote{The constant $c$ from condition \ref{property-a3} is absorbed into the implied constant in ~(\ref{thepressure'sonyoufeelityouvegotitallbelieveitthistimeforafricawhatever}).} Then
+we have 	\begin{equation}\label{thepressure'sonyoufeelityouvegotitallbelieveitthistimeforafricawhatever}
+			\frac{|E(B)|}{|\{u \in U(K) : \on{Ht}(u) \le B\}|} \ll \frac{|\{u \in U(K) : \on{Ht}(u) \le B\} \setminus F(B)|}{|\{u \in U(K) : \on{Ht}(u) \le B\}|} + \frac{(\log B)^{(\beta_1 + \beta_2 + 2)\gamma +1}}{B^{1/2}},
+		\end{equation}
+        where the implied constant depends only on $U$.
+	\end{theorem}
+	
+	\subsubsection{Bounding~\ref{equation:goursat-l-bound}, Conditional on Verifying \ref{assumption-4}, \ref{property-a2}, and \ref{property-a3}}
+
+We have not yet determined that the conditions declared in Definition~\ref{definition:assumptions} hold in our setting. We defer the verification of these conditions to Sections~\ref{ver1},~\ref{ver2}, and~\ref{ver3}. Nevertheless, assuming that these conditions hold, we obtain the following consequence:
+	\begin{proposition} \label{corollary:applying-wallace}
+		Let $n>0$. Then we have
+		\begin{equation}\label{cuzbabynowwe'vegotbadblood}
+			\frac{\left|\left\{ u \in U(K) \cap \mc{O}_K^r : \|u \| \leq B,\, \mono_{A_u}(\ell) \not \subset \Sp_{2g}(\mathbb Z/ \ell \ZZ) \text{ for some } \ell  > C \right\}\right|}{\left|\left\{ u \in U(K) \cap \mathcal O_K^r : \|u \| \leq B \right\} \right|} \ll \left( \log B \right)^{-n},
+		\end{equation}
+        where the implied constant depends only on $U$ and $n$.
+	\end{proposition}
+	\begin{proof}[Proof assuming Propositions~\ref{proposition:verifying-assumptions},~\ref{proposition:check-B}, and~\ref{proposition:check-C}]
+Note that condition~\ref{property-a1} holds trivially in our setting, because
+\[
+	\max\{|\mono_A(\ell)|, |\{\text{conjugacy classes of $\mono_A(\ell)$}\}|\} \leq |\GSp_{2g}(\ZZ/\ell \ZZ)|,
+\]
+and $|\GSp_{2g}(\ZZ/\ell \ZZ)| = O(\ell^\beta)$ for some positive constant $\beta$ depending only on $g$ because $\GSp_{2g}(\bz/\ell\bz) \subset \GL_{2g}(\bz/\ell\bz)$.
+
+Condition \ref{assumption-4} holds by Proposition~\ref{proposition:verifying-assumptions}, and condition \ref{property-a2} holds by Proposition~\ref{proposition:check-B}. Proposition~\ref{proposition:check-C} constructs $F(B)$ that not only satisfy condition \ref{property-a3}, but also have the property that
+		\begin{equation*}
+			\frac{|\{u \in U(K) : \on{Ht}(u) \le B\} \setminus F(B) |}{|\{u \in U(K) : \on{Ht}(u) \le B\}|} \ll \left( \log B \right)^{-n}
+            \end{equation*}
+            for every $n >0$. Upon applying the argument in point (c) of Section~\ref{toomanynotes}, which relates the left-hand-sides of~\eqref{thepressure'sonyoufeelityouvegotitallbelieveitthistimeforafricawhatever} and~\eqref{cuzbabynowwe'vegotbadblood}, the proposition follows from Theorem~\ref{theorem:wallace-hit}.		
+	\end{proof}
+
+The rest of this section is devoted to verifying the conditions necessary for the proof of Proposition~\ref{corollary:applying-wallace}.
+	
+\subsection{Verifying Condition \ref{assumption-4}}\label{ver1}
+In this section, we will consider the base-change of the setting established in~\ref{subsection:notation-for-families} from $K$ to a finite extension $L \subset \ol{K}$ of $K$; in this setting, we obtain a family $A_L \to U_L$ and a (not necessarily connected) finite Galois \'{e}tale cover $(V_\ell)_L \to U_L$. To verify condition \ref{assumption-4}, we employ the following lemma:
+
+\begin{lemma}
+	\label{lemma:geometrically-connected-components}
+	Let $L \subset \ol{K}$ be a finite extension of $K$. We have that $\mono_{A_L}(m) \simeq \mono_{A_L}^{\on{geom}}(m)$
+	if and only if all connected components of $(V_m)_L$ are geometrically connected over $L$.
+\end{lemma}
+\begin{proof}
+	Observe that $(V_m)_L$ and $(V_m)_{\ol{K}}$ are finite Galois \'etale covers of $U_L$ and $U_{\ol{K}}$, which need not be connected.
+
+	Let $W \subset (V_m)_L$ be a connected component, and let $\wt{W} \subset (V_m)_{\ol{K}}$ be a connected component mapping to $W$. By construction, $W \to U_L$ is the connected Galois \'etale cover corresponding to the surjection $\pi_1(U_L) \twoheadrightarrow \mono_{A_L}(m)$. Likewise, $\wt{W} \to U_{\ol{K}}$ corresponds to $\pi_1(U_{\ol{K}}) \twoheadrightarrow \mono_{A}^{\on{geom}}(m) = \mono_{A_L}^{\on{geom}}(m)$. This implies that:
+	\begin{itemize}
+		\item The degree $d_1$ of $W \to U_L$ equals $|\mono_{A_L}(m)|$.
+		\item The degree $d_2$ of $\wt{W} \to U_{\ol{K}}$ equals $|\mono_{A_L}^{\on{geom}}(m)|$.
+	\end{itemize}
+	On the other hand, the maps $(V_m)_L \to U_L$ and $(V_m)_{\ol{K}} \to U_{\ol{K}}$ have equal degrees. Therefore $d_1 = d_2$ if and only if all connected components of $(V_m)_L$ are geometrically connected.
+\end{proof}
+
+We are now in position to prove condition \ref{assumption-4}.
+
+\begin{proposition} \label{proposition:verifying-assumptions}
+Condition \ref{assumption-4} holds in the setting of Section~\ref{subsection:notation-for-families}.
+\end{proposition}
+\begin{proof}
+Let $L = K(\zeta_\ell)$, and recall the assumption~\eqref{thatswhatpeoplesay}. Since $(V_\ell)_L \to U_L$ is \'etale and $U_L$ is smooth over $L$, it follows that $(V_\ell)_L$ is smooth over $L$. Therefore $(V_\ell)_L$ is geometrically irreducible over $L$ if and only if it is geometrically connected over $L$. Now, by Lemma~\ref{lemma:geometrically-connected-components}, it suffices to show that $\mono_{A_L}(\ell) = \mono_A^{\on{geom}}(\ell)$.
+Since we always have $\mono_{A_L}(\ell) \supset \mono_A^{\on{geom}}(\ell)$, it suffices to prove the reverse inclusion $\mono_{A_L}(\ell) \subset \mono_A^{\on{geom}}(\ell) = \Sp_{2g} (\ZZ/\ell \ZZ)$.
+Since $\chi_\ell$ is trivial on $G_L = \pi_1(\spec K(\zeta_\ell))$, it follows from
+Remark~\ref{remark:det-rho-is-chi}
+that $\mono_{A_L}(\ell) \subset \Sp_{2g}(\mathbb Z/\ell \ZZ)$.
+\end{proof}
+
+\subsection{Verifying Condition~\ref{property-a2}}\label{ver2}
+
+Before we carry out the verification of condition \ref{property-a2} in Proposition~\ref{proposition:check-B},
+we need to introduce a modified version of the geometric setup developed in~\cite[Subsection 5.2]{zywina2010hilbert}
+and in the proof of~\cite[Theorem 5.3]{zywina2010hilbert}.
+
+\subsubsection{Geometric Setup from~\cite{zywina2010hilbert}}
+\label{subsubsection:geometric-setup}
+Fix the following notation: for a prime $\pp \subset \OO_K$, let $K_\pp$ be the completion of $K$ at $\pp$, let $K_\pp^{\on{un}}$ be the maximal unramified extension of $K_\pp$, let $\OO_\pp$ be the ring of integers of $K_\pp$, and let $\OO_\pp^{\on{un}}$ be the ring of integers of $K_\pp^{\on{un}}$. For a ring $R$, define $\gr R(1,r)$ to be the Grassmannian of lines in $\mathbb P^r_{R}$ and let $\mathscr L_R \subset \mathbb P^r_R \times \gr R(1,r)$ denote the universal
+line over $\gr R(1,r)$. Let $Z$ and $\mathcal Z$ be as defined in Section~\ref{subsection:notation-for-families}.
+
+We now construct a closed subscheme $\mathcal W$ of the Grassmannian parameterizing all lines whose intersections with $\mathcal Z$ are not \'etale over the base.
+Define the projection $p: \mathscr L_{\mathcal O_K} \cap ( \mathcal Z \times \gr {\mathcal O_K}(1,r) ) \rightarrow \gr {\mathcal O_K}(1,r)$.
+Let $\mathcal X_1$ be the open subscheme of $\mathscr L_{\mathcal O_K} \cap ( \mathcal Z \times \gr {\mathcal O_K}(1,r))$
+on which $p$ is \'etale with nonempty fibers.
+Define $\mathcal W \defeq  p(\mathscr L_{\mathcal O_K} \cap (\mathcal Z \times \gr {\mathcal O_K}(1,r) ) \setminus \mathcal X_1)$ with reduced subscheme structure and define
+$\mathcal X \defeq \gr{\mathcal O_K}(1,r) \setminus \mathcal W$. Note that $\mathcal W$ is closed because $p$ is proper.
+Considering $\mathcal W$ and $\mathcal X$ as schemes over $\mathcal O_K$, let $W$ and $X$ denote their fibers over $K$.
+
+\begin{lemma}
+	\label{lemma:nonempty-etale-locus}
+	The scheme $\mathcal W$, as defined above, is a proper closed subscheme of $\gr {\mathcal O_K}(1,r)$.
+\end{lemma}
+\begin{proof}
+It suffices to show that $\mathcal X$ is nonempty. In turn, it suffices to show $X$ is nonempty.
+Since $X$ is the set of points in $\gr K(1,r)$ over which $p$ is \'etale,
+by generic flatness, we need only verify that there is an open
+subscheme of $\gr K(1,r)$ on which the fibers of $p_K$ are \'etale.
+Since $Z$ is reduced, hence generically smooth,
+and the fiber of $p_K$ over $[L]$ is identified with
+$Z \cap L$, a Bertini theorem (specifically
+\cite[Theoreme I.6.10(2)]{jouanolou1982theoremes}
+applied to the smooth locus of $Z$ over $K$)
+implies that $Z \cap L$ is indeed \'etale over $\kappa([L])$ for $[L]$ general in $\gr K(1,r)$.
+\end{proof}
+
+\begin{remark}
+	\label{remark:exists-line}
+By Lemma~\ref{lemma:nonempty-etale-locus}, $\mathcal W$ is a proper closed subscheme of $\mathbb P^r_{\mathcal O_K}$.
+	Observe that for any line $[L] \in (\gr {\mathcal O_K}(1,r) \setminus \mathcal W)(\mathbb F_\pp)$, there exists a lift $[\mathcal L] \in (\gr {\mathcal O_K}(1,r) \setminus \mathcal W)(\mathcal O_\pp)$.
+The purpose of the above construction is to ensure that $\mathcal L \cap \mathcal Z_{\mathcal O_\pp}$ is \'etale over $\mathcal O_\pp$,
+which we use in the proof of Proposition~\ref{proposition:check-B}.
+\end{remark}
+
+\subsubsection{Applying the Setup to Check~\ref{property-a2}}
+In the following proposition, we use the Grothendieck Specialization Theorem to verify that condition \ref{property-a2} holds in our situation:
+	\begin{proposition}	\label{proposition:check-B}
+For a prime ideal $\pp \subset \OO_K$ let $\N(\pp)$ denote its norm and define $\nonEtalePrimes$ to be the finite set of primes over which the fiber of $\mathcal W$ is empty. Then,
+ 		\begin{align*}
+			\geometricprimes \ell \leq |\nonEtalePrimes \cup P_\ell| + |\{\mathrm{primes}\,\,\, \pp \subset \mathcal O_K : \gcd(\N(\pp),\, | \Sp_{2g}(\mathbb Z/ \ell \ZZ)|) \neq 1 \}|.
+		\end{align*}
+		In particular, we have that $\geometricprimes \ell$ is bounded by a fixed power of $\ell$, so condition \ref{property-a2} holds in the setting of Section~\ref{subsection:notation-for-families}.
+	\end{proposition}
+\begin{remark}
+	\label{remark:}
+	In fact, it is true that $\geometricprimes \ell \ll \log \ell$. Apart from a finite number of primes depending only on the family $A \rightarrow U$, we need only throw out those primes whose norms are not coprime to $|\Sp_{2g}(\mathbb Z/ \ell \ZZ)|$. Since $|\Sp_{2g}(\mathbb Z/ \ell \ZZ)|$ grows polynomially in $\ell$,
+	the number of distinct primes dividing $|\Sp_{2g}(\mathbb Z/ \ell \ZZ)|$
+	is at most logarithmic in $\ell$.
+\end{remark}
+\begin{proof}[Proof of Proposition~\ref{proposition:check-B}]
+Take a prime ideal $\mf{p} \notin \nonEtalePrimes \cup P_\ell$ so that $\gcd(\N(\pp), |\Sp_{2g}(\bz / \ell \bz)|) = 1$.
+It suffices to show
+$\mono_{A,\pp}^{\on{geom}}(\ell) = \Sp_{2g}(\mathbb Z/ \ell \ZZ) = \mono_A^{\on{geom}}(\ell).$
+
+Choose $[\mathcal L] \in (\gr {\mathcal O_K}(1,r) \setminus \mathcal W)(\mathcal O_\pp)$, which exists Remark~\ref{remark:exists-line}. Furthermore, define $\mathcal D \defeq \mathcal L \cap \mathcal Z_{\mathcal O_\pp}$ and $\mathcal Y \defeq \mathcal L \setminus \mathcal D$.
+We have the commutative diagram
+	\begin{equation}
+		\label{equation:}
+		\nonumber
+		\begin{tikzcd}
+			\mathcal Y_{\overline K} \ar {rr} \ar {dr} & & \mathcal U_{\overline K} \ar {dr} \\
+			& \mathcal Y_{\mathcal O_\pp^{\text{un}}} \ar {r} & \mc U_{\OO_\pp^{\on{un}}} \ar{r} & \mathcal U \\
+			\mathcal Y_{\overline {{\mathbb F}}_\pp} \ar{ur}\ar{rr} & & \mathcal U_{\overline {{\mathbb F}}_\pp}. \ar{ur}
+		\end{tikzcd}\end{equation}
+	By applying the \'{e}tale fundamental group functor to the above diagram, we obtain
+	\begin{equation}
+		\label{equation:pi-1-property-3.3}
+		\begin{tikzcd}
+			\pi_1(\mathcal Y_{\overline K}) \ar{rr}{\iota_{\overline K}} \ar{dr}{\alpha_{\overline K}} \ar{dd}{\phi} & & \pi_1(\mathcal U_{\overline K}) \ar{dr}{\beta_{\overline K}}& \\
+			& \pi_1(\mathcal Y_{\mathcal O_\pp^{\text{un}}}) \ar {r}{\iota_{\mathcal O_\pp^{\text{un}}}} & \pi_1(\mathcal U_{\OO_\pp^{\on{un}}}) \ar{r}{\beta_{\OO_\pp^{\on{un}}}} \ar{r} &  \pi_1(\mathcal U) \ar{r}{\rho_{A,\ell}}& \GSp_{2g}(\mathbb Z/\ell \ZZ)\\
+			\pi_1(\mathcal Y_{\overline {{\mathbb F}}_\pp}) \ar{ur}{\alpha_{\overline {{\mathbb F}}_\pp}}\ar[swap]{rr}{\iota_{\overline {{\mathbb F}}_\pp}} & & \pi_1(\mathcal U_{\overline {{\mathbb F}}_\pp}) \ar[swap]{ur}{\beta_{\overline {\FF}_\pp}}. &
+		\end{tikzcd}\end{equation}
+	By Remark~\ref{remark:exists-line}, $\mathcal D$ is \'etale over $\mathcal O_\pp$. By the Grothendieck Specialization Theorem,~\cite[Th\'eor\`eme 4.4]{orgogozo2000theoreme},
+there is a map
+$\phi \colon \pi_1(\mc{Y}_{\ol{K}}) \xrightarrow{\sim} \pi_1(\mc{Y}_{\ol{K}_\pp}) \rightarrow \pi_1(\mc{Y}_{\ol{{\FF}}_\pp})$
+which makes the triangle on the left in~\eqref{equation:pi-1-property-3.3} commute and induces an isomorphism on the largest prime-to-$\N(\pp)$ quotients of the source and target.
+Note that $\pi_1(\mc{Y}_{\ol{K}}) \xrightarrow{\sim} \pi_1(\mc{Y}_{\ol{K}_\pp})$ is an isomorphism by \cite[Expos\'e XIII, Proposition 4.6]{SGA1Grothendieck1971}.
+Since the rest of the diagram~\eqref{equation:pi-1-property-3.3} commutes, the \mbox{entire diagram commutes.}
+
+Now, observe that we have
+\begin{align*}
+(\rho_{A,\ell} \circ \beta_{\overline K})(\pi_1(\mc U_{\ol{K}})) = \mono_A^{\on{geom}}(\ell) = \Sp_{2g}(\mathbb Z/ \ell \ZZ)
+\intertext{where the last step follows from the assumption~\ref{thatswhatpeoplesay}. By \cite[Lemma 5.2]{zywina2010hilbert}, (since the scheme $W$ used in \cite[Lemma 5.2]{zywina2010hilbert} is contained in the scheme $W$ we have constructed above) we have that}
+(\rho_{A, \ell} \circ \beta_{\overline K} \circ \iota_{\overline K})(\pi_1(\mc Y_{\ol{K}})) = \mono_A^{\on{geom}}(\ell) = \Sp_{2g}(\mathbb Z/ \ell \ZZ).
+\end{align*}
+Since $\phi$ induces an isomorphism on prime to $\N(\pp)$ parts, and because we assumed that $\gcd(\N(\pp), |\Sp_{2g}(\mathbb Z/\ell \ZZ)|) = 1$,
+we deduce that
+\begin{align*}
+	(\rho_{A,\ell}\circ \beta_{\overline {\FF}_\pp} \circ \iota_{\overline{{\mathbb F}}_\pp})(\pi_1(\mc Y_{\ol{{\mathbb F}}_\pp})) &=
+	(\rho_{A,\ell}\circ \beta_{\overline {\FF}_\pp} \circ \iota_{\overline{{\mathbb F}}_\pp} \circ \phi)(\pi_1(\mc Y_{\ol{K}})) \\
+	&=	(\rho_{A, \ell} \circ \beta_{\overline K} \circ \iota_{\overline K})(\pi_1(\mc Y_{\ol{K}})) \\
+&= \Sp_{2g}(\mathbb Z/ \ell \ZZ).
+\end{align*}
+Therefore, $\Sp_{2g}(\mathbb Z/ \ell \ZZ) \subset (\rho_{A,\ell} \circ \beta_{\overline {\FF}_\pp})(\pi_1(\mc U_{\ol{\FF}_\pp})) = \mono_{A,\pp}^{\on{geom}}(\ell)$.
+Since $\ell \nmid \N(\pp)$, we have that $\overline {{\mathbb F}}_\pp$ contains nontrivial $\ell^{\mathrm{th}}$ roots of unity. Thus, the
+mod-$\ell$ cyclotomic character is trivial on $\pi_1(\mathcal U_{\overline {{\mathbb F}}_\pp})$,
+and so $\Sp_{2g}(\mathbb Z/ \ell \ZZ) \supset \mono_{A,\pp}^{\on{geom}}(\ell).$
+Hence, we have that
+\[
+	\mono_{A,\pp}^{\on{geom}}(\ell) = \Sp_{2g}(\mathbb Z/ \ell \ZZ) = \mono_A^{\on{geom}}(\ell). \qedhere
+\]
+\end{proof}
+
+\subsection{Verifying Condition \ref{property-a3}}\label{ver3} \label{subsection:lombardo}
+It remains to check that condition \ref{property-a3} is satisfied in our setting. As usual, before carrying out the argument, we must fix some notation. Let $\Sigma_K$ denote the set of nonzero prime ideals of $\OO_K$, and for a prime $\pp \in \Sigma_K$ of good reduction, let $\frob_\pp \in G_K$ denote a corresponding Frobenius element.
+
+Given a PPAV $A/K$, let $\charpoly_A(\frob_\pp)$ denote the characteristic polynomial of $\rho_A(\frob_\pp) \in \GSp_{2g}(\wh{\ZZ})$, and observe that $\charpoly_A(\frob_\pp)$ has coefficients in $\ZZ$.
+Finally, let $h(A)$ denote the absolute logarithmic Faltings height of $A$, obtained by passing to any field extension over which $A$ \mbox{has semi-stable reduction.}
+
+\subsubsection{Applying Lombardo's Result}
+
+The key input for our proof of this condition is the following theorem of Lombardo, which is an effective version of the Open Image Theorem:
+
+\begin{theorem}[\protect{\cite[Theorem 1.2]{lombardo2015explicit} and Proposition~\ref{prop:Main} in Appendix~\ref{lombardstreet}}]
+\label{theorem:lombardo}
+		Let $A / K$ be a PPAV of dimension $g \ge 2$. Suppose that we have the following two conditions:
+		\begin{enumerate}[(1)]
+			\item $\End_{\ol{K}}(A) = \bz$.
+			\item There exists a prime $\mf{p} \in \Sigma_K$ at which $A$ has good reduction and such that the splitting field of $\charpoly_A(\frob_{\mf{p}})$ has Galois group isomorphic to $\gee$.
+		\end{enumerate}
+		Then there are constants $c_1, c_2 > 0$ and $\gamma_1, \gamma_2$,
+		depending only on $g$ and $K$, for which the following statement is true: For every prime $\ell$ unramified in $K$ and strictly larger than
+		\[
+		\max \{ c_1 (\N (\mf{p}))^{\gamma_1}, c_2 (h(A))^{\gamma_2}\},
+		\]
+		the $\ell$-adic Galois representation surjects onto $\GSp_{2g}(\bz_\ell)$.
+	\end{theorem}
+
+	\begin{remark}\label{remark:gee}
+		The group structure of $\gee$ is defined by how $S_g$ acts on $(\bz / 2\bz)^g$, namely by permuting the $g$ factors. This group appears because it is the largest possible Galois group of a reciprocal polynomial, by which we mean a polynomial $P(T)$ satisfying $P(T) = P(1/T) \cdot T^{\deg P}$.
+	\end{remark}
+	
+Now, the proof of condition \ref{property-a3} will follow from Theorem~\ref{theorem:lombardo} once we know that the two hypotheses of Theorem~\ref{theorem:lombardo} hold for a density-$1$ subset of the $K$-valued points of the family. We shall first check condition \ref{property-a3} under the assumption that these hypotheses hold most of the time.
+To this end, it will be convenient to introduce notation to help us count the points that fail to satisfy one of the hypotheses in Theorem~\ref{theorem:lombardo}. For a given family $A \to U$, define the following two sets:
+\begin{align*}
+D_1(B) & \defeq \{u \in U(K) : \on{Ht}(u) \le B,\,\text{$A_u$ fails hypothesis (1)}\}, \text{ and} \\
+D_2(B) & \defeq \{u \in U(K) : \on{Ht}(u) \le B,\, \text{$A_u$ fails hypothesis (2) for all $\mf{p}$ with $\N(\mf{p}) \le (\log B)^{n+1}$}\}.
+\end{align*}
+In the next proposition, we verify condition~\ref{property-a3}, conditional upon the assumptions that sets $D_1(B)$ and $D_2(B)$ are sufficiently small (these assumptions are proven in Lemma~\ref{lemma:davide-1} and Lemma~\ref{lemma:davide-2} respectively):
+\begin{proposition} \label{proposition:check-C}
+Let $n>0$. There are constants $c, \gamma$ depending only on $U$ such that the following holds: if we define
+		\[
+		F(B) \defeq \{u \in U(K) : \on{Ht}(u) \le B,\, \mono_{A_u}(\ell) \supset \Sp_{2g}(\bz / \ell \ZZ) \text{ for all } \ell > c(\log B)^\gamma\},
+		\]
+		then we have
+		\begin{equation} \label{yousayyourefineIknowyoubetterthanthat}
+			\frac{|F(B)|}{|\{u \in U(K) : \on{Ht}(u) \le B\}|} = 1 + O\left(\left( \log B \right)^{-n}\right),
+		\end{equation}
+        where the implied constant depends only on $U$ and $n$.
+	\end{proposition}
+	\begin{proof}[Proof assuming Lemma~\ref{lemma:davide-1}, Lemma~\ref{lemma:davide-2}, and Lemma~\ref{lemma:height}]
+
+		Let $c_1, c_2$ and $\gamma_1, \gamma_2$ be as in Theorem~\ref{theorem:lombardo}. There exist constants $c_2', \gamma_2'$, chosen appropriately in terms of the constants $c_0, d_0$ provided by Lemma~\ref{lemma:height}, such that the following holds: for $u \in U(K)$ with $\on{Ht}(u) > B_0$, where $B_0$ is a positive constant depending only on $U$, we have that
+		\[
+			c_2(h(A_u))^{\gamma_2} \le c_2'(\log \on{Ht}(u))^{\gamma_2'}.
+		\]
+		The requirement that $\on{Ht}(u)$ be sufficiently large is insignificant because
+		\begin{equation}\label{ifyoucouldseethatimtheoonewhounderstandsyoubeenhereallalongsowhycantyouseeeeyoubelongwithmeeee}
+			\frac{|\{ u \in U(K): \on{Ht}(u) \le B_0\}|}{|\{ u \in U(K): \on{Ht}(u) \le B\}|} \ll \frac{1}{B^{[K : \bq](r+1)}},
+		\end{equation}
+		and the right-hand-side of~\eqref{ifyoucouldseethatimtheoonewhounderstandsyoubeenhereallalongsowhycantyouseeeeyoubelongwithmeeee} is dominated by the right-hand-side of~\eqref{yousayyourefineIknowyoubetterthanthat}.
+If we take
+		\[
+			c = \max(c_1, c_2') \quad \text{and} \quad \gamma = \max((n+1)\gamma_1, \gamma_2'),
+		\]
+		Theorem~\ref{theorem:lombardo} tells us that
+		\[
+			\{u \in U(K) : \on{Ht}(u) \le B\} \setminus F(B) \subset D_1(B) \cup D_2(B).
+		\]
+		The desired result follows from Lemmas~\ref{lemma:davide-1} and \ref{lemma:davide-2}, from which we deduce that
+		\[
+			\frac{|D_1(B) \cup D_2(B)|}{|\{u \in U(K) : \on{Ht}(u) \le B\}|} \ll \left( \log B \right)^{-n}. \qedhere
+		\]
+	\end{proof}
+
+In what follows, we prove the results upon which the above proof of Proposition~\ref{proposition:check-C} depends. To begin with, we check that hypotheses (1) and (2) from Theorem~\ref{theorem:lombardo} hold in our setting by bounding $D_1$ in Lemma~\ref{lemma:davide-1} (thus verifying hypothesis (1)) and bounding $D_2$ in Lemma~\ref{lemma:davide-2} (thus verifying hypothesis (2)).
+
+\subsubsection{Verifying Hypothesis $(1)$}
+We check that hypothesis (1) holds in our setting via the following lemma:
+	\begin{lemma}\label{lemma:davide-1}
+		 We have that
+		 \begin{align}
+			 \label{equation:bound-d1}
+			\frac{|D_1(B)|}{|\{u \in U(K) : \on{Ht}(u) \le B\}|} \ll \frac{\log B}{B^{[K:\mathbb Q]/2}},
+		 \end{align}
+		
+        where the implied constant depends only on $U$.
+	\end{lemma}
+	\begin{proof}
+Choose $\ell > \max\{C, \ell_1(g)\}$, where $C$ is defined in~\eqref{thatswhatpeoplesay} and $\ell_1(g)$ is the constant, depending only on the dimension $g$, given in
+\cite[Proposition 4]{ellenbergEHK:non-simple-abelian-varieties-in-a-family}.
+By
+\cite[Proposition 4]{ellenbergEHK:non-simple-abelian-varieties-in-a-family}, we have that $|D_1(B)|$ is bounded above by $\left| \left\{ u \in U(K) : \mono_{A_u}(\ell) \supset \Sp_{2g}(\mathbb Z/\ell \mathbb Z) \right\}\right|.$
+The lemma then follows from
+Proposition~\ref{proposition:applying-cohen-serre},
+where we are using point (c) of Section~\ref{toomanynotes} to pass from lattice points to $K$-valued points.
+	\end{proof}
+
+\subsubsection{Verifying Hypothesis $(2)$}
+
+We complete the verification of hypothesis $(2)$ in Lemma~\ref{lemma:davide-2} by means of an argument involving the large sieve, which lets one bound a set in terms of its reduction modulo primes. The large sieve is stated as follows:
+\begin{theorem}[Large Sieve,~{\cite[Theorem 4.1]{zywina2010elliptic}}] \label{theorem:large-sieve}
+Let $\lVert - \rVert$ be a norm on $\br \otimes_{\bz} \mc{O}_{K}^r$, and fix a subset $Y \subset \mc{O}_K^r$. Let $B \ge 1$ and $Q > 0$ be real numbers, and for every prime ${\mf{p}} \in \Sigma_K$, let $0 \le \omega_{\mf{p}} < 1$ be a real number. Suppose that we have the following two conditions:
+	\begin{enumerate}
+		\item The image of $Y$ in $\br \otimes_{\bz} \mc{O}_{K}^r$ is contained in a ball of radius $B$.
+		\item For every ${\mf{p}} \in \Sigma_K$ with $\N (\mf{p}) < Q$, we have
+		$
+			|Y_{\mf{p}}| \le (1 - \omega_{\mf{p}})\cdot \N (\mf{p})^r
+		$,
+		where $Y_{\mf{p}}$ is the image of $Y$ under reduction modulo $\mf{p}$.
+	\end{enumerate}
+	Then we have that
+	\[
+		|Y| \ll \frac{B^{[K:\bq]r} + Q^{2r}}{L(Q)}, \quad \text{where} \quad L(Q) \defeq \sum_{\substack{\mf{a} \subset \mc{O}_K\,\,\, \mathrm{ squarefree} \\[0.1cm] \N (\mf{a}) \le Q}}\,\,\, \prod_{\mathrm{prime}\,\,\,\mf{p} | \mf{a}} \frac{\omega_{\mf{p}}}{1 - \omega_{\mf{p}}},
+	\]
+    and the implied constant depends only on $K$, $r$, and $||-||$.
+\end{theorem}
+We must now specialize the abstract setup in Theorem~\ref{theorem:large-sieve} to our setting. To do so, we define the various objects at play in the large sieve as follows:
+\begin{definition}
+	\label{definition:sieve-sets}
+Introduce the following notation:
+    \begin{itemize}[leftmargin=0.2in]
+    \item Let $||-||$ be the norm defined in Section~\ref{weaintevergonnaberoyals}.
+    \item Let $B \geq 1$, take $Q \defeq (\log B)^{n+1}$.
+    \item Let $m$ be the positive integer produced by Proposition~\ref{proposition:good-cover}, let $\zeta_m$ denote a primitive $m^{\mathrm{th}}$ root of unity, and let $\Sigma^m_K \subset \Sigma_K$ be the set of ${\mf{p}} \in \Sigma_K$ which split completely in $K(\zeta_m)$.
+Now, with $\galSlope, \galMin$ as in Lemma~\ref{lemma:bounding-Y-reduction}, we may take $\omega_{\mf{p}} = \galSlope$ for all $\mf{p} \in \Sigma^m_K$ with $\N(\mf{p}) > \galMin$ and $\omega_{\mf{p}} = 0$ for all other ${\mf{p}} \in \Sigma_K$.
+    \item We take $Y$ to be the following set:
+    $$Y \defeq \{u \in U(K) \cap \OO_K^r : ||u|| \le B,\, \text{$A_u$ fails hypothesis (2) for all $\mf{p}$ with $\N(\mf{p}) \le (\log B)^{n+1}$}\}.$$
+	As above, $Y_\pp$ denotes the mod-$\pp$ reduction of $Y$.
+\item Define $T_{\pp}$ by
+	$$\goodGaloisSet_{\mf{p}} \defeq \{x \in \mc{U}_{\mathbb F_\pp} : \text{splitting field of }\charpoly_A(\frob_\pp) \text{ has Galois group } \gee \}.$$
+    The motivation for defining $T_{\mf{p}}$ is that its complement contains $Y_\pp$.
+    \end{itemize}
+\end{definition}
+
+To ensure that the choices made in Definition~\ref{definition:sieve-sets} are suitable, we must prove Proposition~\ref{proposition:good-cover} and Lemma~\ref{lemma:bounding-Y-reduction}, which when taken together assert that there exist a positive integer $m$ and $\sigma, \tau> 0$ so that $|Y_\pp| \leq \left( 1-\galSlope \right) \cdot \N (\pp)^r$ for all $\pp \in \Sigma_K^m$. However, the proof of this result is rather laborious, and stating it now would serve to distract the reader from the primary thrust of the argument. We therefore defer the proof of Lemma~\ref{lemma:bounding-Y-reduction} to Section~\ref{thoughtweweregoinstrong}, and conditional upon this, we now use the large sieve to check that hypothesis (2) \mbox{holds in our setting.}
+
+\begin{proposition}\label{lemma:davide-2}
+		For $n >0$, we have that
+		\[
+			\frac{|D_2(B)|}{|\{u \in U(K) : \on{Ht}(u) \le B\}|} \ll (\log B)^{-n}.
+		\]
+	\end{proposition}
+	\begin{proof}[Proof assuming Proposition~\ref{proposition:good-cover} and Lemma~\ref{lemma:bounding-Y-reduction}]
+Theorem~\ref{theorem:large-sieve} yields the estimate
+\begin{align*}
+|Y| & \ll \frac{B^{[K : \bq]r} + (\log B)^{2n(n+1)}}{L((\log B)^{n+1})}, \\
+\intertext{whose denominator is bounded below by}
+L((\log B)^n) &> \sum_{\substack{{\mf{p}} \in \Sigma^m_K \\ \tau < \N(\mf{p}) < (\log B)^{n+1}}} \frac{\galSlope}{1 - \galSlope} \\
+&> \galSlope \cdot |\{{\mf{p}} \in \Sigma^m_K : \tau < \N(\mf{p}) \le (\log B)^{n+1} \}|.
+\end{align*}
+Applying the Chebotarev Density Theorem yields that
+\begin{align*}
+|\{{\mf{p}} \in \Sigma^m_K : \tau < \N ({\mf{p}}) \le (\log B)^{n+1} \}| &\gg |\{{\mf{p}} \in \Sigma_K : \tau < \N ({\mf{p}}) \le (\log B)^{n+1} \}|. \\
+\intertext{Applying the Prime Number Theorem yields that}
+|\{{\mf{p}} \in \Sigma_K : \tau < \N ({\mf{p}}) \le (\log B)^{n+1} \}|&\gg \frac{(\log B)^{n+1}}{\log ((\log B)^{n+1})}.
+\end{align*}
+Combining the above estimates, we deduce that
+\begin{align*}
+\frac{|Y|}{|\{u \in U(K) \cap \OO_K^r : ||u|| \le B\}|}
+& \ll \frac{B^{[K:\mathbb Q]r} + (\log B)^{2n(n+1)}}{\frac{(\log B)^{n+1}}{\log ((\log B)^{n+1})}} \cdot \frac{1}{B^{[K:\mathbb Q]r}} \\
+& \ll\frac{\log (( \log B )^{n+1})}{(\log B)^{n+1}}
+\ll (\log B)^{-n}.
+\end{align*}
+Finally, employing point (c) of Section~\ref{toomanynotes} to translate the above estimate from lattice points to $K$-valued points yields the desired result.
+	\end{proof}
+
+
+\subsubsection{Validating the Sieve Setup}\label{thoughtweweregoinstrong}
+
+This section is devoted to proving Proposition~\ref{proposition:good-cover} and Lemma~\ref{lemma:bounding-Y-reduction}, which together verify that the sieve setup introduced in Definition~\ref{definition:sieve-sets} satisfies the necessary conditions for applying the large sieve as we did in the proof of Proposition~\ref{lemma:davide-2}. We start by constructing the value of $m$ that we use in our application of the large sieve:
+
+	\begin{proposition}\label{proposition:good-cover}
+		There is a positive integer $m$ and a subset $\mc C \subset \Sp_{2g}(\bz / m \bz)$ invariant under conjugation in $\Sp_{2g}(\bz / m \bz)$, and hence in $\GSp_{2g}(\bz / m \bz)$, such that the following holds:
+		\begin{enumerate}
+			\item We have $\mono_A(m) = \GSp_{2g}(\bz /  m \ZZ)$ and $\mono_A^{\on{geom}}(m) = \Sp_{2g}(\bz /  m \ZZ)$.
+			\item For any $\mf{p} \notin S$ and any closed point $x \in \mc{U}_{\mathbb F\pp}$, if $\rho_{A, m}(\frob_x) \in \mc C$, then the splitting field of $\charpoly(\frob_x)$ has Galois group $\gee$.\footnote{For the definition of $S$, see the sentence immediately preceding Remark~\ref{thanksdavide}.}
+		\end{enumerate}
+	\end{proposition}
+Note that it is easy to construct many $m$ satisfying (a) by the big monodromy hypothesis. The main point of this proposition is to show there is an $m$
+which also satisfies (b).
+	\begin{proof}
+We construct the desired $m$ as a product of four appropriate primes,
+depending on the family $A \to U$.
+By, for example, Hilbert irreducibility, (or more precisely \cite[\S 9.2, Proposition 1]{serre1989lectures} in conjunction with \cite[\S 13.1, Theorem 3]{serre1989lectures} applied to the extension $\mathbb Q(x_1, \ldots, x_g)[T]/(T^{2g} + \sum_{i=1}^{g-1} (-1)^i x_i (T^{2g-i} + T^i) + (-1)^g x_g T^g + 1)$ over $\mathbb Q(x_1, \ldots, x_g),$) there exists a degree-$2g$ polynomial $P(T) \in \bz[T]$ satisfying $P(T) = P(1/T) \cdot T^{\deg P}$ with Galois group $\gee$.
+		It is easy to exhibit elements of $\gee$ whose left-action on $\gee$ is described by one of the following four cycle types:
+		\begin{equation} \label{equation:splittings}
+			\begin{array}{c}
+				2 + 1 + \cdots + 1, \\
+				4 + 1 + \cdots + 1, \\
+				(2g-2) + 1 + 1, \\
+				2g.
+			\end{array}
+		\end{equation}
+We choose these cycle types because any subgroup of $\gee$ containing an element with each of these cycle types is in fact all of $\gee$ by \cite[Lemma 7.1]{kowalski2006large}.
+		For each such partition, the Chebotarev Density Theorem tells us that there are infinitely many primes $\ell$ such that $P(T) \pmod{\ell}$ splits according to the chosen partition. For $\ell > C$ we have $\rho_{A, \ell}(\pi_1(U)) = \GSp_{2g}(\bz /  \ell \ZZ)$ and $\rho_{A, \ell}(\pi_1(U_{\ol{K}})) = \Sp_{2g}(\bz /  \ell \ZZ)$.
+So, for $i \in \left\{ 1,2,3,4 \right\}$ we can find $\ell_i > C$
+so that $P(T) \pmod{\ell_i}$ splits according to the $i^{\mathrm{th}}$ partition above. 		
+By the Chinese remainder theorem, $(a)$ holds.
+
+To complete the proof, we construct $\mc C$ and verify $(b)$.
+Since characteristic polynomials are conjugacy-invariant, the set
+		\[
+			\mc C \defeq \{M' \in \GSp_{2g}(\bz / m \ZZ) : \charpoly(M')\ (\on{mod}\, \ell_i) \text{ splits as in \eqref{equation:splittings} for all $i \in \left\{ 1,2,3,4 \right\}$}\}
+		\]
+		is a union of conjugacy classes of $\GSp_{2g}(\bz /  m \ZZ)$. By \cite[Theorem A.1]{rivin2008walks} there exists an $M \in \Sp_{2g}(\bz)$ such that $\charpoly(M)(T) = P(T)$, which shows that $\mc C$ is nonempty. For this choice of $\mc C$, conclusion (2) follows from \cite[Lemma 7.1]{kowalski2006large}, which says that any subgroup of $\gee$ that contains elements realizing all four cycle types in \eqref{equation:splittings} must actually equal all of $\gee$.
+	\end{proof}
+    The reason why we constructed $m$ in Proposition~\ref{proposition:good-cover} in the way that we did is that it allows us to apply the following theorem, which is a crucial tool for bounding the set of Frobenius elements with certain Galois groups modulo each prime.
+
+\begin{theorem}[\protect{\cite[Lemma 1.2]{ekedahl1988effective}}] \label{theorem:ekedahl}
+	Let $X$ be a scheme, and let $\pi\colon X \ra \spec \OO_K$ be a morphism of finite type. Let $\phi\colon Y \ra X$ be a connected finite Galois \'{e}tale cover with Galois group $G$, and let $\rho \colon \pi_1(X) \to G$ denote the corresponding finite quotient. Suppose that $\pi \circ \phi$ has a geometrically irreducible generic fiber, and let $\mc C$ be a conjugacy-invariant subset of $G$. For every $\pp \in \Sigma_K$, we have
+	\[
+		\frac{\lvert \{ x \in X({\mathbb F_\pp}) :  \rho(\frob_x) \in \mc C\} \rvert }{\lvert X({\mathbb F_\pp}) \rvert} = \frac{|\mc C|}{|G|} + O((\N (\mf{p}))^{-1/2}),
+	\]
+with implicit constants depending only on the family $Y \rightarrow X$. By $\frob_x$ we mean the Frobenius element in $\pi_1(X)$ corresponding to $x \in X$.
+\end{theorem}
+
+We now apply Theorem~\ref{theorem:ekedahl} to the
+	conjugacy-invariant set $\mc C$ from Proposition~\ref{proposition:good-cover} in order to obtain a lower bound on $|T_\pp|$, the number of points $u \in U(K)$ with the splitting field of $\charpoly_{A_u}(\frob_\pp)$ having Galois group equal to $\gee$.
+\begin{proposition}\label{proposition:good-v}
+	As $\mf{p}$ ranges through the elements of $\Sigma_K^m$, where $m$ is defined as in Proposition~\ref{proposition:good-cover}, we have that
+	\(
+	|\goodGaloisSet_{\mf{p}}| \gg (\N ({\mf{p}}))^r.
+	\)
+\end{proposition}
+\begin{proof}
+ Let $L \defeq K(\zeta_m)$. As in Section~\ref{subsection:notation-for-families}, let $\mc{V}_m \to \mc{U}_{\OO_{P_m}}$ be the connected Galois \'etale cover associated to the mod-$m$ Galois representation $\rho \colon \pi_1(\mc{U}_{\OO_{P_m}}) \to \GSp_{2g}(\bz / m \bz)$, and
+let $\mc{X}$ be one of the connected components of $(\mc{V}_m)_{L}$. The map $\mc{X} \to (\mc{U}_{\OO_{P_m}})_{L}$ is the connected Galois \'etale cover associated to the map
+	\[
+		\begin{tikzcd}
+			\rho' \colon \pi_1((\mc{U}_{\OO_{P_m}})_{L}) \ar{r} & \pi_1(\mc{U}_{\OO_{P_m}}) \ar{r}{\rho} & \GSp_{2g}(\bz / m \bz);
+		\end{tikzcd}
+	\]
+	note that the image of this composite map equals $\rho(\pi_1(\mc{U}_{\OO_{P_m}})) \cap \Sp_{2g}(\bz / m \bz)$ by Remark~\ref{remark:det-rho-is-chi},
+	since $\chi_m$ is trivial on $K(\zeta_m)$. By Proposition~\ref{proposition:good-cover}(a), we have $\rho(\pi_1(\mc{U}_{\OO_{P_m}})) = \GSp_{2g}(\bz / m \bz)$, so we conclude that $\rho'(\pi_1((\mc{U}_{\OO_{P_m}})_{L})) = \Sp_{2g}(\bz / m \bz)$.
+	
+	We seek to apply Theorem~\ref{theorem:ekedahl} with
+	\[
+		\mc{X} \to (\mc{U}_{\OO_{P_m}})_{L} \to \spec \mc{O}_{L} \quad \text{in place of} \quad Y \to X \to \spec \mc{O}_K.
+	\]
+	To do so, we must check that this composition has geometrically irreducible generic fiber, which follows from the second part of Proposition~\ref{proposition:good-cover}(a) in conjunction with Lemma~\ref{lemma:geometrically-connected-components}.
+	
+	Now let $\mc C \subset \Sp_{2g}(\bz / m \bz)$ be as in Proposition~\ref{proposition:good-cover}(b). For any $\mf{p} \in \Sigma^m_K \setminus S$
+	and $\pp' \in \Sigma_{L}$ lying over $\pp$, we have
+$(\mc{U}_{L})_{\FF_{\pp'}} \simeq \mc{U}_{\FF_\pp}$, and so there
+is a bijection between
+	\begin{align*}
+		\{x \in \mc{U}_{L}({\FF_{\pp'}}) : \rho'(\frob_x) \in \mc C\}
+		\quad \text{and} \quad \{x \in \mc{U}({\FF_{\pp}}) : \rho(\frob_x) \in \mc C\}.
+	\end{align*}
+	By Proposition~\ref{proposition:good-cover}(b), $\goodGaloisSet_{\mf{p}}$ contains the latter set, so we have
+	\begin{align*}
+		|\goodGaloisSet_{\mf{p}}| \ge |\{x \in \mc{U}({\FF_{\pp'}}) : \rho(\frob_x) \in \mc C\}| &= |\{x \in \mc{U}_{L}({\FF_{\pp'}}) : \rho'(\frob_x) \in \mc C\}| \\
+		&= \left( \frac{|\mc C|}{|G|} + O((\N(\mf{p}'))^{-1/2}) \right) \cdot |\mc{U}_{L}({\FF_{\pp'}})|,
+	\end{align*}
+	where the last step above follows from Theorem~\ref{theorem:ekedahl}. Now, we have the estimate
+    \[
+		|\mc{U}_{L}({\mathbb F_{\mf{p}'}})| \gg (\N(\mf{p}'))^r,
+	\]
+	because the complement of $(\mc{U}_{L})_{\mathbb F_{\pp'}}$ in $(\bp^r_{\mc{O}_{L}})_{\mathbb F_{\pp'}}$ has codimension at least 1, since $\pp \notin S$. Combining our results, and using that $S$ is a finite set, we find that
+	\begin{align*}
+		|T_\pp| \geq \left( \frac{|\mc C|}{|G|} + O\left(\N(\mf{p}')^{-1/2}\right) \right) \cdot |\mc{U}_{L}({\FF_{\pp'}})| &\gg \N(\mf{p}')^r = \N(\mf{p})^r. \qedhere
+	\end{align*}
+\end{proof}
+
+The following lemma completes our verification of the sieve setup by constructing the necessary constants $\sigma, \tau$.
+
+\begin{lemma}
+	\label{lemma:bounding-Y-reduction}
+	There are constants $\galSlope,\galMin > 0$ so that for all $\pp \in \Sigma^m_K$ with $\N(\pp) > \tau$, we have
+	$|Y_\pp| \leq \left( 1-\galSlope \right) \cdot \N (\pp)^r.$
+\end{lemma}
+\begin{proof}
+By Proposition~\ref{proposition:good-v}, there are constants $\galSlope', \galMin' > 0$ so that, for all $\pp \in \Sigma^m_K$ with $\N(\pp) > \galMin'$,
+we have $|\goodGaloisSet_{\mf{p}}| \geq \galSlope' \cdot(\N(\pp))^r$.
+For such $\mf{p}$, we have that
+\[
+	|Y_{\mf{p}}| \le (1 - \galSlope') \cdot (\N(\mf{p}))^r + O((\N(\mf{p}))^{r-1}),
+\]
+where the error term is on order of $\N(\pp)$ smaller than the main term because $\mc{Z}$ has codimension at least $1$ in $\bp^r_{\mc{O}_K}$. By replacing $\galSlope'$ with a slightly smaller $\galSlope$ and $\galMin'$ with a slightly larger $\galMin$, we may write
+\[
+	|Y_{\mf{p}}| \le (1 - \galSlope) \cdot (\N(\mf{p}))^r. \hfill \qedhere
+\]
+\end{proof}
+
+\subsubsection{Discussion of Heights}
+\label{subsubsection:appendix-on-heights}
+In this section, we prove a result that describes the relationship between the absolute multiplicative height on projective space and the absolute logarithmic Faltings height. Let $\on{Ht}$ be the height on $\bp_K^r$ as defined in~\ref{weaintevergonnaberoyals}, and let $h$ be the Faltings height. Let $\log\on{Ht}$ be the absolute logarithmic height on $\bp^r(\overline{K})$, and note that $\log\on{Ht}$ naturally restricts to a logarithmic height function defined on the open subscheme $U \subset \bp_K^r$.
+
+Let $\ag$ be the moduli stack of $g$-dimensional PPAVs, and let $p \colon \ug \ra\ag$ be the universal family of abelian varieties. Let $\pi\colon \ag\ra \coarseag$ be its coarse moduli space, and let $j(A)\in \coarseag(K)$ be the closed point represented by $A$. As in \cite[Section 2]{FalFinite}, we choose $n\in\bn$ such that the line bundle $\mathscr{L}=((\pi \circ p)_*\omega_{\ug/\ag})^{\otimes n}$ is very ample, where $\omega_{\ug/\ag}$ is the canonical sheaf of $p \colon \ug \ra \ag$. Fix an embedding $i\colon\coarseag\hookrightarrow\bp^N$ with $i^*\so_{\mathbb P^N}(1) \simeq \mathscr{L}$. The modular height $\log \on{Ht}(j(A))$ of $A$ is then the restriction along $i$ of the absolute logarithmic height (i.e.,~the absolute logarithmic height of $j(A)$ considered as a point of $\bp^N(K)$). On the other hand, $\so_{\mathbb P^N}(1)$ is a metrized line bundle and restricts to give a metric on $\mathscr{L}$ \cite[p.~36]{FalRP}; we denote by $\log\on{Ht}_{\mathscr{L}}$ the corresponding height function on $\coarseag$.
+
+We now relate the height on projective space and the Faltings height by piecing together results from the literature on heights:
+
+\begin{lemma} \label{lemma: height-0}
+Let $g$ be a positive integer, $K$ a number field, and let $n\in \bn$ be as in the definition of the modular height. Then there exist constants $\alpha$ and $\beta$ such that for every principally polarized abelian variety $A$ over $K$, we have
+\[|n\cdot h(A)-\log\on{Ht}(j(A))|\leq \alpha \cdot \log\max\{1, \log\on{Ht}(j(A))\}+\beta.\]
+\end{lemma}
+\begin{proof}
+By~\cite[Proof of Lemma 3]{FalFinite}, there exist constants $\alpha_1$ and $\beta_1$ such that for all abelian varieties $A/K$, we have
+\[|n\cdot h(A)-\log\on{Ht}_{\mathscr{L}}(j(A))|\leq \alpha_1 \cdot \log(\log\on{Ht}_{\mathscr{L}}(j(A)))+\beta_1.\]
+By \cite[B.3.2(b)]{afraidofheights}, there is a constant $\beta_2$ such that
+\[|\log\on{Ht}_{\mathscr{L}}(j(A))-\log\on{Ht}(j(A))|\leq\beta_2. \qedhere \]
+\end{proof}
+
+\begin{lemma} \label{lemma:height}
+		There exist constants $c_0$ and $d_0$ depending only on $A \to U$ such that
+		\[
+			h(A_u) \le c_0 \log \on{Ht}(u) + d_0
+		\]
+		for all $u \in U(K)$.
+	\end{lemma}
+	\begin{proof}
+	By \cite[p.~19, Section 2.6, Theorem]{serre1989lectures},
+$\on{Ht}(j(A_u)) \ll \on{Ht}(u)$ and $\on{Ht}(u) \ll \on{Ht}(j(A_u))$ for all $u \in U$. The result then follows from Lemma~\ref{lemma: height-0}.
+    \end{proof}

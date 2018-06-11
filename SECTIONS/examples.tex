@@ -1,0 +1,223 @@
+\section{Applications of Theorem~\ref{theorem:main}}\label{iknewyouweretrouble}
+
+The purpose of this section is to demonstrate that the main result, Theorem~\ref{theorem:main}, can be applied to a number of interesting families of PPAVs, such as families containing a dense open substack of the locus of Jacobians of hyperelliptic curves, trigonal curves, or plane curves. In Section~\ref{crit}, we prove a general tool that is needed to guarantee big monodromy for the loci in our applications, and in Section~\ref{androidbeatsios}, we examine each of these \mbox{applications in detail.}
+
+\subsection{Finite-Index Criterion}\label{crit}
+
+In this section we prove Proposition~\ref{proposition:stacky-dominant-map-surjective-fundamental-group}, which will be applied
+in the setting of Theorem~\ref{theorem:main} to determine
+that $U$ has big monodromy when its image in the moduli stack of
+abelian varieties has big monodromy. We begin by recalling an elementary criterion giving surjectivity for the map on \'{e}tale fundamental groups induced by a morphism of Deligne-Mumford stacks. By {\em Deligne-Mumford stack}, we mean a stack in the \'etale topology with representable diagonal (i.e., representable by algebraic spaces,)
+which has an \'etale surjective morphism from a scheme.
+\begin{lemma}
+       \label{lemma:surjectivity-criterion-pi1}
+       Suppose $f\colon X \rightarrow Y$ is a map of Deligne-Mumford stacks.
+       The fiber product $U \times_Y X$ is connected
+       for all finite connected \'etale maps $U \rightarrow Y$,
+       if and only if
+       the induced map $\pi_1(X) \rightarrow \pi_1(Y)$ is surjective.
+       In particular, if $X$ and $Y$ are normal, integral, and Noetherian, and $f: X \rightarrow Y$ is a flat map with connected geometric
+       generic fiber, then the induced map $\pi_1(X) \rightarrow \pi_1(Y)$ is surjective.
+\end{lemma}
+\begin{proof}
+Using the identification between connected finite \'etale covers of $Y$ and transitive $\pi_1(Y)$-sets, the first part is immediate from the fact that a continuous map $\phi \colon H \rightarrow G$ between profinite groups is surjective if and only if every finite discrete $G$-set with transitive $G$-action is transitive as a $H$-set.
+The latter fact holds because the image of $H$ is closed, and so $\phi$ is not surjective if and only if there is some open normal
+$N \subset G$ with $f(H) \subset N$, in which case $H$ does not acts transitively on $G/N$.
+
+For the second statement,
+we only need verify that a connected finite \'etale cover $U \rightarrow Y$ pulls back to a connected cover of $X$.
+Note that because $X$ and $Y$ are normal and integral, \'etale covers of $X$ and $Y$ are connected if and only if they are irreducible. (Here, we are using that
+normal and connected implies irreducible and that
+normality is local in the \'etale topology over Noetherian stacks by Serre's R1 + S2 criterion for normality.)
+Thus, we only need show that if $U \rightarrow Y$ is any irreducible finite \'etale cover, then so is $X \times_Y U \rightarrow X$.
+But this follows from the assumptions that $f$ is flat and $U$ is integral,
+which implies all generic points of $X \times_Y U$ map to the generic point of $U$.
+So, if $X \times_Y U$ were reducible, the geometric generic fiber over $U$ would also be
+reducible, which contradicts the assumption that $f$ has connected geometric generic fiber, since a geometric generic fiber of
+$X \times_Y U$ is also a geometric generic fiber of $f$.
+\end{proof}
+
+\begin{proposition} \label{proposition:stacky-dominant-map-surjective-fundamental-group}
+Let $k$ be an arbitrary field of characteristic $0$. Suppose $X$ is a scheme and $Y$ is a Deligne-Mumford stack over $k$, both of which are normal, integral, separated, and finite type over $k$, and let $f\colon X \rightarrow Y$ be a dominant map.
+Then, the image of the induced map
+       $\pi_1(X) \rightarrow \pi_1(Y)$ has finite index in $\pi_1(Y)$. If, in addition, the geometric
+       generic fiber of $f$ is connected, then the map $\pi_1(X) \rightarrow \pi_1(Y)$ is surjective.
+\end{proposition}
+\begin{proof}
+To begin, we reduce to the case in which $f$ is smooth.
+By generic smoothness, we may replace $X$
+by a dense open $X' \subset X$ so that $f|_{X'}$ is smooth.
+Since, $\pi_1(X') \rightarrow \pi_1(X)$ is a surjection by Lemma~\ref{lemma:surjectivity-criterion-pi1}, in order to prove the proposition, we may replace $X$ by $X'$.
+
+The last sentence of this Proposition follows from Lemma~\ref{lemma:surjectivity-criterion-pi1} (here we only needed that the map be $f$ be flat, but we have already reduced to the case it is smooth). To conclude, we only need prove that the image of $\pi_1(X)\rightarrow \pi_1(Y)$ has finite index in $\pi_1(Y)$, without the assumption that the geometric generic fiber of $f$ is connected. Since $f$ is smooth and $Y$ is Deligne-Mumford, we can find a scheme $U$ and a dominant \'etale map $U \rightarrow X$ so that $U \rightarrow Y$ factors through $\mathbb A^N_Y$ where $N$ is the dimension of the geometric generic fiber of $f$ and $U \rightarrow \mathbb A^N_Y$ \'etale.
+So, after passing to a dense open substack of $W \subset \mathbb A^N_Y$ and a dense open subscheme $U' \subset U$, we may assume that $U' \rightarrow W$ is a finite \'etale cover:
+To see why, take a smooth cover of $\mathbb A^N_Y$ by a scheme. The pullback to $U$ is a separated algebraic space, so it has a dense open subspace that is a scheme. The finiteness claim then follows because the resulting \'etale morphism of schemes is locally quasi-finite, of finite type, and quasi-separated, hence generically finite on the target.
+Since $U' \rightarrow W$ is finite \'etale, $\pi_1(U') \rightarrow \pi_1(W)$ has finite index.
+Because the maps $\pi_1(W) \rightarrow \pi_1(\mathbb A^N_Y)$ and $\pi_1(\mathbb A^N_Y) \rightarrow \pi_1(Y)$ are surjective by Lemma~\ref{lemma:surjectivity-criterion-pi1}, the composition $\pi_1(U') \rightarrow \pi_1(Y)$ has finite index in $\pi_1(Y)$, and hence so does $\pi_1(X) \rightarrow \pi_1(Y)$.
+\end{proof}
+
+\subsection{Applications}\label{androidbeatsios}
+Let $K$ be a number field with fixed algebraic closure $\ol{K}$, let $\mg$ denote the moduli stack of curves of genus $g$ over $K$,
+and let $\ag$ denote the moduli stack of PPAVs of dimension $g$ over $K$. We have a natural map $\tau_g \colon \mg \rightarrow \ag$ given by the Torelli map, which sends a curve to its Jacobian. Let $\ug$ denote the universal family over $\ag$. Note that if $U$ is any scheme and $A \to U$ is a family of PPAVs, then there exist maps $A \to \ug$ and $U \to \ag$ so that $A$ equals the fiber product $U \times_\ag \ug$.
+
+We will also be interested in the locus of smooth hyperelliptic curves of genus $g$, $\hyperelliptic g \subset \mg$, and locus of trigonal curves of genus $g$, $\trigonal g \subset \mg$.
+If a curve $C$ is trigonal, there exists a unique nonnegative integer $M$, called the Maroni invariant, with the property that there is a canonical embedding into the Hirzebruch surface $\mathbb F_M \defeq \mathbb P_{\mathbb P^1} (\mathcal O_{\mathbb P^1} \oplus \mathcal O_{\mathbb P^1}(M))$. As mentioned in \cite{patel2015chow}, the Maroni invariant takes on all integer values between $0$ and $\frac{g+2}{3}$ with the same parity as $g$. Let $\trigonal g(M) \subset \mg$ denote the substack of trigonal \mbox{curves of Maroni invariant $M$.}
+
+In order to more easily utilize Proposition~\ref{proposition:stacky-dominant-map-surjective-fundamental-group} for the purpose of giving interesting examples of Theorem ~\ref{theorem:main}, we record the following easy consequence of Proposition~\ref{proposition:stacky-dominant-map-surjective-fundamental-group}:
+\vspace*{-0.2cm}
+\begin{corollary} \label{corollary:criterion-for-applying-main}
+       Let $U \subset \mathbb P^r_K$ be an open subscheme, and let $A \rightarrow U$ be a family of $g$-dimensional PPAVs. Let $\phi \colon U \rightarrow \ag$ be the map induced by the universal property of $\ag$.
+Let $V$ be the smallest locally closed substack of $\ag$ through which $U$ factors, and let $W \subset \ag$ be a normal integral substack.
+Suppose further that $W \cap V$ is dense in $W$ and that $V$ is normal.
+Then, if $W$ has big monodromy, so do $V$ and $U$.
+Furthermore, if the geometric generic fiber of $\phi$ is irreducible, then the monodromy of $V$ agrees with that of $U$. In particular, the conclusion of Theorem ~\ref{theorem:main}
+holds for $U$.
+\end{corollary}
+\vspace*{-0.4cm}
+\begin{proof}
+	By Lemma~\ref{lemma:surjectivity-criterion-pi1}, if $W$ has big monodromy so does the dense open subset $W \cap V \subset W$.
+	Therefore, $V$ has big monodromy, because it contains $W \cap V$, which has big monodromy.
+	The result then follows from Proposition~\ref{proposition:stacky-dominant-map-surjective-fundamental-group},
+once we verify that both $U$ and $V$ are normal, irreducible, separated, and finite type over $K$, with $V$ Deligne-Mumford.
+All of these conditions are immediate except possibly that $V$
+is generically smooth, which holds by generic smoothness on a smooth \mbox{cover of $V$ by a scheme.}
+\end{proof}
+\vspace*{-0.2cm}
+Before stating the main theorem of this section, we pause to describe more precisely what we mean
+by ``the locus of plane curves.''
+\begin{remark}
+	\label{remark:locus-of-plane-curves}
+	In Theorem \ref{corollary:abbreviated-examples}(c) and Theorem \ref{corollary:examples}\autoref{big-plane},
+	we refer to the ``substack of Jacobians of plane curves of degree $d$,'' for $d \geq 3$,
+	and we now make more precise what we mean
+	by this locus.
+	When $d=3$, all abelian varieties can be realized as the Jacobian of a plane curve,
+	since all elliptic $1$ curves are plane curves, so in this case we take the locus to be all of $\mathscr M_{1,1}$.
+	For $d \geq 4$, we will define a locally closed substack of $\mg$, where $g = \binom{d-1}{2}$,
+	and the locus of Jacobians of plane curves of degree $d$ will denote the image of this under the Torelli map.
+	For $d \geq 4$, let $\pi_d\colon \scv_d \ra \bp^{\binom{d+2}{2}-1}$ denote the universal family over 
+	the Hilbert scheme of plane curves of degree $d$,
+	and let $U_d \subset \bp^{\binom{d+2}{2}-1}$ denote the dense open subscheme 
+	over which $\pi_d$ is smooth.
+	Since $\scv_d|_{U_d} \subset U_d \times \bp^2$,
+	the action of $\PGL_3$ on $\bp^2$ induces an action on $\scv_d|_{U_d}$ and hence on $U_d$.
+	Then, we define the substack of Jacobians of plane curves of degree $d$
+	to be the stack theoretic quotient $[U_d/\PGL_3]$.
+	
+	Note that there is a natural map $[U_d/\PGL_3] \ra \mg$.
+	It can be verified that this map is a locally closed immersion of stacks. Further, one
+	can show $[U_d/\PGL_3]$ represents the functor associating to any base scheme $T$
+	projective flat morphisms $f \colon C \ra T$ where each geometric fiber is a proper smooth curve of genus $g := \binom{d-1}{2}$
+	with a degree $d$ invertible sheaf on $C$ which commutes with base change.	
+	In this sense, $[U_d/\PGL_3]$ may naturally be referred to as ``the locus of plane curves of degree $d$''
+	and it is evidently smooth, since $U_d$ is smooth, being a dense open subscheme of projective space.
+
+	Let us now briefly sketch the proof of the two facts claimed above.
+	First, one can first see that $[U_d/\PGL_3]$ represents the claimed
+	functor by defining natural maps both ways and verifying they are mutually inverse.
+	To show $[U_d/\PGL_3] \ra \mg$ is a closed immersion,
+	one can factor $[U_d/\PGL_3] \ra \mg$ through the stack $G^2_d$ parameterizing $g^2_d$'s on 
+	the universal curve over $\mg$,
+	via a natural generalization of the definition given in \cite[Chapter XXI, Definition 3.12]{ACMG:geometryOfCurves}.
+	One can check the map $[U_d/\PGL_3] \ra G^2_d$ is an open immersion from the definitions.
+	Finally, one can verify that the map $G^2_d \ra \mg$ is a locally closed immersion, using that
+	every smooth plane curve of degree at least $4$ has a unique $g^2_d$, see \cite[Appendix A, Exercises 17 and 18]{ACGH:I},
+	and the valuative criterion for locally closed immersions \cite[Chapter 1, Corollary 2.13]{mochizuki2014foundations}.
+\end{remark}
+
+We are now in position to state and prove the main theorem of this section:
+\vspace*{-0.2cm}
+\begin{theorem} \label{corollary:examples}
+Suppose $A \rightarrow U$ is a rational family of principally polarized abelian varieties
+and define $V$ to be the smallest locally closed substack of $\ag$ through which $U$ factors.
+The conclusion of Theorem~\ref{theorem:main} holds whenever $V$ is normal and contains a dense open substack of one of the following loci:
+\begin{enumerate}
+	       \item[\customlabel{big-hyperelliptic}{(a)}] The locus $\tau_g(\hyperelliptic g)$ for any $g \geq 0$.
+		      For every $g \geq 0$ there exists a $U$ dominating $\tau_g(\hyperelliptic g)$ because $\hyperelliptic g$ is unirational.
+               \item[\customlabel{big-maroni}{(b)}] The locus $\tau_g(\trigonal g(M))$ of Jacobians of trigonal curves with Maroni invariant $M < \frac{g}{3}-1$ for any $g \geq 5$. In this case, there exists $U$ dominating $\tau_g(\trigonal g(M))$ because \mbox{$\trigonal g(M)$ is unirational.}
+		\item[\customlabel{big-trigonal}{(c)}] The locus of trigonal curves $\trigonal g$ in any $g \geq 3$.
+We can take $U$ to be any open subscheme of $\trigonal g$, as $\trigonal g$ is rational.
+               \item[\customlabel{big-plane}{(d)}] The locus of Jacobians of degree-$d$ plane curves for any $d \geq 3$. In this case, the open subscheme of the Hilbert scheme
+of degree-$d$ plane curves parameterizing smooth curves is rational and dominates the locus of Jacobians of degree-$d$ plane curves.
+\item[\customlabel{big-mg}{(e)}] The locus $\tau_g(\mg)$ for any $g \geq 1$. In this case, when $1 \leq g \leq 14$, $\mg$ is unirational, so there exists a $U$ dominating $\mg$. Moreover, when $3 \leq g \leq 6$, $\mg$ is rational, and so we may take $U$ to be any open subscheme of $\mg$.
+               \item[\customlabel{big-ag}{(f)}] The locus $\ag$ for any $g \geq 1$. When $1 \leq g \leq 5$, $\ag$ is unirational, so such a $U$ exists.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+By Corollary~\ref{corollary:criterion-for-applying-main}, it suffices to check that each of the families enumerated above has a dense open substack which has big monodromy, is irreducible, and is normal, and to verify the rationality and unirationality claims made above.
+Irreducibility of these loci is well-known.
+Note that in the first five cases, if we denote the locus in question by $\tau_g(W) \subset \ag$, it suffices to verify that $W \subset \mg$ is smooth as a substack of $\mg$, as we now explain.
+First, $\tau_g(W) \subset \ag$ is generically smooth because it is reduced, since it is the image of $W$, which is reduced.
+Taking a smooth dense open $Z' \subset \tau_g(W)$, we have that $\tau_g^{-1}(Z') \subset W$ is a dense open substack, hence it is also
+smooth and has big monodromy. This implies $Z'$ also has big monodromy since the monodromy of a locus in $\mg$ agrees with the monodromy of its image in $\ag$ under $\tau_g$, as both can be identified with the monodromy action on
+the first cohomology group.
+We now conclude the proof by verifying that each locus in $\mg$ (in the first five cases) is normal, has big monodromy, and is rational or unirational when claimed. In fact, we just show the
+substack has big geometric monodromy, since this implies it has big monodromy by
+Proposition~\ref{proposition:big-geometric-monodromy-reduction}.
+
+\begin{enumerate}[(a)]
+              \item The hyperelliptic locus, $\hyperelliptic g$, has big geometric monodromy as was shown independently in~\cite[Lemma 8.12]{mumford:tata-lectures-on-theta-ii} and~\cite[Th\'eor\`eme 1]{acampo:tresses-monodromie-et-le-groupe-symplectique}.
+	       The hyperelliptic locus $\hyperelliptic g$ is smooth and unirational because it is the quotient of an open subscheme of
+	       $\mathbb P^{2g+2}_K$ by the smooth action of $\PGL_2$.
+\item By~\cite[Theorem, p.~2]{bolognesi2016mapping}, $\trigonal g (M)$ has big geometric monodromy when $M < \frac{g}{3}-1$.
+	      Additionally, $\trigonal g(M)$ is smooth and unirational because it can be expressed as a quotient
+	      $[U/G]$ of a smooth rational scheme $U$ by a smooth group scheme $G$.
+	      Here, $G$ is the group of automorphisms of the Hirzebruch surface $\mathbb F_M$
+	      and $U$ is an open subscheme of the projectivization of the linear system of class $3e + \left(\frac{g + 3M + 2}{2}\right) f$ on $\mathbb F_M$, where $f$ is the class of the fiber over $\mathbb P^1$ and $e$
+	      is the unique section with negative self-intersection (see ~\cite[p.~8]{bolognesi2016mapping} for an explanation
+		of this description of $U$).
+	       Note that in this application, we are implicitly translating between
+the topological monodromy representation of $\mg$ described in ~\cite[Theorem, p.~2]{bolognesi2016mapping} and the algebraic Galois representation in
+$\ag$, but these two representations are compatible, essentially because
+both are given by the action of the fundamental group on the first cohomology
+group.
+\item In the case that $g \geq 5$, we have $\trigonal g(g \bmod 2)$ is birational to $\trigonal g$, so $\trigonal g$
+	has a smooth dense open with big geometric monodromy by the previous part.
+	Next, $\trigonal g$ is rational for $g \geq 5$ by~\cite[Theorem, p.~1]{ma2014rationality}.
+	The cases $g = 3, 4$ hold because for such $g$, $\trigonal g$ forms a dense open in $\mg$, which is itself rational and smooth,
+	as shown in the proof of part~\ref{big-mg} below.
+\item By Remark \ref{remark:locus-of-plane-curves}, the locus of plane curves (as was also defined in Remark \ref{remark:locus-of-plane-curves}) in $\mg$ is smooth.
+By~\cite[Th\'{e}or\`{e}me 4]{beauville1986groupe}, the locus of smooth degree-$d$ plane curves in the Hilbert scheme has big geometric monodromy. 
+It follows from Lemma~\ref{lemma:surjectivity-criterion-pi1}
+that the locus of plane curves has big monodromy.
+The locus of \emph{smooth} degree-$d$ plane curves in the Hilbert scheme
+is certainly rational,
+       as it is an open subscheme of the Hilbert scheme of degree-$d$ plane curves, which is itself isomorphic to $\mathbb P_K^{\binom{d+2}{2}-1}$.
+\item By~\cite[5.12]{deligne1969irreducibility}, the geometric monodromy of $\mg$ is all of $\Sp_{2g}(\widehat {\mathbb Z})$ for every $g \geq 1$. 	Next, $\mg$, smooth by \cite[Theorem 5.2]{deligne1969irreducibility}. We have that $\mg$ is unirational for $1 \leq g \leq 14$ by~\cite{verra2005unirationality}. Moreover, when $3 \leq g \leq 6$, we have that $\mg$ is rational; see~\cite[p.~2]{casnati2007rationality} for comprehensive references.
+\item Note that $\ag$ has geometric big monodromy because $\ag$ contains $\mg$ and $\mg$ has monodromy $\Sp_{2g}(\widehat {\mathbb Z})$, as argued in point (d).
+Further,
+		       $\ag$ is smooth by \cite[Theorem 2.4.1]{oort:finite-group-schemes-local-moduli-for-abelian-varieties-and-lifting-problems}.
+	We have that $\ag$ is unirational for $1 \leq g \leq 5$ \mbox{as shown in~\cite[p.~1]{verra2005unirationality}.}\qedhere
+\end{enumerate}
+\end{proof}
+
+\begin{remark}
+       \label{remark:mmmm}
+       In most of the cases enumerated in Theorem~\ref{corollary:examples}, we actually know that the geometric monodromy is not only big, but also equal to $\Sp_{2g}(\widehat{\mathbb Z})$.
+       By Corollary~\ref{corollary:criterion-for-applying-main},
+       this occurs when $U$ has irreducible geometric generic fiber
+       over any of the following loci:
+       \begin{enumerate}
+               \item The locus $\trigonal g (M)$ for any $M < \frac{g}{3}-1$, by~\cite[Theorem, p.~2]{bolognesi2016mapping};
+               \item The locus of plane curves of degree $d$ with $d$ even, by~\cite[Theoreme 4(i)]{beauville1986groupe};
+               \item The locus $\mg$ for any $g$, by~\cite[5.12]{deligne1969irreducibility};
+	       \item The locus $\ag$ for any $g$, because $\mg \subset \ag$ and $\mg$ has full monodromy by point (d).
+       \end{enumerate}
+\end{remark}
+
+\begin{remark}
+       If $A \to U$ is a family with $\mono_A^{\on{geom}} = \Sp_{2g}(\zh)$, then the group $\mono_A$ can be determined as follows. The intersection $K \cap \bq^{\on{cyc}}$ is of the form $\bq(\zeta_n)$ for some $n \ge 2$. Let $r_n : \zh \to \bz / n \bz$ be the reduction map. Then
+    \[
+       \mono_A = \ker (r_n \circ \on{mult}) = \{M \in \Sp_{2g}(\zh) : \on{mult} M \equiv 1 \pmod{n} \},
+    \]
+       which follows from Remark~\ref{remark:det-rho-is-chi}.
+Thus, when the conclusion of the preceding remark holds, Theorem~\ref{theorem:main} tells us the following:
+    \begin{itemize}
+           \item If $K\neq \bq$, or if $K = \bq$ and $g \ge 3$, then most $u \in U(K)$ have $\mono_{A_u} = \ker (r_n \circ \on{mult})$.
+	   \item If $K = \bq$ and $g \in \left\{ 1,2 \right\}$, then most $u \in U(K)$ are such that $[\GSp_{2g}(\zh) : \mono_{A_u}] = 2$.
+       \end{itemize}
+\end{remark}
+
+\begin{remark} \label{remark:}
+	Theorem~\ref{corollary:examples}~\ref{big-hyperelliptic} tells us that if $U$ dominates $\hyperelliptic g$, then the conclusion of Theorem~\ref{theorem:main} holds for $U$. In the case where $U$ has irreducible geometric generic fiber, we can say explicitly what the monodromy group of the family is and what its commutator is. For example, let $\mathscr{Y}_{2g+2,K}$ denote the family of genus-$g$ hyperelliptic curves over $K$ with Weierstrass equation given by $y^2 = x^{2g+2} + a_{2g+1}x^{2g+1} + \dots + a_0$. We show in~\cite[Theorem 1.2]{landesman-swaminathan-tao-xu:hyperelliptic-curves} that most members of $\mathscr{Y}_{2g+2, K}$ have monodromy equal to $\mono_{\mathscr Y_{2g+2,K}}$ (which we explicitly compute) over $K \neq \QQ$, and have index-$2$ monodromy when $K = \QQ$. We neither prove nor state this result precisely here, but a complete statement and proof is given in~\cite{landesman-swaminathan-tao-xu:hyperelliptic-curves}.
+\end{remark}

@@ -1,0 +1,74 @@
+\section{Background on Galois Representations of PPAVs}
+\label{section:background}
+
+This section is devoted to describing the basic definitions and properties concerning Galois representations associated to families of PPAVs.
+Specifically, in Section~\ref{subsection:setup}, we construct these Galois representations and provide precise definitions for the various monodromy groups discussed in Section~\ref{weaintevergonnaberoyals}. Then, in Section~\ref{subsection:notation-for-families},
+we explain how a family of PPAVs over a number field $K$ may be extended to a family over the number ring $\OO_K$. The notation introduced in this section will be utilized throughout the rest of the paper.
+
+\subsection{Defining Galois Representations for Families of PPAVs}\label{subsection:setup}
+
+Let $K$ be a number field, and let $g \geq 0$ be an integer. Fix a base scheme $T$ (we usually take $T$ to be $\spec K$ or an open subscheme of $\spec \mathcal O_K$), and let $U$ be an integral $T$-scheme with generic point $\eta$ (we usually take $U$ to be an open subscheme of $\mathbb{P}_K^r$ or $\mathbb{P}_{\OO_K}^r$). Let $A \to U$ be a \emph{family} of $g$-dimensional PPAVs, by which we mean the following:
+\begin{itemize}
+\item The morphism $A \to U$ is flat, proper, and finitely presented with smooth geometrically connected fibers of dimension $g$.
+\item $A$ is a group scheme over $U$, and the resulting abelian scheme is equipped with a principal polarization.
+\end{itemize}
+Note that $A \rightarrow U$ is automatically abelian, smooth, and projective, and further observe that the fiber $A_u$ over any point $u \in U$ is a PPAV of dimension $g$ over the \mbox{residue field $\kappa(u)$ of $u$.}
+
+Choose a geometric generic point $\ol{\eta}$ for $U$. If $\kappa(\eta)$ has characteristic prime to $m$, the action of the \'{e}tale fundamental group $\pi_1(U,\ol{\eta})$ on the geometric generic fiber $A_{\ol{\eta}}[m]$ gives rise to a continuous linear representation whose image is constrained by the Weil pairing to lie in the general symplectic group $\GSp_{2g}(\ZZ/m \ZZ)$. We denote this \emph{mod-$m$ representation} by
+\begin{equation}\label{atoll}
+\rho_{A,m} \colon \pi_1(U, \ol{\eta}) \to \GSp_{2g}(\ZZ/m \ZZ).
+\end{equation}
+The map in~\eqref{atoll} is well-defined up to the choice of base-point $\ol{\eta}$, and choosing a different such $\ol{\eta}$ would only alter the image of $\rho_{A,m}$ by an inner automorphism of $\GSp_{2g}(\mathbb Z/m\mathbb Z)$.
+For this reason, when it will not lead to confusion, we may omit
+the basepoint from our notation and write $\pi_1(U)$ for $\pi_1(U, \overline \eta)$.
+
+If $\ell$ is a prime not dividing the characteristic of $\kappa(\eta)$, then we can take the inverse limit of the mod-$\ell^k$ representations to obtain the \emph{$\ell$-adic representation}
+\begin{equation}\label{itsladicguys}
+\rho_{A,\ell^\infty} \colon \pi_1(U) \to \varprojlim_k{\GSp_{2g}(\ZZ/\ell^k \ZZ)}.
+\end{equation}
+Moreover, if $\kappa(\eta)$ has characteristic $0$, we can take the inverse limit of all the mod-$m$ representations (or equivalently the product of all the $\ell$-adic representations) to obtain an \emph{adelic} or \emph{global representation}
+\begin{equation}\label{thisisthepartofme}
+	\rho_A \colon \pi_1(U) \to \varprojlim_m {\GSp_{2g}(\ZZ/m \ZZ)} \simeq \GSp_{2g}(\wh{\ZZ}).
+\end{equation}
+\vspace*{-0.2in}
+\begin{remark}
+In the situation that $U = \spec K$, the choice of $\ol{\eta}$ corresponds to a choice of algebraic closure $\ol{K}$ of $K$. Taking $G_K \defeq \Gal(\ol{K}/K)$ to be the absolute Galois group, we have that $\pi_1(U, \ol{\eta}) = G_K$. This recovers the notion of a Galois representation of a PPAV over a field as a map $\rho_A: G_K \rightarrow \GSp_{2g}(\widehat{\mathbb Z})$.
+\end{remark}
+\vspace*{-0.1in}
+\begin{remark}
+	\label{remark:det-rho-is-chi}
+For a commutative ring $R$, recall from the definition of the general symplectic group that we have a multiplier map $\on{mult} \colon \GSp_{2g}(R) \to R^\times$. Let $\chi_m$ be the mod-$m$ cyclotomic character, and let $\chi$ be the cyclotomic character. If $U = \spec k$, (with $k$ an arbitrary characteristic $0$ field) it follows from $G_k$-invariance of the Weil pairing that $\chi_m = \mult \circ \rho_{A,m}$ and $\chi = \mult \circ \rho_{A}$.
+More generally, if $U$ is normal and integral, and $\phi: \pi_1(U) \rightarrow \pi_1(\spec K)$, then
+$\chi \circ \phi = \mult \circ \rho_A$,
+which holds because it holds for the generic fiber $A_\eta \rightarrow \spec K(\eta)$, and the map $\pi_1(\eta) \rightarrow \pi_1(U)$ is surjective.
+\end{remark}
+
+We now define the monodromy groups associated to the representations defined above. We call the image of $\rho_A \colon \pi_1(U) \to \GSp_{2g}(\wh{\ZZ})$ the {\it monodromy} of the family $A \to U$, and we denote it by $\mono_A$. When the base scheme is $T = \spec K$, we also define the {\it geometric monodromy}, denoted by $\mono_A^{\on{geom}}$, to be the image of the adelic representation $\rho_{A_{\overline K}}\colon \pi_1(U_{\overline K}) \rightarrow \GSp_{2g}(\widehat{\mathbb Z})$ associated to the base-changed family $A_{\ol{K}} \to U_{\ol{K}}$.
+Since the cyclotomic character is trivial on $G_{\ol{K}}$, it follows that $\mono_A^{\on{geom}}$ is actually a subgroup of $\Sp_{2g}(\wh{\ZZ})$. We write $\mono_A(m)$ and $\mono_A^{\on{geom}}(m)$ for the mod-$m$ reductions of the above-defined monodromy groups.
+
+In particular, for each $u \in U$, $\mono_{A_u}$ and $\mono_{A_u}^{\on{geom}}$ are the monodromy groups associated to the family $A_u \to \spec \kappa(u)$. Since $A_u$ is the pullback of $A$ along $\iota: u \rightarrow U$, $\rho_{A_u} = \iota \circ \rho_A$ and we obtain an inclusion $H_{A_u} \subset H_A$. Note that if $U$ is normal, then the map $\pi_1(\eta) \rightarrow \pi_1(U)$ is surjective, so we have that $\mono_{A_\eta} = \mono_A$.
+
+\subsection{Extending Families over $K$ to $\OO_K$}
+\label{subsection:notation-for-families}
+In this section, we set up notation for extending a given rational family of PPAVs over a number field $K$ to a family over the number ring $\OO_K$.
+This construction will become particularly important in Section~\ref{subsection:applying-wallace}, where we apply the results of~\cite{scoopdedoo}.
+
+Retain the setting of Theorem~\ref{theorem:main}.
+Start with a family $A \rightarrow U$ over $\spec K$.
+Define $Z \defeq \mathbb P_K^r \setminus U$
+and let $\mathcal Z$ denote the closure of $Z$ in $\mathbb P^r_{\mathcal O_K}$.
+Using standard spreading out techniques,
+extend the family $A \rightarrow U$ to a family $\mathcal A \rightarrow \mathcal U$, so that $\mathcal U$ is an open subscheme of $\mathbb P^r_{\mathcal O_K}$
+whose generic fiber over $\spec K \rightarrow \spec \mathcal O_K$
+is $A \rightarrow U$.
+Recall that our definition of family from Section~\ref{subsection:setup} means
+$\mathcal A \rightarrow \mathcal U$ is smooth and proper with geometrically connected fibers and $\mathcal A$ is an abelian scheme over $\mathcal U$ with a principal polarization.
+Let $S$ be the finite set of primes $\fp \in \spec \mathcal O_K$
+for which $\mathbb P^r_{\mathbb F_\pp} \setminus \mathcal U_{\mathbb F_\pp} \neq \mathcal Z_{\mathbb F_\pp}$.
+
+Fix $m \in \mathbb Z$ and let $P_m \subset \Sigma_K$ be the set of primes in $\mc{O}_K$ dividing $m$. Then, the preimage of $P_m$ under the map $\mc{U} \to \spec \mc{O}_K$
+is the complement of the locus on which $\mc{A}[m] \to \mc{U}$ is \'etale.
+Now, observe that the \'etale cover $\mc{A}_{\mathcal O_{P_m}}[m] \to \mc{U}_{\mathcal O_{P_m}}$ gives rise to a mod-$m$ representation $\pi_1(\mc{U}_{P_m}) \to \GSp_{2g}(\bz / m \bz)$, where $\rho_{A, m} \colon \pi_1(U) \to \GSp_{2g}(\bz / m \bz)$ is obtained by precomposing with $\pi_1(U) \to \pi_1(\mc{U}_{\mathcal O_{P_m}})$. Under the correspondence between finite quotients of the \'etale fundamental group and connected finite Galois \'etale covers, the map $\pi_1(\mc{U}_{P_m}) \to \GSp_{2g}(\bz / m \bz)$ is associated to a connected finite Galois \'etale cover $\mc{V}_m \to \mc{U}_{P_m}$. Let $V_m$ be the fiber of $\mc{V}_m$ over $\spec K$, and observe that $V_m$ is a connected finite Galois \'etale cover of $U$.
+In this way, letting $m = \ell$ vary over the prime numbers, we obtain a collection of connected finite Galois \'etale covers $V_\ell \to U$ and $\mc V_\ell \to \mc U_{\mathcal O_{P_\ell}}$. By construction, the finite quotient of $\pi_1(U)$ corresponding to the cover $V_\ell \to U$ is the mod-$\ell$ monodromy group $\wall_A(\ell)$ associated to the family $A \to U$. Similarly, the finite quotient of $\pi_1(U_{\overline K})$ corresponding to the cover $(V_\ell)_{\overline K} \rightarrow U_{\overline K}$ is the geometric mod-$\ell$ monodromy group $\wall_A^{\on{geom}}(\ell)$. For a prime $\fp \not\in S \cup P_\ell$, the cover $(\mc V_\ell)_{\mathbb F_\pp} \to \mc U_{\mathbb F_\pp}$
+corresponds to a finite quotient $\pi_1(\mc U_{\mathbb F_\pp}) \twoheadrightarrow \wall_{A,\fp}(\ell)$.
+Choosing an algebraic closure $\ol{\mathbb F}_\pp$ of $\FF_\pp$, we define $\wall_{A,\pp}^{\on{geom}}(\ell)$ to be the image of the \mbox{composite map $\pi_1(\mc U_{\ol{\mathbb F}_\pp}) \to \pi_1(\mc U_{\FF_\pp}) \to \wall_{A,\pp}(\ell)$.}

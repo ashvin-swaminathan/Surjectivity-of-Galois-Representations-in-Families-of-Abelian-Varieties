@@ -1,0 +1,282 @@
+\documentclass[12 pt]{amsart}
+
+\usepackage{etex}
+\usepackage[shortlabels]{enumitem}
+\usepackage{amsmath}
+\usepackage{amscd}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{eucal}
+\usepackage{mathrsfs}
+\usepackage{morefloats}
+\usepackage{thm-restate}
+\usepackage{hyperref}
+\usepackage[margin=1in]{geometry}
+\usepackage{tikz}
+\usepackage{tikz-cd, comment, fancyvrb}
+\usepackage{todonotes}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{postulate}[theorem]{Postulate}
+
+\newtheorem*{question}{Question}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+
+\theoremstyle{definition}
+\newtheorem{condition}[theorem]{Condition}
+
+
+
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem*{lemma*}{Lemma}
+
+
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+\newtheorem{remarks}{Remarks}
+\newtheorem{notation}{Notation}
+
+\numberwithin{equation}{section}
+
+\newcommand{\CC}{\mathbb C}
+\newcommand{\FF}{\mathbb F}
+\newcommand{\QQ}{\mathbb Q}
+\newcommand{\OO}{\mathcal O}
+\newcommand{\ZZ}{\mathbb Z}
+\newcommand{\NN}{\mathbb N}
+\newcommand{\RR}{\mathbb R}
+\newcommand{\Norm}{\mathbf N}
+\newcommand{\on}{\operatorname}
+\newcommand{\ol}{\overline}
+\newcommand{\wt}{\widetilde}
+\newcommand{\wh}{\widehat}
+\makeatletter
+\newcommand*{\defeq}{\mathrel{\rlap{%
+                     \raisebox{0.3ex}{$\m@th\cdot$}}%
+                     \raisebox{-0.3ex}{$\m@th\cdot$}}%
+                     =}
+\makeatother
+\renewcommand{\aa}{\mathfrak a}
+\newcommand{\pp}{\mathfrak p}
+\newcommand{\qq}{\mathfrak q}
+\newcommand{\mm}{\mathfrak m}
+\newcommand{\eps}{\varepsilon}
+\newcommand\half{\frac12}
+\newcommand{\qcurve}{C_1}
+\newcommand{\qjacobian}{J_{C_1}}
+\newcommand{\kcurve}{C_2}
+\newcommand{\kjacobian}{J_{C_2}}
+\newcommand{\badreduction}{S}
+\newcommand{\id}{\on{id}}
+\newcommand\ab{\text{ab}}
+\newcommand \hfaltings{{h_{falt}}}
+\newcommand \hnaive{{h}}
+\newcommand \conjbound{{\frac{1}{2}}}
+\newcommand \logpowerg{{\eta_g}}
+\newcommand{\GSp}{\operatorname{GSp}}
+\newcommand*{\nolink}[1]{%
+  \begin{NoHyper}#1\end{NoHyper}%
+}
+
+
+
+\DeclareMathOperator\Sp{Sp}
+\DeclareMathOperator\GL{GL}
+\DeclareMathOperator\Gal{Gal}
+\DeclareMathOperator\Frob{Frob}
+\DeclareMathOperator\Aut{Aut}
+\DeclareMathOperator\Lie{Lie}
+\DeclareMathOperator\tr{tr}
+\DeclareMathOperator\quo{Quo}
+\DeclareMathOperator\frob{Frob}
+\DeclareMathOperator\splitfield{Split}
+\DeclareMathOperator\charpoly{ch}
+\DeclareMathOperator\gal{Gal}
+\DeclareMathOperator\mult{mult}
+\DeclareMathOperator\End{End}
+\DeclareMathOperator\Image{Im}
+\DeclareMathOperator\cyc{cyc}
+
+\newcommand\nc{\newcommand}
+\nc\renc{\renewcommand}
+\newcommand\se{\section}
+\newcommand\ssec{\subsection}
+\newcommand\sssec{\subsubsection}
+\newcommand\bn{{\mathbb N}}
+\newcommand\bc{{\mathbb C}}
+\newcommand\br{{\mathbb R}}
+\newcommand\bq{{\mathbb Q}}
+\newcommand\bp{{\mathbb P}}
+\newcommand\CF{{\mathcal F}}
+\newcommand\bz{{\mathbb Z}}
+\newcommand\ba{{\mathbb A}}
+\newcommand\fa{{\mathfrak a}}
+\newcommand\fp{{\mathfrak p}}
+\newcommand\fq{{\mathfrak q}}
+\newcommand\fm{{\mathfrak m}}
+\newcommand\so{{\mathscr O}}
+\newcommand\sg{{\mathscr G}}
+
+
+\newcommand\sca{\mathscr A}
+\newcommand\scb{\mathscr B}
+\newcommand\scc{\mathscr C}
+\newcommand\scd{\mathscr D}
+\newcommand\sce{\mathscr E}
+\newcommand\scf{\mathscr F}
+\newcommand\scg{\mathscr G}
+\newcommand\sch{\mathscr H}
+\newcommand\sci{\mathscr I}
+\newcommand\scj{\mathscr J}
+\newcommand\sck{\mathscr K}
+\newcommand\scl{\mathscr L}
+\newcommand\scm{\mathscr M}
+\newcommand\scn{\mathscr N}
+\newcommand\sco{\mathscr O}
+\newcommand\scp{\mathscr P}
+\newcommand\scq{\mathscr Q}
+\newcommand\scs{\mathscr S}
+\newcommand\sct{\mathscr T}
+\newcommand\scu{\mathscr U}
+\newcommand\scv{\mathscr V}
+\newcommand\scw{\mathscr W}
+\newcommand\scx{\mathscr X}
+\newcommand\scy{\mathscr Y}
+\newcommand\scz{\mathscr Z}
+
+\newcommand \ra{\rightarrow}
+\newcommand\im{\text{im }}
+\newcommand\coker{\text{coker}}
+\newcommand \spec{\text{Spec }}
+\newcommand \proj{\text{Proj }}
+\newcommand \rspec{\textit{Spec }}
+\newcommand \rproj{\textit{Proj }}
+\newcommand \mg{{\mathscr M_g}}
+\newcommand \ag{{\mathscr A_g}}
+\newcommand \coarseag{{A_g}}
+\newcommand \ug{{\mathscr U_g}}
+\newcommand \hilbg{{\mathscr U_g}}
+\newcommand \hilbplane{{\mathscr H_d}}
+\newcommand \piorb{\pi_1^{\text{orb}}}
+\newcommand \mapg{Map_g}
+\newcommand \gonal[2]{X^{#1}_{#2}}
+\newcommand \trigonal[1]{\mathscr T^{#1}}
+\newcommand \hyperelliptic[1]{\mathscr H_{#1}}
+\newcommand \geometricprimes[1]{\mathcal T_{#1}}
+\newcommand\gr[1]{\on{Gr}_{#1}}
+
+\makeatletter
+\newcommand{\customlabel}[2]{%
+   \protected@write \@auxout {}{\string \newlabel {#1}{{#2}{\thepage}{#2}{#1}{}} }%
+   \hypertarget{#1}{#2}
+}
+
+\DeclareMathOperator\ord{ord}
+
+\newcommand \trdeg{\text{tr. deg }}
+\newcommand \codim{\text{codim}}
+\newcommand \rk{\text{rk }}
+\newcommand \di{\text{div }}
+\newcommand \depth{\text{depth }}
+\DeclareMathOperator\pic{Pic}
+\DeclareMathOperator\lcm{lcm}
+\DeclareMathOperator\rank{rank}
+\DeclareMathOperator\vol{Vol}
+\DeclareMathOperator\supp{Supp}
+\DeclareMathOperator\PGL{PGL}
+\DeclareMathOperator\occ{Occ}
+\DeclareMathOperator\PSp{PSp}
+\DeclareMathOperator\matone{\Phi}
+\DeclareMathOperator\mattwo{\Psi}
+\DeclareMathOperator\galSlope{\sigma}
+\DeclareMathOperator\galMin{\tau}
+\newcommand{\goodGaloisSet}{T}
+\DeclareMathOperator\goodBaseChangeSet{T_{\zeta_m}}
+\newcommand\nonEtalePrimes{S'}
+\newcommand\isom[3]{\on{Isom}_{#1}(#2,#3)}
+
+\newcommand{\N}{\mathbf{N}}
+\newcommand{\gee}{(\bz/2\bz)^g \rtimes S_g}
+\newcommand{\mc}{\mathcal}
+\newcommand{\mf}{\mathfrak}
+\newcommand{\wall}{H}
+\renewcommand{\theenumi}{\alph{enumi}}
+
+\newcommand{\mono}{H}
+
+\newcommand{\zh}{\wh{\bz}}
+\DeclareMathOperator\SL{SL}
+\def\arraystretch{1.3}
+
+
+
+\title[Surjectivity of Galois Representations in Families of Abelian Varieties]{Surjectivity of Galois Representations in \\ Rational Families of Abelian Varieties}
+
+
+\date{\today}
+\author[Aaron Landesman]{Aaron Landesman}
+
+\author[Ashvin A. Swaminathan]{Ashvin A. Swaminathan}
+
+\author[James Tao]{James Tao}
+
+\author[Yujie Xu]{Yujie Xu}
+
+
+\AtEndDocument{\bigskip{\footnotesize%
+  \textsc{Department of Mathematics, Stanford University, \mbox{Stanford, CA 94305}} \par
+  \textit{E-mail address}, Aaron Landesman: \texttt{aaronlandesman@stanford.edu} \par
+  \addvspace{\medskipamount}
+  \textsc{Department of Mathematics, Princeton University, \mbox{Princeton, NJ 08544}} \par
+  \textit{E-mail address}, Ashvin A. Swaminathan: \texttt{ashvins@math.princeton.edu} \par
+  \addvspace{\medskipamount}
+  \textsc{Department of Mathematics, Harvard College, \mbox{Cambridge, MA 02138}} \par
+\textit{E-mail address}, James Tao: \texttt{jamestao@college.harvard.edu}
+\par
+  \addvspace{\medskipamount}
+  \textsc{Department of Mathematics, Harvard University, \mbox{Cambridge, MA 02138}} \par
+  \textit{E-mail address}, Yujie Xu: \texttt{yujiex@math.harvard.edu}
+}}
+
+\begin{document}
+
+\begin{abstract}
+	In this article, we show that for any non-isotrivial family of abelian varieties over a rational base with big monodromy, those members that have adelic Galois representation with image as large as possible form a density-$1$ subset. Our results can be applied to a number of interesting families of abelian varieties, such as rational families dominating the moduli of Jacobians of hyperelliptic curves, trigonal curves, or plane curves.
+As a consequence, we prove that for any dimension $g \geq 3$, there are infinitely many abelian varieties over $\mathbb Q$ with adelic
+Galois representation having image equal to all of $\operatorname{GSp}_{2g}(\widehat{\mathbb Z})$.
+\end{abstract}
+
+\subjclass[2010]{11F80, 11G10, 11G30, 11N36, 11R32, 12E25}
+
+\maketitle
+
+\input{SECTIONS/introduction}
+\input{SECTIONS/group-theory}
+\input{SECTIONS/background}
+\input{SECTIONS/main-proof}
+\input{SECTIONS/examples}
+\appendix
+\input{SECTIONS/genus-2-appendix}
+
+\section*{Acknowledgments}
+
+\noindent This research was supervised by Ken Ono and David Zureick-Brown at the Emory University Mathematics REU and was supported by the National Science Foundation (grant number DMS-1557960). We would like to thank David Zureick-Brown for suggesting the problem that led to the present article and for offering us his invaluable advice and guidance; in particular, we acknowledge David Zureick-Brown for providing a detailed outline of the material on heights in Section~\ref{subsubsection:appendix-on-heights}.
+and for much help proving
+Proposition~\ref{proposition:stacky-dominant-map-surjective-fundamental-group}. We would like to acknowledge Brian Conrad for his meticulous efforts in providing us with enlightening comments, corrections, and suggestions on nearly every part of this paper. In addition, we would like to thank Davide Lombardo for writing an appendix for the present article and for many fruitful conversations. 
+We thank Daniel Litt for much help proving Proposition~\ref{proposition:big-geometric-monodromy-reduction}.
+Finally, we would like to thank Jeff Achter, Jarod Alper, Michael Aschbacher, Anna Cadoret, Alina Cojocaru, John Cullinan, Dougal Davis, Anand Deopurkar, Noam Elkies, Jordan Ellenberg, Tony Feng, Nick Gill, Jack Hall, Joe Harris, Eric Katz, Mark Kisin, Ben Moonen, Jackson Morrow, Anand Patel, Bjorn Poonen, Jeremy Rickard, Eric Riedl, Simon Rubinstein-Salzedo, David Rydh, Jesse Silliman, Jacob Tsimerman, Evelina Viada, Erik Wallace, and Alex Wright for their helpful advice. We used {\tt magma} and \mbox{\emph{Mathematica} for explicit calculations.}
+
+\bibliographystyle{alpha}
+\bibliography{bibfile}
+
+\end{document}

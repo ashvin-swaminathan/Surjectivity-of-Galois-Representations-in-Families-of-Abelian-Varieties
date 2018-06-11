@@ -1,0 +1,152 @@
+\section{Introduction and Statement of Results}
+\label{section:introduction}
+
+\subsection{Background}
+One of the most significant breakthroughs in the theory of Galois representations came in 1972, when Serre proved the Open Image Theorem for elliptic curves in his seminal paper~\cite{causalrelationship}.
+Serre's theorem states that for any elliptic curve $E$ over a number field $K$ without complex multiplication, the image of the associated \emph{adelic} Galois representation $\rho_E$ is an open subgroup of the general symplectic group $\GSp_2(\wh{\ZZ})$. The Open Image Theorem not only gives rise to many important \mbox{corollaries --} from the simple consequence that the image of $\rho_E$ has finite index in $\GSp_2(\wh{\ZZ})$, to the intriguing result that the density of supersingular primes of $E$ is $0$ -- but recently, within the past two decades, the theorem has also inspired a body of research concerning the following question:
+
+\begin{question}
+How large can the image of the adelic Galois representation associated to an elliptic curve be, and how often do elliptic curves attain this largest possible Galois image?
+\end{question}
+
+The first major result addressing the above question was achieved by Duke in~\cite{duke:elliptic-curves-with-no-exceptional-primes}. He proved that for  ``most'' elliptic curves $E$ over $\QQ$ in the standard family with Weierstrass equation $y^2 = x^3 + ax + b$, the image of the \emph{mod-$\ell$ reduction} of $\rho_E$ is all of $\GSp_2(\ZZ/\ell \ZZ)$ for every prime number $\ell$;
+here and in what follows, ``most'' means a density-$1$ subset of curves ordered by na\"{i}ve height.
+Duke's result does not imply, however, that $\rho_E$ surjects onto $\GSp_2(\wh{\ZZ})$ for most $E$. In fact, as
+Serre observes in~\cite{causalrelationship}, the image of $\rho_E$ has index divisible by $2$ in $\GSp_2(\wh{\ZZ})$ for every elliptic curve $E/\QQ$. Nonetheless, Jones proves in~\cite[Theorem 4]{josofabank} that most elliptic curves $E$ in the standard family over $\QQ$ have \emph{adelic} Galois representations with image as large as possible (i.e., with index $2$ in $\GSp_2(\wh{\ZZ})$).
+
+The obstruction to having surjective adelic Galois representation faced by elliptic curves over $\QQ$ does not occur over other number fields. In~\cite[Theorem 1.5]{greasy}, Greicius constructed the first explicit example of an elliptic curve over a number field with Galois image equal to all of $\GSp_2(\wh{\ZZ})$. Greicius' example is not the only elliptic curve with this property: in~\cite[Theorem 1.2]{zywina2010elliptic}, Zywina employs the above result of Jones to show that most elliptic curves in the standard family over a number field $K \neq \QQ$ have Galois image equal to all of $\GSp_2(\wh{\ZZ})$ as long as $K \cap \QQ^{\cyc} = \QQ$, where $\QQ^{\cyc}$ is the maximal cyclotomic extension of $\QQ$. Subsequently, in~\cite[Theorem 1.15]{zywina2010hilbert}, Zywina achieves an intriguing generalization of this result: using a variant of Hilbert's Irreducibility Theorem, he shows that most members of \emph{every} non-isotrivial rational family of elliptic curves over \emph{any} number field have Galois image as large as possible given the constraints imposed by the arithmetic and geometric properties of the family. Further results over $\mathbb Q$ were
+obtained in~\cite{grant:a-formula-for-the-number-of-elliptic-curves-with-exceptional-primes},~\cite{cojocaruH:uniform-results-for-serres-theorem-for-elliptic-curves}, and~\cite{cojocaruGJ:one-parameter-families-of-elliptic-curves}
+(see~\cite[p.~6]{zywina2010hilbert} for a more detailed overview).
+
+Given that the above question is so well-studied in the context of elliptic curves, it is natural to wonder whether any of the aforementioned theorems extend to abelian varieties of higher dimension.
+There are several results showing that ``most'' closed points
+have Galois representation which has finite index inside the Galois representation
+of the family:
+In \cite{cadoret2015open}, (see also \cite{cadoret2015integral},) the author
+shows that the set of $K$-points whose Galois image does not have finite
+index in the Galois image of the family is a thin set. Further, in \cite{cadoretuniform-i} and \cite{cadoretuniform-ii},
+the authors show that when the base of the family is a curve, the set of $K$-points
+(and more generally closed points of bounded degree)
+failing to have finite index is a finite set.
+Moreover, explicit examples of curves whose Jacobians have maximal Galois image have been constructed: it follows from the results of~\cite{dooleyfat} and~\cite{zywina2010elliptic} that one can algorithmically write down equations of abelian surfaces and three-folds over $\mathbb Q$ with Galois image as large as possible. 
+However, we are not aware of any results in the literature describing the density of higher-dimensional abelian varieties whose adelic Galois representations 
+\mbox{have maximal image,} and not only Galois image of finite index.
+
+\subsection{Main Result}\label{weaintevergonnaberoyals}
+
+The primary objective of this article is to prove that an analogue of Zywina's result for rational families of elliptic curves in~\cite[Theorem 1.15]{zywina2010hilbert} holds for abelian varieties of arbitrary dimension, subject to a mild hypothesis on the \emph{monodromy} (i.e., Galois image) of the family under consideration. Before stating our theorems, we must establish some of the requisite notation; we expatiate upon this and other important background material in Section~\ref{subsection:setup}, where precise definitions are provided.
+
+Let $K$ be a number field with fixed algebraic closure $\ol{K}$, let $U \subset \mathbb P^r_K$ be a dense open subscheme, and let $A \rightarrow U$ be a family of $g$-dimensional principally polarized abelian varieties (henceforth, PPAVs). Let $\mono_A \subset \GSp_{2g}(\widehat{\mathbb Z})$ be the monodromy of the family
+and let $\mono_{A_u} \subset \mono_A$ be the monodromy of the fiber $A_u$ over $u \in U$. Finally, to facilitate our enumeration of PPAVs, let $\on{Ht}\colon\mathbb P^r(\overline K) \rightarrow \mathbb R_{>0}$
+denote the absolute multiplicative height on projective space,\footnote{See~\cite[Section B.2, p.~174]{afraidofheights} for the definition.}
+and define a height function $\| - \|$ on the lattice $\mathcal O^r_K$
+sending $\left( t_1, \ldots, t_r \right) \mapsto \max_{\sigma,i}|\sigma(t_i)|$,
+where $\sigma$ varies over all field embeddings $\sigma\colon K \hookrightarrow \mathbb C$.
+Our main result is stated as follows:
+\begin{theorem} \label{theorem:main}
+	Let $B, n$ be arbitrary positive real numbers, and suppose that the rational family $A \to U$ is non-isotrivial and has big monodromy, meaning that $\mono_A$ is open in $\GSp_{2g}(\zh)$. Let $\delta_\QQ$ be the index of the closure of the commutator subgroup of $\mono_A$ in $\mono_A \cap \Sp_{2g}(\zh)$, and let $\delta_K = 1$ for $K \neq \QQ$. Then $[\mono_A : \mono_{A_u}] \geq \delta_K$ for all $u \in U(K)$, and we have the following asymptotic statements:
+			\[
+				\frac{|\{u \in U(K) \cap \mathcal{O}_K^r : \lVert u \rVert \le B,\, [\mono_A : \mono_{A_u}] = \delta_K\}|}{|\{u \in U(K) \cap \mc{O}_K^r : \lVert u \rVert \le B\}|} = 1 + O((\log B)^{-n}), \text{ and}
+			\]
+\[
+				\frac{|\{u \in U(K) : \on{Ht}(u) \leq B,\, [\mono_A : \mono_{A_u}] = \delta_K\}|}{|\{u \in U(K) : \on{Ht}(u) \le B\}|} = 1 + O((\log B)^{-n}),
+			\]
+	 where the implied constants depend only on $A \to U$ and $n$.
+\end{theorem}
+
+\begin{remark}\label{remkydoo}
+	Notice that Theorem~\ref{theorem:main} holds trivially in dimension $0$. In~\cite[Theorem 1.15]{zywina2010hilbert}, where the $1$-dimensional case of Theorem~\ref{theorem:main} is treated, Zywina bounds the error more sharply, by
+$O( (\log B)B^{-1/2} )$ as opposed to our bound of
+$O( (\log B)^{-n} )$.
+In what follows, we shall primarily restrict ourselves to the case where the dimension $g$ is at least $2$.
+\end{remark}
+
+\begin{remark}
+In~\cite{scoopdedoo}, Wallace studies a variant of Theorem~\ref{theorem:main} in the $2$-dimensional case.~Unfortunately, his argument relies upon a mistaken Masser-W\"{u}stholz-type result of Kawamura,~\cite[Main Theorem 2]{ifyouseekamy}. Although Wallace describes in~\cite[p.~468]{scoopdedoo} how to correct some of the errors in Kawamura's proof, the modified argument still appears to be mistaken; see~\cite[p.~27]{lombardoGL2type} for a description of one error in Kawamura's argument that Wallace does not adequately address.
+Using the result stated in Appendix~\ref{lombardstreet}, written by Davide Lombardo, we are able to patch this error in Wallace's argument.
+\end{remark}
+
+\begin{remark}
+	\label{remark:}
+    The locus of $u \in U(K)$ with $[\mono_A : \mono_{A_u}] > \delta_K$ will not in general be Zariski-closed, so the ``sparseness'' of this locus can only be quantified by an asymptotic statement. To see why, consider the family of
+	elliptic curves over $K$
+	given by \mbox{the Weierstrass equations} $y^2 = x^3 + x + a$ for $a \in K$. Note that the mod-$2$ reduction of the monodromy is nontrivial for the family but is trivial for infinitely many members of the family, namely those for which the defining polynomial $x^3 + x + a$ factors completely over $K$.
+\end{remark}
+
+We now outline the proof of Theorem~\ref{theorem:main}. Hilbert's Irreducibility Theorem is the prototype for results like Theorem~\ref{theorem:main}, but it only applies in the setting of finite groups. Indeed, the phenomenon that Galois representations associated to elliptic curves over $\bq$ \emph{never} surject onto $\GSp_2(\wh{\ZZ})$ shows that Hilbert's Irreducibility Theorem cannot hold for infinite groups. However, when $A \to U$ has \emph{big monodromy}, in the sense that $H_A$ is open in $\GSp_{2g}(\zh)$, the problem is essentially reduced to showing that, for most $u \in U(K)$, the mod-$\ell$ reduction of $H_{A_u}$ contains $\GSp_{2g}(\bz / \ell \bz)$ for each sufficiently large prime $\ell$. This reduction uses an infinite version of Goursat's lemma. Since these mod-$\ell$ reductions are \emph{finite} groups, the na\"{i}ve expectation is that Hilbert's Irreducibility Theorem can be applied once for each $\ell$. Unfortunately, the sum of the resulting error terms does not \emph{a priori} converge to zero.
+
+To overcome this problem, we divide the primes $\ell$ into three regions.
+\begin{enumerate}
+	\item We handle all sufficiently large primes by means of a delicate argument involving the large sieve that allows us to apply a recent result of Lombardo (namely,~\cite[Theorem 1.2]{lombardo2015explicit} and  Proposition~\ref{prop:Main}).
+	\item For the smaller primes, Wallace's effective version of the Hilbert Irreducibility Theorem gives sufficiently good error terms. His approach is to complete $\phi: U \to \spec K$ to a map $\wt{\phi} : \mc{U} \to \spec \mc{O}_K$ (see Section~\ref{subsection:notation-for-families}), and then to apply the large sieve using information gleaned from the special fibers of $\wt{\phi}$. To ensure that the monodromy maps associated to special fibers of $\wt{\phi}$ capture enough information about the monodromy of the whole family, we assume the family is non-isotrivial and has big monodromy.
+Our main contribution to this step is an application of the Grothendieck Specialization Theorem, which shows that Wallace's Property~\ref{property-a2}---concerning the relation between the monodromy maps associated to a geometric \emph{special} fiber and to a geometric \emph{generic} fiber---holds in a very general setting.
+	\item Lastly, to handle the finitely many primes that remain, the Cohen-Serre version of the Hilbert Irreducibility Theorem suffices.
+\end{enumerate}
+We encourage the reader to refer to Section~\ref{subsection:outline} for a more detailed discussion of the intricate arguments outlined above.
+
+
+\subsection{Applications} We record a number of interesting applications of our main result. These and several further applications are stated and proven in
+Theorem~\ref{corollary:examples}.
+\begin{theorem}[Abbreviation of Theorem~\protect{\ref{corollary:examples}}]
+	\label{corollary:abbreviated-examples}
+	Let $\ag$ denote the moduli stack of $g$-dimensional PPAVs, suppose $A \to U$ is a rational family, and let $V$ be
+	the smallest locally closed substack of $\ag$ through which $U \rightarrow \ag$ factors.
+	The conclusion of Theorem~\ref{theorem:main} holds if $V$ is normal and contains a dense open substack of any of the following loci:
+	\begin{enumerate}
+		\item the substack of Jacobians of hyperelliptic curves, or
+		\item the substack of Jacobians of trigonal curves, or
+		\item the substack of Jacobians of plane curves of degree $d$ (see Remark~\ref{remark:locus-of-plane-curves} for a more precise description of this substack), or
+		\item the substack of Jacobians of all curves in $\mg$, or
+		\item the moduli stack $\ag$.
+	\end{enumerate}
+\end{theorem}
+Theorem~\ref{corollary:abbreviated-examples} has the following noteworthy corollary:
+
+\begin{corollary}
+	\label{corollary:infinitely-many-maximal-image}
+	For every $g > 2$, there exist infinitely many PPAVs $A$ over $\mathbb Q$
+	with the property that $\rho_A(G_\mathbb Q) = \GSp_{2g}(\widehat{\mathbb Z})$.
+\end{corollary}
+\begin{proof}
+Let $\trigonal g(g\bmod 2) \subset \ag$ denote the locus of trigonal curves over $\mathbb Q$ of lowest Maroni invariant
+(as defined at the beginning of Section~\ref{androidbeatsios}).
+We have that $\trigonal g(g\bmod 2)$ is rational and normal when $g > 2$ (by
+Theorem~\ref{corollary:examples}~\ref{big-maroni}) and has monodromy equal to all of $\GSp_{2g}(\widehat{\mathbb Z})$
+when $g > 2$
+(by Remark~\ref{remark:mmmm}).
+Since $\trigonal g(g\bmod 2)$ is a dense open substack of the
+locus Jacobians of trigonal curves, Theorem~\ref{corollary:abbreviated-examples}
+implies that \mbox{Theorem~\ref{theorem:main}
+applies to $\trigonal g(g\bmod 2)$.\qedhere}
+\end{proof}
+
+\begin{remark}
+The above proof of Corollary~\ref{corollary:infinitely-many-maximal-image} is not constructive. For explicit examples of $1$-, $2$-, and $3$-dimensional PPAVs with maximal adelic Galois representations, see~\cite[Theorem 1.5]{greasy} and ~\cite[Sections 5.5.6-8]{causalrelationship},~\cite{landesman-swaminathan-tao-xu:hyperelliptic-curves}, \mbox{and~\cite[Theorem 1.1]{seaweed}, respectively.}
+\end{remark}
+
+We conclude this section with a representative example, which has incidentally enjoyed
+significant discussion in the literature.
+
+\begin{example}
+	\label{example:}
+	In this example, we take our family to be the Hilbert scheme $\mathscr H_4$ of plane
+	curves of degree $4$ over $\mathbb Q$. There is quite a bit of earlier work concerning Galois representations associated to Jacobians of such curves. For instance, a single example of a plane quartic
+	such that the adelic Galois representation associated to its Jacobian has image
+	equal to $\GSp_6(\widehat{\mathbb Z})$
+	is given in \cite[Theorem 1.1]{seaweed}.
+	In \cite[Corollary 1.1]{anni2016residual},
+	an example of a genus-$3$ hyperelliptic curve
+	whose Jacobian has mod-$\ell$ monodromy equal to $\GSp_6(\mathbb Z/\ell \mathbb Z)$
+	for primes $\ell \geq 3$ is constructed.
+	For any $\ell \geq 13$,~\cite[Theorem 0.1]{arias2015large}
+	gives
+	an infinite family of $3$-dimensional PPAVs with mod-$\ell$
+	monodromy equal to $\GSp_6(\mathbb Z/\ell \mathbb Z)$. All of these existence statements are subsumed by the main results of the present article: indeed, from Remark~\ref{remark:mmmm} and
+	Theorem~\ref{corollary:abbreviated-examples},
+	we obtain the considerably stronger statement that a density-$1$ subset of this family
+	has Galois representation
+	with image equal to $\GSp_6(\widehat{\mathbb Z})$.
+\end{example}
+
+The rest of this paper is organized as follows. In Section~\ref{gorilla}, we define the symplectic group and prove properties concerning its open and closed subgroups. In Section~\ref{section:background}, we introduce the basic definitions and properties associated to Galois representations of abelian varieties and families thereof. These definitions and properties are used heavily in Section~\ref{section:new-proof-of-main-theorem}, which is devoted to proving the main theorem of this article, Theorem~\ref{theorem:main}. In Section~\ref{iknewyouweretrouble}, we show that Theorem~\ref{theorem:main} can be applied to study many interesting families of PPAVs, and in so doing, we prove a result that implies Theorem~\ref{corollary:abbreviated-examples}.
+Finally, in Appendix~\ref{lombardstreet}, Davide Lombardo proves a key input that we employ in Section~\ref{section:new-proof-of-main-theorem} to handle the genus-$2$ case of Theorem~\ref{theorem:main}.

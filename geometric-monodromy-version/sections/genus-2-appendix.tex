@@ -1,0 +1,61 @@
+\section{Explicit Surjectivity for Abelian Surfaces \\ By Davide Lombardo} \label{lombardstreet}
+
+Let $K$ be a number field and $A/K$ be an abelian surface such that $\operatorname{End}_{\overline{K}}(A)=\mathbb{Z}$. For every place $w$ of $K$ at which $A$ has good reduction, let $\operatorname{Frob}_w$ be the corresponding Frobenius element of $\operatorname{Gal}\left( \overline{K}/K\right)$ and let $f_w(x)$ be the characteristic polynomial of $\operatorname{Frob}_w$ acting on $T_\ell A$, where $\ell$ is any prime different from the residual characteristic of $w$ (as it is well known, this definition is well-posed). Let $F(w)$ be the splitting field over $\mathbb{Q}$ of $f_w(x)$. Using the fact that the action of $\operatorname{Gal}\left( \overline{K}/K \right)$ on $T_\ell A$ factors through $\operatorname{GSp}_4(\mathbb{Q}_\ell)$, one checks easily that for all $w$ as above the Galois group of $F(w)/\mathbb{Q}$ is isomorphic to a subgroup of $D_4$, the dihedral group on 4 points.
+
+To state our result we need the following function:
+\begin{definition}\label{def:bFunction}
+Let $\alpha(g)=2^{10}g^3$ and set
+$
+b(d,g,h)=\left( (14g)^{64g^2} d \max\left(h, \log d,1 \right)^2 \right)^{\alpha(g)}.
+$
+\end{definition}
+
+We shall show the following result, which extends \cite[Theorem 1.2]{lombardo2015explicit} to the case of abelian surfaces:
+\begin{proposition}\label{prop:Main}
+Let $v$ be a place of $K$, of good reduction for $A$, such that the Galois group of $f_v(x)$ is isomorphic to $D_4$. Let $q_v$ be the order of the residue field at $v$. \mbox{For all primes $\ell$, let}
+\[
+\rho_{\ell^\infty} : \operatorname{Gal}\left( \overline{K}/K \right) \to \operatorname{Aut}(T_\ell A) \cong \operatorname{GL}_4(\mathbb{Z}_\ell)
+\]
+be the natural $\ell$-adic Galois representation attached to $A/K$. We have $\operatorname{Im} \rho_{\ell^\infty}=\operatorname{GSp}_4(\mathbb{Z}_\ell)$ for all primes $\ell$ that are unramified in $K$ and strictly larger than
+\[
+\max\{b(2[K:\mathbb{Q}],4,2h(A))^{1/4}, (2q_v)^8 \}.
+\]
+\end{proposition}
+
+
+From now on, let $v$ be a place as in the statement of proposition \ref{prop:Main}. 
+Notice that $f_v(x)$ is irreducible by assumption, hence all its roots are simple. Moreover, $f_v(x)$ doesn't have any real roots, because (by the Weil conjectures) every root of $f_v(x)$ has absolute value $\sqrt{q_v}$, hence its only possible real roots are $\pm \sqrt{q_v}$. But these are algebraic numbers of degree at most 2 over $\mathbb{Q}$, while $f_v(x)$ is irreducible of degree 4, contradiction.
+In particular, the roots of $f_v(x)$ come in complex conjugate pairs, so we shall denote them by $\mu_1, \mu_2, \iota(\mu_1), \iota(\mu_2)$, where $\iota : \mathbb{C} \to \mathbb{C}$ is complex conjugation.  We shall need the following lemma:
+
+\begin{lemma}\label{lemma:Nonzero}
+Let $x,y,z$ be three distinct eigenvalues of $\operatorname{Frob}_v$. We have $y^2 \neq xz$.
+\end{lemma}
+\begin{proof}
+Suppose first that $z=\iota(x)$. Then $y^2=x\iota(x)=q_v$, which implies that $y=\pm \sqrt{q_v}$ is a root of $f_v(x)$. As we have already seen, this is a contradiction. Hence, up to renaming the eigenvalues of $\operatorname{Frob}_v$ if necessary, we can assume $x=\mu_1, z=\mu_2$ and $y=\iota(\mu_1)$. Since $\operatorname{Gal}(F(v)/\mathbb{Q})$ is isomorphic to $D_4$ by assumption, there is a $\sigma \in \operatorname{Gal}(F(v)/\mathbb{Q})$ such that $\sigma(\mu_1)=\mu_1, \sigma(\iota(\mu_1))=\iota(\mu_1), \sigma(\mu_2)=\iota(\mu_2)$ and $\sigma(\iota(\mu_2))=\mu_2$. Applying $\sigma$ to the equality $y^2=xz$, that is, $\iota(\mu_1)^2=\mu_1\mu_2$, we get $\iota(\mu_1)^2=\mu_1\iota(\mu_2)$, whence $\iota(\mu_2)=\mu_2$. 
+But this implies that $\mu_2$ is real, which is once again a contradiction.
+\end{proof}
+
+\begin{proof}[Proof of Proposition \ref{prop:Main}]
+Let $\ell$ be a prime unramified in $K$ and strictly larger than $b(2[K:\mathbb{Q}],4,2h(A))^{1/4}$.
+Let $\rho_\ell : \operatorname{Gal}\left(\overline{K}/K \right) \to \operatorname{Aut} A[\ell]$ be the natural Galois representation associated with the $\ell$-torsion of $A$. 
+
+Much of the proof of~\cite[Theorem 3.19]{lombardoGL2type} still applies in the current setting, and shows that one of the following holds:
+\begin{enumerate}
+\item $\operatorname{Im}(\rho_{\ell^\infty}) = \operatorname{GSp}_{4}(\mathbb{Z}_\ell)$
+\item the image of $\rho_\ell$ is contained in a maximal subgroup of $\operatorname{GSp}_4(\mathbb{F}_\ell)$ of type (2) in the sense of Theorem 3.3 in~\cite{lombardoGL2type}.
+\end{enumerate}
+If we are in case (1) we are done, so assume we are in case (2). To conclude the proof, we shall show that $\ell \leq (2q_v)^8$. If $\ell$ is equal to the residual characteristic of $v$ this inequality is obvious, so we can assume that $v \nmid \ell$. In this case, the characteristic polynomial of the action of $\operatorname{Frob}_v$ on $T_\ell A$ is $f_v(x)$.
+ By \cite[Lemma 3.4]{lombardoGL2type}, the eigenvalues of any $x \in \operatorname{Im}(\rho_\ell)$ can be written as $\lambda \cdot \lambda_1^3, \lambda \cdot  \lambda_1^2\lambda_2, \lambda \cdot \lambda_1\lambda_2^2,\lambda \cdot \lambda_2^3$ for some $\lambda, \lambda_1, \lambda_2 \in \mathbb{F}_{\ell^2}^\times$. Taking $g\defeq\rho_\ell(\operatorname{Frob}_v)$, we may assume the four eigenvalues $\nu_1, \ldots, \nu_4$ of $g$ satisfy $\nu_2^2=\nu_1\nu_3$. 
+
+Let $\lambda$ be a place of $F(v)$ of characteristic $\ell$ and identify $\lambda$ with a maximal ideal of $\mathcal{O}_{F(v)}$. Since $f_v(x)$ splits completely in $F(v)$ by definition, its four roots $\mu_1, \mu_2, \iota(\mu_1), \iota(\mu_2)$ all belong to $\mathcal{O}_{F(v)}$. Upon reduction modulo $\lambda$, these four roots yield four elements of $\mathcal{O}_{F(v)}/\lambda$, which is a finite field of characteristic $\ell$. Moreover, as $\{\mu_1, \mu_2, \iota(\mu_1), \iota(\mu_2)\}$ is a Galois-stable set, its image in $\overline{\mathbb{F}_\ell}$ independent of the choice embedding of $\mathcal{O}_{F(v)}/\lambda$ into $\overline{\mathbb{F}_\ell}$, hence well defined. Denote by $\overline{\mu_1}, \overline{\mu_2}, \overline{\iota(\mu_1)}, \overline{\iota(\mu_2)}$ the images of $\mu_1, \mu_2, \iota(\mu_1), \iota(\mu_2)$ in $\overline{\mathbb{F}_\ell}$.
+
+Now observe that the characteristic polynomial of $g$ is the reduction modulo $\ell$ of $f_v(x)$, so its roots $\nu_1, \ldots, \nu_4 \in \overline{\mathbb{F}_\ell}^\times$ must coincide with $\overline{\mu_1}, \overline{\mu_2}, \overline{\iota(\mu_1)}, \overline{\iota(\mu_2)}$ in some order.
+Given that $\nu_2^2=\nu_1\nu_3$, there are three (necessarily distinct) eigenvalues of $\operatorname{Frob}_v$, call them $x,y,z$, that satisfy $y^2- xz \equiv 0 \pmod{ \lambda}$.  
+By Lemma~\ref{lemma:Nonzero}, $N_{F(v)/\mathbb{Q}}(y^2-xz)$ is a nonzero integer. 
+ Therefore, $N_{F(v)/\mathbb{Q}}(y^2-xz)$ has positive valuation at $\lambda$, hence it is divisible by $\ell$. In turn, this gives
+ \[
+ \ell \leq |N_{F(v)/\mathbb{Q}}(y^2-xz)| = \prod_{\sigma \in \operatorname{Gal}(F(v)/\mathbb{Q})}|\sigma(y)^2-\sigma(x)\sigma(z)| \leq (2q_v)^8,
+ \]
+where the inequality $|\sigma(y)^2-\sigma(x)\sigma(z)| \leq 2q_v$ follows immediately from the triangle inequality and the Weil conjectures.
+\end{proof}
+
